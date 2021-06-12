@@ -1,4 +1,4 @@
-from FrontEnd.source import *
+from source import *
 
 class MGSub(QDialog):
 

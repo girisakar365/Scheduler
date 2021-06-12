@@ -1,4 +1,4 @@
-from FrontEnd.source import * 
+from source import * 
 from Backend.Generator import Generator
 
 class ttframe: 
