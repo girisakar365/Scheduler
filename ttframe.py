@@ -117,12 +117,13 @@ class ttframe:
 								a,b=gen.gen_class(gen.shift+str(i+1))
 								Table.setItem(a,b,QTableWidgetItem(sub))
 					
-					if i<=7:
-						sub='Computer'
-					else:
-						sub='Biology'
-					for j in range(4):
-						a,b=gen.gen_class(gen.shift+str(i+1))
-						Table.setItem(a,b,QTableWidgetItem(sub))
+					if gen.faculty=='Science':
+						if i<=7:
+							sub='Computer'
+						else:
+							sub='Biology'
+						for j in range(4):
+							a,b=gen.gen_class(gen.shift+str(i+1))
+							Table.setItem(a,b,QTableWidgetItem(sub))
 				except Exception:
 					continue
