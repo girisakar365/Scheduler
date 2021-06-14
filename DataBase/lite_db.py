@@ -24,7 +24,7 @@ class Cache:
 	cur=conn.cursor()
 
 	def insert(data):
-		try:
+		try: #Managing unique string error
 			Cache.cur.execute("INSERT INTO cache(sq) VALUES (?)",[data])
 			Cache.conn.commit()
 		except Exception:
