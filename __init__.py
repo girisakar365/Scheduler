@@ -11,7 +11,6 @@ from ttframe import ttframe
 from trframe import trframe 
 from subwin import MGSub
 
-
 class FrontEnd(QMainWindow):
 
 	def __init__(self,app):
@@ -44,9 +43,9 @@ class FrontEnd(QMainWindow):
 		self.tool.geometry(sidebar,0, 0, 201, 1245)
 
 		#BAR-StyleSheet
-		sidebar.setStyleSheet("QFrame{\n"
-		"background-color: #004C98;\n"
-		"}")
+		sidebar.setStyleSheet('''QFrame{
+		background-color: #004C98;
+		}''')
 
 		#BAR-Orientation:
 		sidebar.setFrameShape(QFrame.StyledPanel)
