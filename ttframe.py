@@ -117,17 +117,14 @@ class ttframe:
 								a,b=gen.gen_class(gen.shift+str(i+1))
 								Table.setItem(a,b,QTableWidgetItem(sub))
 					
-					if gen.faculty=='Science':
-						if i<=gen.optii[0]:
-							sub='Computer'
-						else:
+					if i<=gen.optii[0]:
+						sub='Computer'
+					else:
+						if gen.faculty=='Science':
 							sub='Biology'
 
-					elif gen.faculty=='Management':
-						if i<=gen.optii[0]:
-							sub='Computer'
-						else:
-							sub='Biology'
+						elif gen.faculty=='Management':
+							sub='Hotel Management'
 
 					for j in range(4):
 						a,b=gen.gen_class(gen.shift+str(i+1))
