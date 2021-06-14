@@ -5,7 +5,7 @@ class trframe:
 	def __init__(self,*arg,**kwarg):
 
 		self.conform=arg[0]
-		self.dele=arg[1]
+		self.delete=arg[1]
 		self.pdf=arg[2]
 		self.search=arg[3]
 
@@ -20,6 +20,7 @@ class trframe:
 		self.msg=self.tool.msg(self.frame,'',0,0,82, 23)
 
 		self.conform.clicked.connect(lambda:self._conform())
+		self.delete.clicked.connect(lambda:self._delete())
 		self.search.clicked.connect(lambda:self._search())
 
 	def id_gen(self):
@@ -86,6 +87,9 @@ class trframe:
 
 			for i in self.widict['entry']:
 				i.clear()
+
+	def _delete(self):
+		DB.delete()
 
 	def _search(self):
 		Cache.insert(self.search_bar.text())

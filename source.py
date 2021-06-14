@@ -33,7 +33,7 @@ class Source:
 		border-radius:25px;
 		}
 		QPushButton:hover{
-		background-color:#F7941D
+		background-color:#F7941D;
 		}''',
 
 		'sub-btw':'''QPushButton{

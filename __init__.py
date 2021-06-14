@@ -11,7 +11,6 @@ from ttframe import ttframe
 from trframe import trframe 
 from subwin import MGSub
 
-
 class FrontEnd(QMainWindow):
 
 	def __init__(self,app):
@@ -44,9 +43,9 @@ class FrontEnd(QMainWindow):
 		self.tool.geometry(sidebar,0, 0, 201, 1245)
 
 		#BAR-StyleSheet
-		sidebar.setStyleSheet("QFrame{\n"
-		"background-color: #004C98;\n"
-		"}")
+		sidebar.setStyleSheet('''QFrame{
+		background-color: #004C98;
+		}''')
 
 		#BAR-Orientation:
 		sidebar.setFrameShape(QFrame.StyledPanel)
@@ -299,8 +298,8 @@ class FrontEnd(QMainWindow):
 		tr_fname_label = self.tool.label(self.trframe,"Frist Name:",'normal')
 		self.tool.geometry(tr_fname_label,30, 130, 74, 21)
 
-		tr_sname_label = self.tool.label(self.trframe,"Second Name:",'normal')
-		self.tool.geometry(tr_sname_label,30, 170, 104, 21)
+		tr_sname_label = self.tool.label(self.trframe,"Surname Name:",'normal')
+		self.tool.geometry(tr_sname_label,30, 170, 106, 21)
 
 		tr_subject_label = self.tool.label(self.trframe,"Subject:",'normal')
 		self.tool.geometry(tr_subject_label,30, 210, 90, 21)
@@ -320,21 +319,36 @@ class FrontEnd(QMainWindow):
 		tr_tableinfo_label = self.tool.label(self.trframe,"Professor Record",'subtitle')
 		self.tool.geometry(tr_tableinfo_label,350,40,270,32)
 
+		tr_totalsec_label=self.tool.label(self.trframe,"Total Section:",'normal')
+		self.tool.geometry(tr_totalsec_label,10, 455, 90, 22)
+
+		tr_class_label=self.tool.label(self.trframe,"Class:",'normal')
+		self.tool.geometry(tr_class_label,10, 490, 90, 22)
+
+		tr_faculty_label=self.tool.label(self.trframe,"Faculty",'normal')
+		self.tool.geometry(tr_faculty_label,10, 530, 90, 22)
+
+		tr_shift_label=self.tool.label(self.trframe,"Shift",'normal')
+		self.tool.geometry(tr_shift_label,10, 570, 90, 22)
+
 		# TR-ENTRY----------------------------------------------------------------
 		tr_fname_entry=self.tool.entry(self.trframe)
-		self.tool.geometry(tr_fname_entry,140, 130, 90, 21)
+		self.tool.geometry(tr_fname_entry,145, 130, 90, 21)
 		tr_fname_entry.setPlaceholderText('First Name')
 		
 		tr_sname_entry=self.tool.entry(self.trframe)
-		self.tool.geometry(tr_sname_entry,140, 170, 90, 22)
-		tr_sname_entry.setPlaceholderText('Second Name')
+		self.tool.geometry(tr_sname_entry,145, 170, 90, 22)
+		tr_sname_entry.setPlaceholderText('Surname Name')
 		
 		tr_subject_entry=self.tool.entry(self.trframe)
-		self.tool.geometry(tr_subject_entry,140, 210, 84, 21)
+		self.tool.geometry(tr_subject_entry,145, 210, 130, 21)
 		tr_subject_entry.setPlaceholderText('Subject')
-		
+		sub_list=['Physics', 'Chemistry','Maths','English','Nepali','Computer',
+		'Account','Economics','Constitutional Law','Jurispredunce','Procedrual Law',
+		'Social']
+		self.tool.completer(tr_subject_entry,sub_list)
 		tr_email_entry=self.tool.entry(self.trframe)
-		self.tool.geometry(tr_email_entry,140, 250, 130, 22)
+		self.tool.geometry(tr_email_entry,145, 250, 130, 22)
 		tr_email_entry.setPlaceholderText('example@gmail.com')
 
 		tr_tsec_entry=self.tool.entry(self.trframe)
