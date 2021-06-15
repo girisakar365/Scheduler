@@ -14,8 +14,6 @@ class Generator:
 
         self.tp=tp
 
-        self.maths=['Calculas','Algebra','Geometery']
-
         self.sub_dict={
         'Science':['Mechanics-I','Thermodynamics','Optics','GPA-I','GPA-II',
         'Inorganic','Literature','Grammar','Nepali','Electrostatics','Mechanics-II',
@@ -24,8 +22,6 @@ class Generator:
         'Management':['Account','Economics','Nepali','Grammar','Literature'],
         
         'Law':['Constitutional Law','Jurispredunce','Procedrual Law','Nepali','Social','English'],
-
-        'opti':['Maths','Social S.T.D'],
 
         'optii':['Computer','Biology','Hotel Management','B.Studies'],
         }
@@ -80,3 +76,16 @@ class Generator:
             
             self.dcord_dict[sec].pop(self.dcord_dict[sec].index(td))
             return td
+
+a=Generator('Science','D',18,(1,17),8)
+count=0
+
+for i in range(a.total_section):
+    
+    for j in a.dcord_dict[a.shift+str(i+1)]:
+        try:
+            print([j , a.dcord_dict[a.shift+str(i+1)][
+                a.dcord_dict[a.shift+str(i+1)].index(j)+1
+            ]])
+        except Exception:
+           continue
