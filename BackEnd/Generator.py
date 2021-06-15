@@ -117,5 +117,3 @@ class Generator:
             for i in ld:
                 self.dcord_dict[sec].pop(self.dcord_dict[sec].index(i))
             return ld
-
-a=Generator('Science','D',10,(3,14),2)
