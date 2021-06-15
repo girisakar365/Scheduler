@@ -1,6 +1,5 @@
 from random import * 
 from math import log
-from typing import get_origin
 
 class Generator:
 
