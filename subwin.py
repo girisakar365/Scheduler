@@ -15,6 +15,8 @@ class MGSub(QDialog):
 		color:#ffffff;
 		background-color:#292728;}''')
 
+		self.data=[]
+
 		self.maths_entry=self.tool.entry(self)
 		self.maths_entry.setPlaceholderText("Sections")
 		
@@ -73,6 +75,9 @@ class MGSub(QDialog):
 		lab_title=self.tool.label(self,'Lab Management:','normal')
 		self.tool.geometry(lab_title,10, 340, 200, 37)
 
+		break_title=self.tool.label(self,'Breaks','normal')
+		self.tool.geometry(break_title,10, 410, 200, 37)
+
 		self.tool.geometry(self.computer_entry,148,220,50,20)
 		self.tool.IntValidator(self.computer_entry)
 		self.computer_entry.setEnabled(False)
@@ -117,6 +122,15 @@ class MGSub(QDialog):
 		self.lab_cb.setChecked(True)
 		self.lab_cb.stateChanged.connect(lambda:self.on_off(self.lab_cb,lab_label,'l'))
 
+		same_rd=self.tool.radiobtw(self,'Same time')
+		self.tool.geometry(same_rd,10, 450, 200, 17)
+		same_rd.toggled.connect(lambda:print(0))
+
+		split_rd=self.tool.radiobtw(self,'Split according to optional subject')
+		split_rd.setChecked(True)
+		split_rd.toggled.connect(lambda:print(1))
+		self.tool.geometry(split_rd,10, 480, 230, 17)
+		
 		conform_btw = self.tool.button(self, style=self.tool.addStyle(20))
 		self.tool.geometry(conform_btw,280, 468, 40, 40)
 		conform_btw.setIcon( self.tool.image( PhotoLib.get(4) ) )
@@ -144,3 +158,12 @@ class MGSub(QDialog):
 		'l':label,
 		}
 		switch_dict[state]()
+
+	def _conform(self):
+		pass#BackEnd Handle Stuff
+
+if __name__ == "__main__":
+	import sys
+	app = QApplication(sys.argv)
+	root=MGSub()#provided app for scree_geo
+	sys.exit(app.exec_())
