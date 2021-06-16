@@ -1,5 +1,6 @@
 from source import * 
 from Backend.Generator import Generator
+from subwin import MGSub
 
 class ttframe: 
 
@@ -109,7 +110,14 @@ class ttframe:
 			
 
 			gen=Generator(cd[1],cd[2],ed[0],(7,11),ed[1])
+			rand=['Phy-Lab','Chem-Lab','Opt-Lab']
 			for i in range(ed[0]):
+				shuffle(rand)
+				for j in rand:
+					for k in gen.gen_lab(gen.shift+str(i+1)):
+						a,b=k
+						Table.setItem(a,b,QTableWidgetItem(j))
+
 				try:
 					for j in range(2):
 						shuffle(gen.sub_dict[gen.faculty])
@@ -126,7 +134,7 @@ class ttframe:
 						elif gen.faculty=='Management':
 							sub='Hotel Management'
 
-					for j in range(4):
+					for j in range(5):
 						a,b=gen.gen_class(gen.shift+str(i+1))
 						Table.setItem(a,b,QTableWidgetItem(sub))
 				except Exception:
