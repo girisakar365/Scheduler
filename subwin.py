@@ -161,9 +161,3 @@ class MGSub(QDialog):
 
 	def _conform(self):
 		pass#BackEnd Handle Stuff
-
-if __name__ == "__main__":
-	import sys
-	app = QApplication(sys.argv)
-	root=MGSub()#provided app for scree_geo
-	sys.exit(app.exec_())
