@@ -121,38 +121,26 @@ class Source:
 	def font(self,typ,*arg):
 		font=QFont()
 
-		if typ=='title':
-			font.setFamily("Segoe UI Semibold")
-			font.setPointSize(20)
-			font.setBold(True)
-			return font
+		switch_dict={'title':['Segoe UI Semibold',20],
+		'subtitle':['Segoe UI Light',16],
+		'normal':['Segoe UI Light',12],
+		'msg':['Segoe UI Light',10],
+				}
+		try:
+			font.setFamily(switch_dict[typ][0])
+			font.setPointSize(switch_dict[typ][1])
 
-		elif typ=='info':
-			font.setFamily("Segoe UI bold")
-			font.setPointSize(40)
-			font.setBold(True)
-			return font
+			if typ=='title':
+				font.setBold(True)
 
-		elif typ=='subtitle':
-			font.setFamily("Segoe UI Light")
-			font.setPointSize(16)
-			return font
-
-		elif typ=='normal':
-			font.setFamily("Segoe UI Light")
-			font.setPointSize(12)
-			return font
-
-		elif typ=='msg':
-			font.setFamily("Segoe UI Light")
-			font.setPointSize(10)
-			return font
-
-		elif typ=='entry':
-			font=arg[0].font()
-			font.setFamily("Segoe UI Light")
-			font.setPointSize(12)
-			arg[0].setFont(font)
+		except Exception:
+			if typ=='entry':
+				font=arg[0].font()
+				font.setFamily("Segoe UI Light")
+				font.setPointSize(12)
+				arg[0].setFont(font)
+		
+		return font
 
 	def msg(self,master,text,x,y,hight,width):
 		label=self.label(master,text,'msg')
@@ -164,7 +152,7 @@ class Source:
 	def geometry(self,widget,x,y,hight,width):
 		widget.setGeometry(QRect(x,y,hight,width))
 
-	def label(self,master,text,fonttyp,*arg:str):
+	def label(self,master,text,fonttyp='normal'):
 		label=QLabel(text,master)
 		label.setFont(self.font(fonttyp))
 		label.setStyleSheet(self.styledict['label'])

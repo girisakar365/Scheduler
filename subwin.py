@@ -9,8 +9,8 @@ class MGSub(QDialog):
 		self.tool=Source(self)
 
 		self.setWindowTitle('Manage Subject')
-		self.resize(353,495)
-		self.setMaximumSize(QSize(323,365))
+		self.resize(353,510)
+		self.setMaximumSize(QSize(323,510))
 		self.setStyleSheet('''QWidget{
 		color:#ffffff;
 		background-color:#292728;}''')
@@ -45,14 +45,16 @@ class MGSub(QDialog):
 
 		self.homgt_cb=self.tool.checkbox(self,'Hotel Management:')
 
+		self.lab_cb=self.tool.checkbox(self,'State:')
+
 		self.widget()
 
 		self.setFocus()
 		self.exec_()
 
 	def widget(self):
-		title=self.tool.label(self,'Optional Subjects','title')
-		self.tool.geometry(title,8, 15, 220, 37)
+		title=self.tool.label(self,'Subject Management','title')
+		self.tool.geometry(title,8, 15, 260, 37)
 		
 		optsubi_title=self.tool.label(self,'Optional Subject I:','normal')
 		self.tool.geometry(optsubi_title,10, 70, 150, 37)
@@ -67,6 +69,9 @@ class MGSub(QDialog):
 
 		optsubii_title=self.tool.label(self,'Optional Subject II:','normal')
 		self.tool.geometry(optsubii_title,10, 180, 150, 37)
+
+		lab_title=self.tool.label(self,'Lab Management:','normal')
+		self.tool.geometry(lab_title,10, 340, 200, 37)
 
 		self.tool.geometry(self.computer_entry,148,220,50,20)
 		self.tool.IntValidator(self.computer_entry)
@@ -102,18 +107,40 @@ class MGSub(QDialog):
 		
 		self.tool.geometry(self.homgt_cb,10,310,125,20)
 		self.homgt_cb.stateChanged.connect(lambda:self.on_off(self.homgt_cb,self.homgt_entry))
+		
+		self.tool.geometry(self.lab_cb,10,380,95,20)
+		lab_label=self.tool.label(self,'Include')
+		font=QFont()
+		font.setPointSize(9)
+		lab_label.setFont(font)
+		self.tool.geometry(lab_label,68,380,150,20)
+		self.lab_cb.setChecked(True)
+		self.lab_cb.stateChanged.connect(lambda:self.on_off(self.lab_cb,lab_label,'l'))
 
 		conform_btw = self.tool.button(self, style=self.tool.addStyle(20))
-		self.tool.geometry(conform_btw,270, 320, 40, 40)
+		self.tool.geometry(conform_btw,280, 468, 40, 40)
 		conform_btw.setIcon( self.tool.image( PhotoLib.get(4) ) )
 		self.tool.imageGeo(conform_btw,32)
 		conform_btw.clicked.connect(self.close)
 
-	def on_off(self,widget,line):
-		if widget.isChecked():
-			line.setEnabled(True)
-			line.setFocus()
+	def on_off(self,widget,subwidget,state='e'):
 
-		else:
-			line.clear()
-			line.setEnabled(False)
+		def entry():
+			if widget.isChecked():
+				subwidget.setEnabled(True)
+				subwidget.setFocus()
+
+			else:
+				subwidget.clear()
+				subwidget.setEnabled(False)
+
+		def label():
+			if widget.isChecked():
+				subwidget.setText('Include')
+			else:
+				subwidget.setText('Do not Include')
+
+		switch_dict={'e':entry,
+		'l':label,
+		}
+		switch_dict[state]()
