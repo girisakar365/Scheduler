@@ -231,6 +231,12 @@ class Source:
 		 checkBox.setCursor(QCursor(Qt.PointingHandCursor))
 		 return checkBox
 
+	def radiobtw(self,widget,text='Your text here'):
+		radio=QRadioButton(text,widget)
+		radio.setStyleSheet('font-size:12px;')
+		radio.setCursor(QCursor(Qt.PointingHandCursor))
+		return radio
+
 	def image(self,img):
 		pixmap=QPixmap()
 		pixmap.loadFromData(img)
