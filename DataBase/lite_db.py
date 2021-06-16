@@ -34,6 +34,10 @@ class Cache:
 		data=Cache.cur.execute('SELECT * FROM cache')
 		return data.fetchall()
 
+	def update(col,data):
+		data=Cache.cur.execute(f'UPDATE mgSub SET {col} = (?)',[data])
+		Cache.conn.commit()
+
 	def delete():
 		data=Cache.cur.execute('DELETE FROM cache')
 		Cache.conn.commit()
