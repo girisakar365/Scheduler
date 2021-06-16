@@ -1,4 +1,5 @@
 from source import *
+from DataBase.lite_db import *
 
 class MGSub(QDialog):
 
@@ -14,8 +15,6 @@ class MGSub(QDialog):
 		self.setStyleSheet('''QWidget{
 		color:#ffffff;
 		background-color:#292728;}''')
-
-		self.data=[]
 
 		self.maths_entry=self.tool.entry(self)
 		self.maths_entry.setPlaceholderText("Sections")
@@ -124,18 +123,18 @@ class MGSub(QDialog):
 
 		same_rd=self.tool.radiobtw(self,'Same time')
 		self.tool.geometry(same_rd,10, 450, 200, 17)
-		same_rd.toggled.connect(lambda:print(0))
+		same_rd.toggled.connect(lambda:Cache.update('break',0))
 
 		split_rd=self.tool.radiobtw(self,'Split according to optional subject')
 		split_rd.setChecked(True)
-		split_rd.toggled.connect(lambda:print(1))
+		split_rd.toggled.connect(lambda:Cache.update('break',1))
 		self.tool.geometry(split_rd,10, 480, 230, 17)
 		
 		conform_btw = self.tool.button(self, style=self.tool.addStyle(20))
 		self.tool.geometry(conform_btw,280, 468, 40, 40)
 		conform_btw.setIcon( self.tool.image( PhotoLib.get(4) ) )
 		self.tool.imageGeo(conform_btw,32)
-		conform_btw.clicked.connect(self.close)
+		conform_btw.clicked.connect(self._conform)
 
 	def on_off(self,widget,subwidget,state='e'):
 
@@ -151,8 +150,10 @@ class MGSub(QDialog):
 		def label():
 			if widget.isChecked():
 				subwidget.setText('Include')
+				Cache.update('lab',1)
 			else:
 				subwidget.setText('Do not Include')
+				Cache.update('lab',0)
 
 		switch_dict={'e':entry,
 		'l':label,
@@ -160,4 +161,14 @@ class MGSub(QDialog):
 		switch_dict[state]()
 
 	def _conform(self):
-		pass#BackEnd Handle Stuff
+
+		sub=['math','social','computer','bio','bstudies','homgt']
+
+		count=0
+		for i in [ i.text() for i in [self.maths_entry,self.social_entry,self.computer_entry,
+		self.bio_entry,self.bstudies_entry,self.homgt_entry] ]:
+			if i!='':
+				Cache.update(sub[count],int(i))
+			count+=1
+
+		self.close()
