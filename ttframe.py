@@ -58,7 +58,7 @@ class ttframe:
 			ed=[int(i.text()) for i in self.widict['entry']]
 			cd=[i.currentText() for i in self.widict['combo']]
 
-			title='Routine: Class-{c} {sb} ({sh})'.format(c=cd[0],sb=cd[1],sh=cd[2])
+			title=f'Routine: Class-{cd[0]} {cd[1]} ({cd[2]})'
 			self.widict['label'].setText(title)
 			self.widict['label'].move(287,190)
 
@@ -104,7 +104,7 @@ class ttframe:
 				num+=1
 				i*=7
 				for j in range(ed[1]):
-					Table.setItem(i,j,QTableWidgetItem('_______{}_______'.format(shift+str(num))))
+					Table.setItem(i,j,QTableWidgetItem(f'_______{shift+str(num)}_______'))
 				
 			
 
