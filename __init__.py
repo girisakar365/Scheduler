@@ -133,8 +133,6 @@ class FrontEnd(QMainWindow):
 		self.tool.geometry(guid_btw,10, 570, 161, 51)
 
 		#HFRAME--------------------------------------------------------------	
-		hf_info1_label = self.tool.label(self.hframe,"No Records",'info')
-		self.tool.geometry(hf_info1_label,130, 410, 354, 170)
 
 		hf_info_line=self.tool.line(self.hframe,'v')
 		self.tool.geometry(hf_info_line,580, 190, 3, 981)
@@ -144,9 +142,6 @@ class FrontEnd(QMainWindow):
 
 		hf_teacheregistration_label = self.tool.label(self.hframe,"Teacher Records",'title')
 		self.tool.geometry(hf_teacheregistration_label,710, 230, 201, 41)
-		
-		hf_info2_label = self.tool.label(self.hframe,"No Records",'info')
-		self.tool.geometry(hf_info2_label,710, 410, 354, 170)
 
 		#TTFRAME---------------------------------------------------------------
 		tt_timetable_label = self.tool.label(self.ttframe,"Time Table",'title')
