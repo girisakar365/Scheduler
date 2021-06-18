@@ -25,6 +25,8 @@ class Generator:
         'Law':['Constitutional Law','Jurispredunce','Procedrual Law','Nepali','Social','English'],
 
         'optii':['Computer','Biology','Hotel Management','B.Studies'],
+
+        'sci-lab':['Phy-Lab','Chem-Lab'],
         }
 
         self.dcord_dict={}
