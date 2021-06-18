@@ -1,39 +1,33 @@
 from random import *
-teacher=['Uttam Raj Bhusal','Nagendra Arayal','Bhola Galwali',
-         'Rajesh Shrestha', 'Prakash Ghimire','Rikesh Sharma',
-         'Dash Barma','Ram Hari Shankar','Uttam Arayal']
+from DataBase.db import DB
+class DataGen:
+    def id_gen():
+        capitalChar = 'abcdefghijklmnopqrstuvwxyz'.upper()
+        number = '0123456789'
+        all = capitalChar+number
+        return ''.join(sample(all,5))  
 
-name = ['Ram','Shyam', "Hari", 'Samip', 'Varun', 'Bardan' ,
-        'Ashutosh', 'Darwin', 'Bikalpa', 'Swostik', 'Sanshakar',
-        'Abiyan', 'Dev']
+    def gen_data(limit:int=27):
+        name = ['Uttam Raj','Ram','Shyam', "Hari", 'Samip', 'Varun', 'Bardan' ,
+                'Ashutosh', 'Darwin', 'Bikalpa', 'Swostik', 'Sanshkar',
+                'Abiyan', 'Dev','Nagendra','Bhola','Rajesh','Prakash','Dash','Rikesh','Devendra',
+                'Uttam','Ankit','Pratik']
+        
+        sname=['Bhusal','Arayal','Galwali','Arayal','Ghimire','Shrestha', 'Ghimire','Sharma','Acharya', 'Giri', 'Nepal', 'Kharel','Kadel',
+            'Barma','Timalsina','Poudle','Panthi','Tiwari','Pudasini','Niraula',
+            'Maharjan']
+        
+        data_lst=[]
 
-sname=['Ghemire','Acharya', 'Giri', 'Nepal', 'Kharel','Kadel',
-       'Timalsina','Poudle','Panthi','Tiwari','Pudasini','Niraula',
-       'Maharjan']
+        for i in range(limit):
 
-for i in range(100):
-    teacher.append(choice(name)+' '+choice(sname))
-    
-def id_gen():
-    capitalChar = 'abcdefghijklmnopqrstuvwxyz'.upper()
-    number = '0123456789'
-    all = capitalChar+number
-    return ''.join(sample(all,5))  
+            fristName=choice(name)
+            secondName=choice(sname)
+            email=fristName.lower().capitalize()+secondName.lower()+'@gmail.com'
+            id=DataGen.id_gen()
+            SUBJECT='Physics'
+            _class=choice(['11','12','both'])
 
-nt=''
-count=0
-for j in teacher:
-    for i in j.split(' '):
-        nt+=i.lower()
-    count+=1
-    print('Acount No:'+str(count))
-    print('Name: '+j)
-    print('Email: '+nt+'@gmail.com')
-    print('id: '+id_gen())
-    _class=choice(['both','11','12'])
-    print('Classes Handeled: '+_class)
-    print()
-    nt=''
+            data_lst.append([fristName,secondName,id,SUBJECT,email,_class])
 
-    
-
+        return data_lst
