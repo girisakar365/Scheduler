@@ -232,14 +232,8 @@ class FrontEnd(QMainWindow):
 		self.tool.imageGeo(tt_mail_btw,32)
 		self.tool.animate_btw(tt_mail_btw,32)
 
-		tt_qr_btw = self.tool.button(self.ttframe, style=self.tool.addStyle(20))
-		self.tool.geometry(tt_qr_btw,75, 810, 40, 40)
-		tt_qr_btw.setIcon( self.tool.image( PhotoLib.get(7) ) )
-		self.tool.imageGeo(tt_qr_btw,32)
-		self.tool.animate_btw(tt_qr_btw,32)
-
 		tt_pdf_btw = self.tool.button(self.ttframe, style=self.tool.addStyle(20))
-		self.tool.geometry(tt_pdf_btw,130, 810, 40, 40)
+		self.tool.geometry(tt_pdf_btw,75, 810, 40, 40)
 		tt_pdf_btw.setIcon( self.tool.image( PhotoLib.get(9) ) )
 		self.tool.imageGeo(tt_pdf_btw,32)
 		self.tool.animate_btw(tt_pdf_btw,32)
@@ -275,7 +269,7 @@ class FrontEnd(QMainWindow):
 
 		#BACKEND-TT:
 		BE_TT=ttframe(
-		tt_mgsub_btw,tt_conform_btw,tt_mail_btw,tt_qr_btw,tt_pdf_btw,#BUTTONS#
+		tt_mgsub_btw,tt_conform_btw,tt_mail_btw,tt_pdf_btw,#BUTTONS#
 		entry=(totalsection_entry,totalprd_entry,timeperprd_entry),
 		combo=(tt_class_combo,tt_faculty_combo,tt_shift_combo,tt_time_combo1,tt_time_combo2),
 		table=tt_table,
