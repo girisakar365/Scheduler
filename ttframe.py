@@ -1,5 +1,5 @@
 from source import * 
-from Backend.Generator import Generator
+from BackEnd.Generator import Generator
 from subwin import MGSub
 
 class ttframe: 
