@@ -2,9 +2,8 @@ from random import *
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *  
 from PyQt5.QtGui import * 
-from DataBase.db import *
-from DataBase.lite_db import *
-
+from DataBase.main import *
+from DataBase.raw import *
 
 class Source: 
 

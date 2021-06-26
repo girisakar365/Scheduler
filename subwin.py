@@ -1,5 +1,5 @@
 from source import *
-from DataBase.lite_db import *
+from DataBase.main import *
 
 class MGSub(QDialog):
 

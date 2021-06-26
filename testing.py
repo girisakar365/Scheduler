@@ -1,5 +1,5 @@
 from random import *
-from DataBase.db import DB
+from DataBase.main import DB
 class DataGen:
     def id_gen():
         capitalChar = 'abcdefghijklmnopqrstuvwxyz'.upper()
