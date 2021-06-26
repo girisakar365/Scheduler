@@ -18,7 +18,6 @@ class PhotoLib:
 		data=PhotoLib.cur.execute('SELECT * FROM plib WHERE id=?',[oid])
 		return data.fetchall()[0][1]
     
-
 class Cache:
 	conn=connect('db.db')
 	cur=conn.cursor()

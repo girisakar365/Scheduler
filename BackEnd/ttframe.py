@@ -11,7 +11,6 @@ class ttframe:
 		self.conform=arg[1]
 		self.mail=arg[2]
 		self.qr=arg[3]
-		self.pdf=arg[4]
 
 		self.widict={key:value for key,value in kwarg.items()}
 		self.tool=self.widict['tool']
