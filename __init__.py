@@ -7,8 +7,8 @@ WARNING: Dependency files required to run this script must be avaliable.
 '''
 
 from source import *
-from ttframe import ttframe
-from trframe import trframe 
+from BackEnd.ttframe import ttframe
+from BackEnd.trframe import trframe 
 from subwin import MGSub
 
 class FrontEnd(QMainWindow):
