@@ -17,12 +17,19 @@ class Generator:
     
         self.row_col={}
 
+        self.lab_dict={}
+
         self.info={}
 
         self.coordinates()
 
     def coordinates(self):#manages coordinates 
         
+        if self.brk[0]<self.brk[1]:
+            min,max=self.brk[0],self.brk[1]
+        else:
+            min,max=self.brk[1],self.brk[0]
+
         def gen_coordinates():
             days=[]
             count=0
@@ -35,9 +42,9 @@ class Generator:
 
                     for j in range(self.periods):#columns
                         
-                        if self.periods>=self.brk[0]:
+                        if self.periods>=min:
 
-                            if i<=gap and j!=self.brk[0] or i>gap and j!=self.brk[1]:#manage breaks from data base remember to sort them
+                            if i<=gap and j!=max or i>gap and j!=min:#manage breaks from data base remember to sort them
                                 days.append((i,j))
 
                         else:days.append((i,j))
@@ -51,7 +58,7 @@ class Generator:
             
             days=gen_coordinates()
 
-            if self.periods>self.brk[0]:
+            if self.periods>min:
                 end=(self.days*(self.periods-1))
             else:
                 end=(self.days*(self.periods))
@@ -62,4 +69,32 @@ class Generator:
 
         sort_coordintes()
 
-domy=Generator(11,'Science','Day',sections=18,periods=8,days=6,opt=2)
+        def lab_coordinates():
+            lcord=[]
+
+            checklist=[i for i in range(self.periods) if i%2!=0]#check list / break list
+            if self.periods%2!=0:
+                checklist.append(self.periods-1)
+
+            for i in range(self.sections):#making list of [i,list.index(i)+1]
+                
+                for j in self.row_col[self.shift+str(i+1)]:
+                    try:
+                        
+                        if self.faculty=='Science' and i>min:
+                            checklist.append(2)
+                        
+                        if j[1] not in checklist:
+                            lcord.append([j , self.row_col[self.shift+str(i+1)]
+                                [self.row_col[self.shift+str(i+1)].index(j)+1]
+                                ])
+
+                    except Exception:
+                       continue
+            count=0
+            for i in range( self.sections ):
+                var=lcord[count : self.days * int(log(self.periods,2))*(i+1)]
+                self.lab_dict[self.shift+str(i+1)]=var
+                count+= self.days * int(log(self.periods,2))
+        
+        lab_coordinates()
