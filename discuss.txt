@@ -11,13 +11,13 @@ Steps for generating timetable:
 	g.optinal subject gap
 	
 2. Make a list carring tuple of rows and cols and sort it for each section in a dict [done]
-	FOR EXAMPLE: dict_1={ 'section': [ (row, col) ] }
+	FOR EXAMPLE: dict_1={ 'section': [ (row, col) ] } [done]
 
-3. Retrive teachers (short name) from data base and sort it to a dict_2 (having subjects as keys and teacher as values)
+3. Retrive teachers (short name) from data base and sort it to a dict_2 (having subjects as keys and teacher as values)[done]
 
 NOTE: dicts in step 3 and step 4 must have the same keys (easy to merger data)
 
-4. Retrive subject from data base and sort it to a dict_3 (having subject as keys and their sub units ad values) 
+4. Retrive subject from data base and sort it to a dict_3 (having subject as keys and their sub units ad values)[done] 
 
 5. Merge datas from step 3 and step 4:
 
