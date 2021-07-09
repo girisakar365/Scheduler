@@ -133,27 +133,28 @@ class Data_Center(Coordinates):
     def sort_data(self):
 
         for i in self.info:
-            TOTAL=len(self.info['English'])
-        
-            while len(self.info['English'])!=0:
-                teacher=choice(self.info['English'])
-                
+            TOTAL=len(self.info[i])
+
+            while len(self.info[i])!=0:
+                teacher=choice(self.info[i])
+
+                _section=[]                
                 try:
-                    sec=[]
                     for sec in range( int( round (self.sections/TOTAL ,0) ) ):
                         
                         section=choice(self._sections)
+                        _section.append(section)
                         self._sections.remove(section)
-                        sec.append(section)
-                
-                        print('English',
-                            teacher,section)
 
                 except Exception:
-                    pass
+                    self.info[i].remove(teacher)
 
-                self.info['English'].remove(teacher)
+                else:
+                    self.info[i].remove(teacher)
+                    self.data[i].append(teacher)
+                    self.data[i].append(tuple(_section))
 
+            else:
+                self._sections=[i for i in self.row_col]
+                
 domy=Data_Center(11,'Science','Day',18,7,6,2)
-
-# print(domy.data)
