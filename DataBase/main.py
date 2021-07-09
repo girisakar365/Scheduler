@@ -1,28 +1,29 @@
-from mysql.connector import *
-
-main_db = connect(
-host="localhost",
-user='root',
-password='00101101',
-database='data_lib'
-)
-root=main_db.cursor()
+from sqlite3 import *
 
 class DB:
-	def insert(data:list):
-		root.execute("INSERT INTO techid VALUES (%s,%s,%s,%s,%s,%s)",data)
-		main_db.commit()
+	conn=connect('db.db')
+	cur=conn.cursor()
 
-	def fetch(data='*'):
-		if data =='*':
-			root.execute('SELECT * FROM techid')
-		else:
-			root.execute(f'''SELECT * FROM techid 
-			WHERE fname = '{data}' OR sname = '{data}' OR id = '{data}' OR subject = '{data}' OR 
-			email = '{data}' OR class = '{data}'
-			''')
-		return root.fetchall()
-	
-	def delete():
-		root.execute("DELETE FROM techid")
-		main_db.commit()
+	def create(subject):
+		DB.cur.execute(f"CREATE TABLE IF NOT EXISTS {subject} (unit TEXT );")
+		DB.conn.commit()
+
+	def insert(data,table='Professor'):
+		try:
+			DB.cur.execute(f"INSERT INTO {table} VALUES (?)",data)
+			DB.conn.commit()
+		except Exception:
+			pass
+
+
+	def fetch(table:str='Professor',typ:str='normal',col:str=None,*arg):
+
+		if typ=='normal':
+			cmd=f'SELECT * FROM {table}'#fetch all 
+		elif typ=='specific':
+			cmd=f'SELECT {col} FROM {table}'#fetch specific col
+		elif typ=='quiere':#fetch comparing data's 
+			cmd=f'SELECT {col} FROM {table} WHERE {arg[0]}'
+
+		data=DB.cur.execute(cmd)
+		return data.fetchall()
