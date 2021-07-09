@@ -1,14 +1,12 @@
 '''
 -*- coding: utf-8 -*-
-
 __init__: FRONTEND COMPONENTS:
-
 WARNING: Dependency files required to run this script must be avaliable.
 '''
 
 from source import *
-from BackEnd.ttframe import ttframe
-from BackEnd.trframe import trframe 
+from ttframe import ttframe
+from trframe import trframe 
 from subwin import MGSub
 
 class FrontEnd(QMainWindow):
@@ -222,7 +220,7 @@ class FrontEnd(QMainWindow):
 
 		tt_conform_btw = self.tool.button(self.ttframe, style=self.tool.addStyle(20))
 		self.tool.geometry(tt_conform_btw,230, 680, 40, 40)
-		tt_conform_btw.setIcon( self.tool.image( PhotoLib.get(4) ) )
+		tt_conform_btw.setIcon( self.tool.image( PhotoLib.get(6) ) )
 		self.tool.imageGeo(tt_conform_btw,32)
 		self.tool.animate_btw(tt_conform_btw,32)		
 		
@@ -234,7 +232,7 @@ class FrontEnd(QMainWindow):
 
 		tt_pdf_btw = self.tool.button(self.ttframe, style=self.tool.addStyle(20))
 		self.tool.geometry(tt_pdf_btw,75, 810, 40, 40)
-		tt_pdf_btw.setIcon( self.tool.image( PhotoLib.get(9) ) )
+		tt_pdf_btw.setIcon( self.tool.image( PhotoLib.get(4) ) )
 		self.tool.imageGeo(tt_pdf_btw,32)
 		self.tool.animate_btw(tt_pdf_btw,32)
 
@@ -391,7 +389,7 @@ class FrontEnd(QMainWindow):
 		#TR-Button-------------------------------------------------------------
 		tr_conform_btw = self.tool.button(self.trframe, style=self.tool.addStyle(20))
 		self.tool.geometry(tr_conform_btw,230, 350, 40, 40)
-		tr_conform_btw.setIcon( self.tool.image( PhotoLib.get(4) ) )
+		tr_conform_btw.setIcon( self.tool.image( PhotoLib.get(6) ) )
 		self.tool.imageGeo(tr_conform_btw,32)
 		self.tool.animate_btw(tr_conform_btw,32)
 		
@@ -403,7 +401,7 @@ class FrontEnd(QMainWindow):
 		
 		tr_pdf_btw = self.tool.button(self.trframe, style=self.tool.addStyle(20))
 		self.tool.geometry(tr_pdf_btw,60, 700, 40, 40)
-		tr_pdf_btw.setIcon( self.tool.image( PhotoLib.get(9) ) )
+		tr_pdf_btw.setIcon( self.tool.image( PhotoLib.get(6) ) )
 		self.tool.imageGeo(tr_pdf_btw,32)
 		self.tool.animate_btw(tr_pdf_btw,32)
 
@@ -414,15 +412,15 @@ class FrontEnd(QMainWindow):
 		color:#292728;
 		}''')
 		self.tool.geometry(tr_search_btw,982, 90, 38, 35)
-		tr_search_btw.setIcon( self.tool.image( PhotoLib.get(6) ) )
+		tr_search_btw.setIcon( self.tool.image( PhotoLib.get(5) ) )
 		self.tool.imageGeo(tr_search_btw,24)
 		self.tool.animate_btw(tr_search_btw,24,21)
 
-		tr_add_btw = self.tool.button(self.trframe, style=self.tool.addStyle(20))
-		self.tool.geometry(tr_add_btw,230, 610, 40, 40)
-		tr_add_btw.setIcon( self.tool.image( PhotoLib.get(10) ) )
-		self.tool.imageGeo(tr_add_btw,32)
-		self.tool.animate_btw(tr_add_btw,32)
+		# tr_add_btw = self.tool.button(self.trframe, style=self.tool.addStyle(20))
+		# self.tool.geometry(tr_add_btw,230, 610, 40, 40)
+		# tr_add_btw.setIcon( self.tool.image( PhotoLib.get(10) ) )
+		# self.tool.imageGeo(tr_add_btw,32)
+		# self.tool.animate_btw(tr_add_btw,32)
 
 		#TR-Table---------------------------------------------------------------
 		tr_table=self.tool.table(self.trframe)

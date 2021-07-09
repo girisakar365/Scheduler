@@ -1,5 +1,4 @@
 from source import * 
-from BackEnd.Generator import Generator
 from subwin import MGSub
 
 class ttframe: 
@@ -11,7 +10,6 @@ class ttframe:
 		self.conform=arg[1]
 		self.mail=arg[2]
 		self.qr=arg[3]
-		self.pdf=arg[4]
 
 		self.widict={key:value for key,value in kwarg.items()}
 		self.tool=self.widict['tool']
@@ -106,36 +104,3 @@ class ttframe:
 				i*=7
 				for j in range(ed[1]):
 					Table.setItem(i,j,QTableWidgetItem(f'_______{shift+str(num)}_______'))
-				
-			
-
-			gen=Generator(cd[1],cd[2],ed[0],(7,11),ed[1])
-			rand=['Phy-Lab','Chem-Lab','Opt-Lab']
-			for i in range(ed[0]):
-				shuffle(rand)
-				for j in rand:
-					for k in gen.gen_lab(gen.shift+str(i+1)):
-						a,b=k
-						Table.setItem(a,b,QTableWidgetItem(j))
-
-				try:
-					for j in range(2):
-						shuffle(gen.sub_dict[gen.faculty])
-						for sub in gen.sub_dict[gen.faculty]:
-								a,b=gen.gen_class(gen.shift+str(i+1))
-								Table.setItem(a,b,QTableWidgetItem(sub))
-					
-					if i<=gen.optii[0]:
-						sub='Computer'
-					else:
-						if gen.faculty=='Science':
-							sub='Biology'
-
-						elif gen.faculty=='Management':
-							sub='Hotel Management'
-
-					for j in range(5):
-						a,b=gen.gen_class(gen.shift+str(i+1))
-						Table.setItem(a,b,QTableWidgetItem(sub))
-				except Exception:
-					continue
