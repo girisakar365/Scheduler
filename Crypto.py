@@ -1,108 +1,58 @@
 from random import *
 
-def randomPassword():
+UNIQUE_CHAR = '!@#$%&*^-_=+|/.><~'
+NORMAL_CHAR = 'abcdefghijklmnopqrstuvwxyz'
+CAPITAL_CHAR = NORMAL_CHAR.upper()
+NUMBER = '0123456789'
 
-    uniqueChar = '!@#$%&*'
-    capitalChar = 'abcdefghijklmnopqrstuvwxyz'.upper()
-    normalChar = 'abcdefghijklmnopqrstuvwxyz'
-    number = '0123456789'
-    all = uniqueChar+capitalChar+normalChar+number
+def randomPassword():
+    all = UNIQUE_CHAR + CAPITAL_CHAR + NORMAL_CHAR + NUMBER
     
-    length=randint(8,20)
+    length=randint(8, 20)
     
-    return ''.join(sample(all,length)) 
+    return ''.join(sample(all, length)) 
 
 class Cryptography:
+
+    def __init__(self):
+        
+        self.All=[UNIQUE_CHAR, CAPITAL_CHAR, NORMAL_CHAR, NUMBER]
+
+        self.mainValue=[i for a in self.All for i in a]
+        self.mainKey=self.generate_key()
+
+    def generate_key(self):
+        shuffle(self.mainValue)
+        return ''.join(self.mainValue)
+
+    def specific_key(self,key):self.mainKey=key 
     
-    uniqueChar = '!@#$&-_.%<*>?;:+=~/^ '
-    capitalChar = 'abcdefghijklmnopqrstuvwxyz'.upper()
-    normalChar = 'abcdefghijklmnopqrstuvwxyz'
-    number = '0123456789'
-    All=[uniqueChar,capitalChar,normalChar,number]
-
-
-    mainKey='-:+F@QKTWRC~nciPMjqwBSE28vshpfgy#xrLU$.=1_bao7%^?/ZXO!>GIJ<&;3mVDdl*z906tkue5Y4NAH|'
-    mainValue=[i for a in All for i in a]
-
-    def key_generator():
-        mainValue=[i for a in Cryptography.All for i in a]
-        
-        shuffle(mainValue)
-        key=''
-        for i in mainValue:
-            key+=i
-        
-        return key
-
-    def salt(lenght:int):
-        shuffle(Cryptography.All)
+    def salt(self,lenght:int):
         password=''
         length=lenght
         for i in range(length):
-            choose=choice(Cryptography.All)
-            password+=choice(choose)
+            password+=choice(self.mainKey)
         return password
 
 
-    def encrypt(password:str):
-        key={key:value for key,value in zip(Cryptography.mainValue,Cryptography.mainKey)}
+    def encrypt(self,password:str):
+        key={key:value for key,value in zip(self.mainValue,self.mainKey)}
         cipher=''
         for i in password:
-            cipher+=Cryptography.salt(5)
             cipher+=key[i]
 
-        byte=int((256-len(cipher))/2)
-        return Cryptography.salt(byte)+cipher+Cryptography.salt(byte)
+        byte=(256-len(cipher))//2
+        return self.salt(byte)+cipher+self.salt(byte)
 
-    def decrypt(cipher:str,hashword:str):
-        value={key:value for key,value in zip(Cryptography.mainKey,Cryptography.mainValue)}
+    def decrypt(self,cipher:str,hashword:str):
+        value={key:value for key,value in zip(self.mainKey,self.mainValue)}
         password=''
-        count=0
         
-        byte=int((256-(len(hashword)*6))/2)
-        for i in cipher[byte:byte+(len(hashword)*6)]:
-            count+=1
-            if count==6:
-                password+=value[i]
-                count=0
+        byte=(256-(len(hashword)))//2
+        for i in cipher[byte:byte+(len(hashword))]:
+            password+=value[i]
                 
         if hashword==password:
             return password
         else:
             return False
-
-def test(typ:str=None):                
-    from Textography import txt
-
-    def auto():
-        count=0
-        while True: 
-            from time import sleep 
-
-            password=randomPassword()
-            cipher=Cryptography.encrypt(password)
-            count+=1
-            print()
-            print("Orginal Password: "+password)
-            print()
-            print('Encrypted Password: '+cipher)
-            print()
-            print('Decrypted Password: '+Cryptography.decrypt(cipher,password))
-            print()
-            print(count)
-            sleep(2)
-
-    def manual():
-            password=str(input('>>> '))
-            cipher=Cryptography.encrypt(password)
-            print('Encrypted: '+cipher)
-            print()
-            pascode=str(input('Your password: '))
-            print()
-            print("Decrypted:",Cryptography.decrypt(cipher,pascode))
-
-    if typ=='auto':
-        auto()
-    elif typ=='manual':
-        manual()
-
