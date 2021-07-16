@@ -1,16 +1,16 @@
 from sqlite3 import *
 
 class DB:
-	conn=connect('db.db')
+	conn=connect('3ZH9iusR.db')
 	cur=conn.cursor()
 
 	def create(subject):
 		DB.cur.execute(f"CREATE TABLE IF NOT EXISTS {subject} (unit TEXT );")
 		DB.conn.commit()
 
-	def insert(data,table='Professor'):
+	def insert(data,table='Professor',val:int=6):
 		try:
-			DB.cur.execute(f"INSERT INTO {table} VALUES (?)",data)
+			DB.cur.execute(f"INSERT INTO {table} VALUES ({'?'*val});",data)
 			DB.conn.commit()
 		except Exception:
 			pass

@@ -1,6 +1,6 @@
 from random import *
 from math import e, log
-from DataBase.main import *
+from main import *
 
 class Coordinates:
 
