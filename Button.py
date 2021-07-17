@@ -20,6 +20,12 @@ class Button:
         button=QPushButton(text,master)
         button.setIcon(image( img ))
         button.setIconSize(QSize(size,size))
+        button.pressed.connect(
+            lambda:button.setIconSize(QSize(size-3,size-3))
+            )
+        button.released.connect(
+            lambda:button.setIconSize(QSize(size,size))
+            )
         button.setFont(font(font_type))
         button.setStyleSheet(style)
         button.setCursor(QCursor(Qt.PointingHandCursor))
