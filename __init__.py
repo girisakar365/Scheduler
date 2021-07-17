@@ -1,5 +1,4 @@
 from source import * 
-from StyleSheet import LABLE
 from Lable import *
 from Button import *
 
