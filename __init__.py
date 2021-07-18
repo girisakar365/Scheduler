@@ -23,7 +23,7 @@ class FrontEnd(QMainWindow):
         SIDE_BAR=side_bar(self)
         
         TIME_TABLE=frame(self)
-        # TIME_TABLE.hide()
+        TIME_TABLE.hide()
         
         PROFESSOR=frame(self)
         PROFESSOR.hide()
@@ -31,9 +31,12 @@ class FrontEnd(QMainWindow):
         SUBJECT=frame(self)
         SUBJECT.hide()
 
-        lable_manager=Label(WINDOW,SIDE_BAR,TIME_TABLE,PROFESSOR,SUBJECT)
-        button_manager=Button(WINDOW,SIDE_BAR,TIME_TABLE,PROFESSOR,SUBJECT)
-        box_manager=Box(WINDOW,SIDE_BAR,TIME_TABLE,PROFESSOR,SUBJECT)
+        RECORD=frame(self)
+        RECORD.hide()
+
+        lable_manager=Label(WINDOW,SIDE_BAR,TIME_TABLE,PROFESSOR,SUBJECT,RECORD)
+        button_manager=Button(WINDOW,SIDE_BAR,TIME_TABLE,PROFESSOR,SUBJECT,RECORD)
+        box_manager=Box(WINDOW,SIDE_BAR,TIME_TABLE,PROFESSOR,SUBJECT,RECORD)
 
         self.show()
 
