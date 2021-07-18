@@ -13,25 +13,22 @@ NORMAL_BUTTON='''QPushButton{
 		background-color:#6A737D;
 		}'''
 
-COMBO='''QComboBox {
+COMBO_BOX='''QComboBox {
 		    border: 1px solid;
 		    border-radius: 10px;
-		    border-color:white;
+		    border-color:black;
 		    color:#ffffff;
 		}
 		
-		QComboBox:drop-down {
+		QComboBox::drop-down {
 		     subcontrol-origin: padding;
 		     subcontrol-position: right;
 		     width: 14px;
 		}
 		
-		QComboBox:Box Mode{
-		    color:#ffffff
-		}
 		QComboBox:hover{
-		    border-color:#004C98;
-		color:#004C98;
+		border-color:#6A737D;
+		color:#6A737D;
 		}'''
 
 ENTRY='''QLineEdit {
@@ -74,4 +71,19 @@ TABLE='''QHeaderView::section{
 		background-color: silver;
 		border-radius:11px;
 		color:#292728;
+		}'''
+
+SPINBOX='''QSpinBox{
+		border-radius:7px;
+		border:1px solid;
+		selection-background-color:#6A737D;
+		}
+		QSpinBox::up-button{
+		color:#FFFFFF}
+		QSpinBox::down-button{
+		color:#FFFFFF
+		}
+		QSpinBox::hover
+		{
+		border-color:#6A737D;
 		}'''
