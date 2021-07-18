@@ -4,9 +4,9 @@ from StyleSheet import NORMAL_BUTTON
 
 class Button:
     def __init__(self,*arg):
-        self.WINDOW,self.SIDEBAR,self.TIME_TABLE,self.PROFESSOR,self.SUBJECT=arg
+        self.WINDOW, self.SIDEBAR, self.TIME_TABLE, self.PROFESSOR, self.SUBJECT, self.RECORD = arg
 
-        self.HEIGHT,self.WIDTH=36,36
+        self.AREA=36
 
         self.GRID_LAYOUT=QVBoxLayout()
 
@@ -14,7 +14,7 @@ class Button:
 
 
 
-    def button(self,master,X,Y,HEIGHT,WIDTH,img,style=None,size=32,
+    def button(self,master,x,y,area,img,style=None,size=32,
     font_type='normal',text=''):
 
         button=QPushButton(text,master)
@@ -29,7 +29,7 @@ class Button:
         button.setFont(font(font_type))
         button.setStyleSheet(style)
         button.setCursor(QCursor(Qt.PointingHandCursor))
-        button.setGeometry(QRect(X,Y,HEIGHT,WIDTH))
+        button.setGeometry(QRect(x,y,area,area))
 
         return button
 
@@ -37,56 +37,107 @@ class Button:
 
         SIDEBAR_BUTTON=NORMAL_BUTTON+'QPushButton{background-color: #24292E;}'
 
-        record=self.button(self.SIDEBAR,14, 30, self.HEIGHT,self.WIDTH,PhotoLib.get(10),
+        record=self.button(self.SIDEBAR,14, 30, self.AREA,PhotoLib.get(10),
         size=24,style=SIDEBAR_BUTTON
         )
+        self.record(record)
 
-        professor=self.button(self.SIDEBAR,14, 90, self.HEIGHT,self.WIDTH,PhotoLib.get(8),
+        professor=self.button(self.SIDEBAR,14, 90, self.AREA,PhotoLib.get(8),
         size=24,style=SIDEBAR_BUTTON
         )
         self.professor(professor)
 
-        subject=self.button(self.SIDEBAR,14, 150, self.HEIGHT,self.WIDTH,PhotoLib.get(9),
+        subject=self.button(self.SIDEBAR,14, 150, self.AREA,PhotoLib.get(9),
         size=24,style=SIDEBAR_BUTTON
         )
+        self.subject(subject)
         
-        time_table=self.button(self.SIDEBAR,14, 210, self.HEIGHT,self.WIDTH,PhotoLib.get(7),
+        time_table=self.button(self.SIDEBAR,14, 210, self.AREA,PhotoLib.get(7),
         size=24,style=SIDEBAR_BUTTON
         )
         self.time_table(time_table)
 
-        user=self.button(self.SIDEBAR,14, 585, self.HEIGHT,self.WIDTH,PhotoLib.get(12),
+        user=self.button(self.SIDEBAR,14, 585, self.AREA,PhotoLib.get(12),
         size=28,style=SIDEBAR_BUTTON
         )
         
-        setting=self.button(self.SIDEBAR,14, 645, self.HEIGHT,self.WIDTH,PhotoLib.get(13),
+        setting=self.button(self.SIDEBAR,14, 645, self.AREA,PhotoLib.get(13),
         size=28,style=SIDEBAR_BUTTON
         )
 
-        guid=self.button(self.SIDEBAR,14, 695, self.HEIGHT,self.WIDTH,PhotoLib.get(15),
+        guid=self.button(self.SIDEBAR,14, 695, self.AREA,PhotoLib.get(15),
         size=28,style=SIDEBAR_BUTTON
         )
 
-    def time_table(self,master):
+    def record(self,master):
 
-        manage_subject=self.button(self.TIME_TABLE,150, 275,self.HEIGHT,self.WIDTH,PhotoLib.get(2),
-        size=23,style=NORMAL_BUTTON)
+        master.clicked.connect(lambda:[
+        self.RECORD.show(),
+        self.PROFESSOR.hide(),
+        self.TIME_TABLE.hide(),
+        self.SUBJECT.hide()])
 
-        conform=self.button(self.TIME_TABLE,220, 510,self.HEIGHT+2,self.WIDTH+2,PhotoLib.get(6),
-        size=32,style=NORMAL_BUTTON)
-        
-        save=self.button(self.TIME_TABLE,10, 610,self.HEIGHT,self.WIDTH,PhotoLib.get(18),
-        size=20,style=NORMAL_BUTTON)
+    def professor(self,master):
 
-        email=self.button(self.TIME_TABLE,60, 610,self.HEIGHT,self.WIDTH,PhotoLib.get(3),
+        MASTER=self.PROFESSOR
+
+        insert=self.button(MASTER,220,275,self.AREA,PhotoLib.get(25),
         size=28,style=NORMAL_BUTTON)
 
+        pdf=self.button(MASTER,10, 388,self.AREA,PhotoLib.get(4),
+        size=28,style=NORMAL_BUTTON)
+
+        excle=self.button(MASTER, 60, 388,self.AREA,PhotoLib.get(27),
+        size=28,style=NORMAL_BUTTON)
+
+        master.clicked.connect(lambda:[
+        self.PROFESSOR.show(),
+        self.SUBJECT.hide(),
+        self.TIME_TABLE.hide(),
+        self.RECORD.hide()])
+
+    
+    def subject(self,master):
+
+        MASTER=self.SUBJECT
+
+        insert=self.button(MASTER,220,235,self.AREA,PhotoLib.get(25),
+        size=28,style=NORMAL_BUTTON)
+
+        pdf=self.button(MASTER, 10, 355,self.AREA,PhotoLib.get(4),
+        size=28,style=NORMAL_BUTTON)
+        
+        excle=self.button(MASTER, 60, 355,self.AREA,PhotoLib.get(27),
+        size=28,style=NORMAL_BUTTON)
+
+        master.clicked.connect(lambda:[
+        self.SUBJECT.show(),
+        self.RECORD.hide()])
+        self.PROFESSOR.hide(),
+        self.TIME_TABLE.hide(),
+
+    def time_table(self,master):
+        MASTER=self.TIME_TABLE
+        manage_subject=self.button(MASTER,150, 275,self.AREA,PhotoLib.get(2),
+        size=23,style=NORMAL_BUTTON)
+
+        conform=self.button(MASTER,220, 510,self.AREA+2,PhotoLib.get(6),
+        size=28,style=NORMAL_BUTTON)
+        
+        save=self.button(MASTER,10, 610,self.AREA,PhotoLib.get(18),
+        size=20,style=NORMAL_BUTTON)
+
+        email=self.button(MASTER,60, 610,self.AREA,PhotoLib.get(3),
+        size=28,style=NORMAL_BUTTON)
+
+        pdf=self.button(MASTER, 110, 610,self.AREA,PhotoLib.get(4),
+        size=28,style=NORMAL_BUTTON)
+        
+        excle=self.button(MASTER, 160, 610,self.AREA,PhotoLib.get(27),
+        size=28,style=NORMAL_BUTTON)
 
         master.clicked.connect(lambda:[
         self.TIME_TABLE.show(),
         self.PROFESSOR.hide(),
-        self.SUBJECT.hide()])
-
-    def professor(self,master):
-        master.clicked.connect(lambda:[self.PROFESSOR.show(),self.TIME_TABLE.hide(),
-        self.SUBJECT.hide()])
+        self.SUBJECT.hide(),
+        self.RECORD.hide()])

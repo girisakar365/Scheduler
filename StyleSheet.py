@@ -16,8 +16,7 @@ NORMAL_BUTTON='''QPushButton{
 COMBO_BOX='''QComboBox {
 		    border: 1px solid;
 		    border-radius: 10px;
-		    border-color:black;
-		    color:#ffffff;
+		    border-color:#6A737D;
 		}
 		
 		QComboBox::drop-down {
@@ -27,19 +26,20 @@ COMBO_BOX='''QComboBox {
 		}
 		
 		QComboBox:hover{
-		border-color:#6A737D;
-		color:#6A737D;
+		border-color:#FFFFFF;
+		color:#ffffff;
 		}'''
 
 ENTRY='''QLineEdit {
 		    border: 1px solid;
-		    border-radius: 9px;
-		    border-color:white;
+		    border-radius: 10px;
+		    border-color:#6A737D;;
+			selection-background-color:#6A737D;
 		    color:#ffffff;
 		}
 		
 		QLineEdit:hover{
-		    border-color:#004C98;
+		    border-color:#ffffff;
 		}'''
 
 COMPLETER='''background-color:#292728;
@@ -76,6 +76,7 @@ TABLE='''QHeaderView::section{
 SPINBOX='''QSpinBox{
 		border-radius:7px;
 		border:1px solid;
+		border-color:#6A737D;
 		selection-background-color:#6A737D;
 		}
 		QSpinBox::up-button{
@@ -85,5 +86,5 @@ SPINBOX='''QSpinBox{
 		}
 		QSpinBox::hover
 		{
-		border-color:#6A737D;
+		border-color:#ffffff;
 		}'''

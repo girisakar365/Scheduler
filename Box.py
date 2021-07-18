@@ -4,8 +4,10 @@ from StyleSheet import COMBO_BOX, ENTRY, COMPLETER, SPINBOX
 class Box:
 
     def __init__(self,*arg):
-        self.WINDOW, self.SIDEBAR, self.TIME_TABLE, self.PROFESSOR, self.SUBJECT = arg
+        self.WINDOW, self.SIDEBAR, self.TIME_TABLE, self.PROFESSOR, self.SUBJECT, self.RECORD = arg
 
+        self.professor()
+        self.subject()
         self.time_table()
 
     def spinbox(self,master,x,y,width,height):
@@ -37,6 +39,39 @@ class Box:
 
         return combo_box
 
+    def professor(self):
+        MASTER=self.PROFESSOR
+        
+        E_WIDTH,E_HEIGHT=80,21
+
+        CB_WIDTH,CB_HEIGHT=50,21
+
+        name=self.entry(MASTER, 80, 125, E_WIDTH, E_HEIGHT)
+        name.setPlaceholderText('First Name')
+        
+        surname=self.entry(MASTER, 175, 125, E_WIDTH, E_HEIGHT)
+        surname.setPlaceholderText('Last Name')
+
+        email=self.entry(MASTER, 80, 165, E_WIDTH+96, E_HEIGHT)
+        
+        subject=self.entry(MASTER,80, 205, E_WIDTH+96, E_HEIGHT)
+
+        classes=self.combo_box(MASTER,80, 245,CB_WIDTH,CB_HEIGHT,[11,12,'both'])
+
+    def subject(self):
+        MASTER=self.SUBJECT
+
+        E_WIDTH,E_HEIGHT=80,21
+
+        CB_WIDTH,CB_HEIGHT=50,21
+
+        subject=self.entry(MASTER, 80, 125, E_WIDTH+76, E_HEIGHT)
+
+        faculty_list=['Science','Management','Law']
+        faculty = self.combo_box(MASTER,80, 165,CB_WIDTH+20,CB_HEIGHT,faculty_list)
+
+        class_ = self.combo_box(MASTER,80, 205,CB_WIDTH,CB_HEIGHT,[11,12,'both'])
+
     def time_table(self):
 
         SB_WIDTH,SB_HEIGHT=50,21
@@ -62,4 +97,4 @@ class Box:
         am_pm = self.combo_box(MASTER,215, 435, CB_WIDTH, CB_HEIGHT,['AM','PM'])
 
         time_per_period = self.spinbox(MASTER,150, 475,SB_WIDTH,SB_HEIGHT)
-        am_pm = self.combo_box(MASTER,215, 475, CB_WIDTH, CB_HEIGHT,['Min','Hr'])
+        am_pm = self.combo_box(MASTER,215, 475, CB_WIDTH, CB_HEIGHT,['Min','Hr']) 
