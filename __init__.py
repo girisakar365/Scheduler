@@ -1,6 +1,7 @@
 from source import * 
-from Lable import *
-from Button import *
+from Lable import Label
+from Button import Button
+from Box import Box
 
 class FrontEnd(QMainWindow):
 
@@ -32,6 +33,7 @@ class FrontEnd(QMainWindow):
 
         lable_manager=Label(WINDOW,SIDE_BAR,TIME_TABLE,PROFESSOR,SUBJECT)
         button_manager=Button(WINDOW,SIDE_BAR,TIME_TABLE,PROFESSOR,SUBJECT)
+        box_manager=Box(WINDOW,SIDE_BAR,TIME_TABLE,PROFESSOR,SUBJECT)
 
         self.show()
 
