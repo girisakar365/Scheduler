@@ -72,7 +72,7 @@ class Button:
         manage_subject=self.button(self.TIME_TABLE,150, 275,self.HEIGHT,self.WIDTH,PhotoLib.get(2),
         size=23,style=NORMAL_BUTTON)
 
-        conform=self.button(self.TIME_TABLE,220, 500,self.HEIGHT+2,self.WIDTH+2,PhotoLib.get(6),
+        conform=self.button(self.TIME_TABLE,220, 510,self.HEIGHT+2,self.WIDTH+2,PhotoLib.get(6),
         size=32,style=NORMAL_BUTTON)
         
         save=self.button(self.TIME_TABLE,10, 610,self.HEIGHT,self.WIDTH,PhotoLib.get(18),
