@@ -53,6 +53,6 @@ class Label:
 
         time_per_period=self.lable(self.TIME_TABLE,10, 470, WIDTH,HEIGHT,'Time Per Period')
 
-        line(self.TIME_TABLE,0,540,270,5)
+        line(self.TIME_TABLE,0,550,270,5)
 
         option=self.lable(self.TIME_TABLE,10, 570, WIDTH,HEIGHT,'Tools','subtitle')
