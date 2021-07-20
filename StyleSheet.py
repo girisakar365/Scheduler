@@ -88,3 +88,21 @@ SPINBOX='''QSpinBox{
 		{
 		border-color:#ffffff;
 		}'''
+
+LOGIN_FRAME='''
+background-color:#191D20;
+border-radius:15px;
+'''
+
+LOGIN_ENTRY='''QLineEdit {
+		    border: 1px solid;
+		    border-radius: 5px;
+			background-color:#24292E;
+		    border-color:#080808;
+			selection-background-color:#6A737D;
+		    color:white;
+		}
+		
+		QLineEdit:hover{
+		    border-color:#73AAFA;
+		}'''

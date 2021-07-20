@@ -1,14 +1,15 @@
-from source import * 
-from StyleSheet import COMBO_BOX, ENTRY, COMPLETER, SPINBOX
+from Source import * 
+from StyleSheet import COMBO_BOX, ENTRY, COMPLETER, SPINBOX, LOGIN_ENTRY
 
 class Box:
 
     def __init__(self,*arg):
-        self.WINDOW, self.SIDEBAR, self.TIME_TABLE, self.PROFESSOR, self.SUBJECT, self.RECORD = arg
+        self.WINDOW, self.SIDEBAR, self.TIME_TABLE, self.PROFESSOR, self.SUBJECT, self.RECORD, self.USER, self.SETTING, self.GUID = arg
 
         self.professor()
         self.subject()
         self.time_table()
+        self.user()
 
     def spinbox(self,master,x,y,width,height):
         spinbox=QSpinBox(master)
@@ -16,9 +17,9 @@ class Box:
         spinbox.setGeometry(QRect(x,y,width,height))
         return spinbox
 
-    def entry(self,master,x,y,height,width):
+    def entry(self,master,x,y,height,width,style=ENTRY):
         entry=QLineEdit(master)
-        entry.setStyleSheet(ENTRY)
+        entry.setStyleSheet(style)
         entry.setGeometry(QRect(x,y,height,width))
         return entry
 
@@ -97,4 +98,27 @@ class Box:
         am_pm = self.combo_box(MASTER,215, 435, CB_WIDTH, CB_HEIGHT,['AM','PM'])
 
         time_per_period = self.spinbox(MASTER,150, 475,SB_WIDTH,SB_HEIGHT)
-        am_pm = self.combo_box(MASTER,215, 475, CB_WIDTH, CB_HEIGHT,['Min','Hr']) 
+        am_pm = self.combo_box(MASTER,215, 475, CB_WIDTH, CB_HEIGHT,['Min','Hr'])
+
+
+    def user(self):
+        MASTER = self.USER
+        
+        E_WIDTH,E_HEIGHT=190,30
+
+        name=self.entry(MASTER,810, 301, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
+        name.setFont(font('login_entry'))
+        name.setPlaceholderText('User Name')
+        
+        email=self.entry(MASTER,810, 361, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
+        email.setFont(font('login_entry'))
+        email.setPlaceholderText('Example@gmail.com')
+        
+        password=self.entry(MASTER,810, 421, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
+        password.setFont(font('login_entry'))
+        password.setPlaceholderText('Password')
+        password.setEchoMode(QLineEdit.Password)
+
+        college=self.entry(MASTER,810, 481, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
+        college.setFont(font('login_entry'))
+        college.setPlaceholderText('Name of College')
