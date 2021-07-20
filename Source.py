@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *  
-from PyQt5.QtGui import * 
+from PyQt5.QtGui import *
 from raw import *
 
 def side_bar(master):
@@ -15,6 +15,7 @@ def side_bar(master):
 def frame(master):
 	_frame=QFrame(master)
 	_frame.setGeometry(QRect(67, 0, 1451, 1521))
+	_frame.mousePressEvent = lambda x : _frame.setFocus()
 	# _frame.setStyleSheet('background-color: #ffffff')
 	
 	return _frame
@@ -24,12 +25,16 @@ def font(typ):
 	font=QFont()
 
 	switch_dict={
-	'title':['Segoe UI Semibold',20],
+	'title':['Segoe UI Semibold',23],
 	'subtitle':['Segoe UI Light',16],
 	'normal':['Segoe UI Light',12],
 	'msg':['Segoe UI Light',10],
 	'button':['Segoe UI Light',5],
-	'huge':['Segoe UI Semibold',30]
+	'huge':['Segoe UI Semibold',30],
+	'login_entry':['Segoe UI Light',12],
+	'login_title':['Segoe Print',20],
+	'login_subtitle':['Segoe Print',12]
+
 			}
 
 	font.setFamily(switch_dict[typ][0])
@@ -52,10 +57,12 @@ def line(master,x,y,height,widht,typ='h'):
 
 	return _line
 
-def image(img):
+def image(img,val='ico'):
 	pixmap=QPixmap()
 	pixmap.loadFromData(img)
 
 	icon=QIcon()
 	icon.addPixmap(pixmap)
-	return icon
+	
+	if val=='ico':return icon
+	else:return pixmap
