@@ -4,7 +4,11 @@ from StyleSheet import COMBO_BOX, ENTRY, COMPLETER, SPINBOX, LOGIN_ENTRY
 class Box:
 
     def __init__(self,*arg):
-        self.WINDOW, self.SIDEBAR, self.TIME_TABLE, self.PROFESSOR, self.SUBJECT, self.RECORD, self.USER, self.SETTING, self.GUID = arg
+        self.WINDOW,self.SIDEBAR,self.TIME_TABLE,self.PROFESSOR,self.SUBJECT,self.RECORD,self.USER,self.SETTING,self.GUID,self.MENU_BAR = arg
+
+        self.Widget={}
+        
+        self.Api={}
 
         self.professor()
         self.subject()
@@ -29,10 +33,10 @@ class Box:
         qline.setCompleter(completer)
         return completer
     
-    def combo_box(self,master,x,y,height,width,combolist:list=[]):
+    def combo_box(self,master,x,y,width,height,combolist:list=[]):
         combo_box=QComboBox(master)
         combo_box.setStyleSheet(COMBO_BOX)
-        combo_box.setGeometry(QRect(x,y,height,width))
+        combo_box.setGeometry(QRect(x,y,width,height))
 
         for i in range(len(combolist)):
             combo_box.addItem("")
@@ -107,18 +111,28 @@ class Box:
         E_WIDTH,E_HEIGHT=190,30
 
         name=self.entry(MASTER,810, 301, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
-        name.setFont(font('login_entry'))
+        name.setFont(font('entry'))
         name.setPlaceholderText('User Name')
         
         email=self.entry(MASTER,810, 361, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
-        email.setFont(font('login_entry'))
+        email.setFont(font('entry'))
         email.setPlaceholderText('Example@gmail.com')
         
         password=self.entry(MASTER,810, 421, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
-        password.setFont(font('login_entry'))
+        password.setFont(font('entry'))
         password.setPlaceholderText('Password')
         password.setEchoMode(QLineEdit.Password)
 
         college=self.entry(MASTER,810, 481, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
-        college.setFont(font('login_entry'))
+        college.setFont(font('entry'))
         college.setPlaceholderText('Name of College')
+
+    def collect(self,**kwarg):
+        
+        for key,value in kwarg.items():
+            self.Widget[key].append(value)
+
+    def send(self,widget:dict):
+
+        for key,value in widget.items():
+            self.Api[key]=value

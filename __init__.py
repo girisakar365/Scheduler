@@ -1,6 +1,8 @@
+from Connect import Connect
 from Source import * 
 from Lable import Label
 from Button import Button
+from StyleSheet import FRAME
 from Box import Box
 
 class FrontEnd(QMainWindow):
@@ -37,14 +39,21 @@ class FrontEnd(QMainWindow):
         USER.hide()
         
         SETTING=frame(WINDOW)
-        SETTING.hide()
+        MENU_BAR=frame(SETTING)
+        MENU_BAR.setStyleSheet(FRAME)
+        MENU_BAR.setFixedSize(280,370)
+        MENU_BAR.setGraphicsEffect(shadow(100))
+        MENU_BAR.move(2,215)
         
         GUID=frame(WINDOW)
         GUID.hide()
         
-        lable_manager=Label(WINDOW,SIDE_BAR,TIME_TABLE,PROFESSOR,SUBJECT,RECORD,USER,SETTING,GUID)
-        button_manager=Button(WINDOW,SIDE_BAR,TIME_TABLE,PROFESSOR,SUBJECT,RECORD,USER,SETTING,GUID)
-        box_manager=Box(WINDOW,SIDE_BAR,TIME_TABLE,PROFESSOR,SUBJECT,RECORD,USER,SETTING,GUID)
+
+        self.lable_manager = Label(WINDOW,SIDE_BAR,TIME_TABLE,PROFESSOR,SUBJECT,RECORD,USER,SETTING,GUID,MENU_BAR)
+        self.button_manager = Button(WINDOW,SIDE_BAR,TIME_TABLE,PROFESSOR,SUBJECT,RECORD,USER,SETTING,GUID,MENU_BAR)
+        self.box_manager = Box(WINDOW,SIDE_BAR,TIME_TABLE,PROFESSOR,SUBJECT,RECORD,USER,SETTING,GUID,MENU_BAR)
+
+        connect=Connect(self.lable_manager,self.button_manager,self.box_manager)
 
         WINDOW.show()
 

@@ -1,12 +1,13 @@
 from Source import * 
-from StyleSheet import LABLE, LOGIN_FRAME
+from StyleSheet import LABLE, FRAME
 
 class Label:
 
     def __init__(self,*arg):
         
-        self.WINDOW, self.SIDEBAR, self.TIME_TABLE, self.PROFESSOR, self.SUBJECT, self.RECORD, self.USER, self.SETTING, self.GUID = arg
-        
+        self.WINDOW,self.SIDEBAR,self.TIME_TABLE,self.PROFESSOR,self.SUBJECT,self.RECORD,self.USER,self.SETTING,self.GUID,self.MENU_BAR = arg
+        self.Widget={}
+
         self.record()
         self.professor()
         self.subject()
@@ -25,17 +26,13 @@ class Label:
         
         return label
 
-    def frame(self,master):
-        login_frame=frame(master)
-        login_frame.setFixedSize(480,480)
-        login_frame.move(670,160) 
-        login_frame.setStyleSheet(LOGIN_FRAME)
-        shadow = QGraphicsDropShadowEffect()
-        shadow.setColor(Qt.black)
-        shadow.setBlurRadius(110)
-        login_frame.setGraphicsEffect(shadow)
+    def frame(self,master,w:int,h:int):
+        _frame=frame(master)
+        _frame.setFixedSize(w,h) 
+        _frame.setStyleSheet(FRAME)
+        _frame.setGraphicsEffect(shadow(65))
 
-        return login_frame
+        return _frame
 
     def record(self):
         MASTER=self.RECORD
@@ -136,7 +133,7 @@ class Label:
 
     def user(self):
         MASTER=self.USER
-        font_=font('login_subtitle')
+        font_=font('fancy_subtitle')
         font_.setBold(True)
         font_.setPointSize(30)
 
@@ -149,39 +146,92 @@ class Label:
         dummy_logo.setPixmap( image(PhotoLib.get(28),'') )
         dummy_logo.setFixedSize(512,512)
        
-        login_frame=self.frame(MASTER)
+        login_frame=self.frame(MASTER,480,480)
+        login_frame.move(670,160)
 
-        login_title=self.lable(login_frame,170,50,'SIGN UP')
-        login_title.setStyleSheet('color:#7CCAFB')
-        login_title.setFont(font('login_title'))
-        login_title.setFixedSize(200,30)
+        sub_title=self.lable(login_frame,170,50,'SIGN UP','fancy_title')
+        sub_title.setStyleSheet('color:#7CCAFB')
 
-        name=self.lable(login_frame,25, 140, 'User Name:','subtitle')
+        name=self.lable(login_frame,25, 140, 'User Name:','fancy_subtitle')
         name.setStyleSheet('color:#73AAFA')
-        name.setFont(font('login_subtitle'))
-        name.setFixedWidth(200)
 
-        email=self.lable(login_frame,25, 200, 'Email:','subtitle')
+        email=self.lable(login_frame,25, 200, 'Email:','fancy_subtitle')
         email.setStyleSheet('color:#79C0FB')
-        email.setFont(font('login_subtitle'))
-        email.setFixedWidth(200)
 
-        password=self.lable(login_frame,25, 260, 'Password:','subtitle')
+        password=self.lable(login_frame,25, 260, 'Password:','fancy_subtitle')
         password.setStyleSheet('color:#74ADFA')
-        password.setFont(font('login_subtitle'))
-        password.setFixedWidth(200)
 
-        college=self.lable(login_frame,25, 320, 'College:','subtitle')
+        college=self.lable(login_frame,25, 320, 'College:','fancy_subtitle')
         college.setStyleSheet('color:#74ADFA')
-        college.setFont(font('login_subtitle'))
-        college.setFixedWidth(200)
 
     def setting(self):
         MASTER=self.SETTING
 
-        title=self.lable(MASTER,10, 10, 'Settings','title')
+        CHILD=self.MENU_BAR
+
+        title=self.lable(MASTER,10, 10, 'Settings','fancy_title')
+
+        menu_bar_title=self.lable(CHILD,90, 10, 'Menu','fancy_title')
+
+        empty=self.frame(MASTER,945,620)
+        empty.move(330,100)
+        self.lable(empty,340,260,'Choose An Option','fancy_huge','color:#6A737D')
+
+        def general_section():
+            CHILD=self.frame(MASTER,945,620)
+            CHILD.move(330,100)
+            CHILD.hide()
+
+            title_=self.lable(CHILD,20, 10, 'General','fancy_title')
+
+            ui_theme=self.lable(CHILD,400, 100, 'Ui Theme','fancy_title')
+
+            light_mode=self.lable(CHILD,196, 540, 'Light Mode','subtitle')
+            
+            dark_mode=self.lable(CHILD,676, 540, 'Dark Mode','subtitle')
+
+            self.collect(general_frame=CHILD)
+        
+        def security_section():
+            CHILD=self.frame(MASTER,955,620)
+            CHILD.move(320,100)
+            CHILD.hide()
+
+            title_=self.lable(CHILD,20, 10, 'Security','fancy_title')
+
+            lock_system=self.lable(CHILD,270, 100, 'Lock System','fancy_title')
+
+            current_password=self.lable(CHILD,155, 230, 'Current Password:','fancy_subtitle')
+
+            new_password=self.lable(CHILD,155, 310, 'New Password:','fancy_subtitle')
+
+            re_enter_password=self.lable(CHILD,155, 390, 'Re-Enter New Password:','fancy_subtitle')
+
+            line(CHILD,656,-10, 1,1000,'v').setStyleSheet('border: 1px solid #6A737D;')
+            
+            status=self.lable(CHILD,755, 170, 'Status','fancy_title')
+
+            system_status=self.lable(CHILD,675, 260, 'System Status:','fancy_subtitle')
+            
+            encry_mthd=self.lable(CHILD,675, 320, 'Encryption Method:','fancy_subtitle')
+
+            ask_password=self.lable(CHILD,675, 380, 'Ask Password:','fancy_subtitle')
+            
+            answer_ss=self.lable(CHILD,855, 260, 'Unlocked','fancy_subtitle',
+            'color:#d13429')
+
+            self.collect(security_frame=CHILD)
+
+        
+        general_section()
+        security_section()
 
     def guid(self):
         MASTER=self.GUID
 
         title=self.lable(MASTER,10, 10, 'Guid','title')
+
+    def collect(self,**kwarg):
+
+        for key,value in kwarg.items():
+            self.Widget[key]=value

@@ -2,7 +2,7 @@
 D_BACKGROUND='#1F2428'
 D_LABLE='#FFFFFF'
 
-LABLE="color= #ffffff"
+LABLE="color: #ffffff"
 
 MSG="color: #ffffff; background-color:#471117; border-radius: 10px;"
 
@@ -33,7 +33,7 @@ COMBO_BOX='''QComboBox {
 ENTRY='''QLineEdit {
 		    border: 1px solid;
 		    border-radius: 10px;
-		    border-color:#6A737D;;
+		    border-color:#6A737D;
 			selection-background-color:#6A737D;
 		    color:#ffffff;
 		}
@@ -89,7 +89,7 @@ SPINBOX='''QSpinBox{
 		border-color:#ffffff;
 		}'''
 
-LOGIN_FRAME='''
+FRAME='''
 background-color:#191D20;
 border-radius:15px;
 '''

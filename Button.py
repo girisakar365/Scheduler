@@ -1,29 +1,33 @@
 from Source import * 
 from StyleSheet import NORMAL_BUTTON
 
-
 class Button:
     def __init__(self,*arg):
-        self.WINDOW, self.SIDEBAR, self.TIME_TABLE, self.PROFESSOR, self.SUBJECT, self.RECORD, self.USER, self.SETTING, self.GUID = arg
+        self.WINDOW,self.SIDEBAR,self.TIME_TABLE,self.PROFESSOR,self.SUBJECT,self.RECORD,self.USER,self.SETTING,self.GUID,self.MENU_BAR = arg
 
+        self.Widget={}
+        
         self.AREA=36
-
-        self.GRID_LAYOUT=QVBoxLayout()
 
         self.side_bar()
 
-    def button(self,master,x,y,area,img,style=None,size=32,
+    def button(self,master,x,y,area,img=None,style=None,size=32,
     font_type='normal',text=''):
 
         button=QPushButton(text,master)
-        button.setIcon(image( img ))
-        button.setIconSize(QSize(size,size))
-        button.pressed.connect(
-            lambda:button.setIconSize(QSize(size-3,size-3))
-            )
-        button.released.connect(
-            lambda:button.setIconSize(QSize(size,size))
-            )
+        
+        try:
+            button.setIcon(image( img ))
+            button.setIconSize(QSize(size,size))
+            button.pressed.connect(
+                lambda:button.setIconSize(QSize(size-3,size-3))
+                )
+            button.released.connect(
+                lambda:button.setIconSize(QSize(size,size))
+                )
+
+        except Exception:pass
+
         button.setFont(font(font_type))
         button.setStyleSheet(style)
         button.setCursor(QCursor(Qt.PointingHandCursor))
@@ -38,18 +42,33 @@ class Button:
         button.released.connect(
             lambda:[button.setIcon(image( PhotoLib.get(31) )),button.setIconSize(QSize(20,20))]
             )
+    
+    def frame_manager(self,Frame):
+
+        Frames = {'record':self.RECORD,
+        'professor':self.PROFESSOR,
+        'subject':self.SUBJECT,
+        'time_table':self.TIME_TABLE,
+        'user':self.USER,
+        'settings':self.SETTING,
+        'guid':self.GUID,
+        }
+        for i in Frames:
+            if Frame is Frames[i] : Frames[i].show()
+
+            else : Frames[i].hide()
 
     def side_bar(self):
 
-        SIDEBAR_BUTTON=NORMAL_BUTTON+'QPushButton{background-color: #24292E;}'
+        SIDEBAR_BUTTON = NORMAL_BUTTON + 'QPushButton{background-color: #24292E;}'
 
-        record=self.button(self.SIDEBAR,14, 30, self.AREA,PhotoLib.get(10),
+        record = self.button(self.SIDEBAR,14, 30, self.AREA,PhotoLib.get(10),
         size=24,style=SIDEBAR_BUTTON
         )
         record.setToolTip('Record')
         self.record(record)
 
-        professor=self.button(self.SIDEBAR,14, 90, self.AREA,PhotoLib.get(8),
+        professor = self.button(self.SIDEBAR,14, 90, self.AREA,PhotoLib.get(8),
         size=24,style=SIDEBAR_BUTTON
         )
         professor.setToolTip('Professor')
@@ -86,14 +105,8 @@ class Button:
         self.guid(guid)
 
     def record(self,master):
-
-        master.clicked.connect(lambda:[
-        self.RECORD.show(),
-        self.USER.hide(),
-        self.PROFESSOR.hide(),
-        self.TIME_TABLE.hide(),
-        self.SETTING.hide(),
-        self.GUID.hide()])
+        MASTER=self.RECORD
+        master.clicked.connect(lambda:self.frame_manager(MASTER))
 
     def professor(self,master):
 
@@ -108,14 +121,7 @@ class Button:
         excle=self.button(MASTER, 60, 388,self.AREA,PhotoLib.get(27),
         size=28,style=NORMAL_BUTTON)
 
-        master.clicked.connect(lambda:[
-        self.PROFESSOR.show(),
-        self.RECORD.hide(),
-        self.USER.hide(),
-        self.TIME_TABLE.hide(),
-        self.SETTING.hide(),
-        self.GUID.hide(),
-        self.SUBJECT.hide()])
+        master.clicked.connect(lambda:self.frame_manager(MASTER))
     
     def subject(self,master):
 
@@ -130,14 +136,7 @@ class Button:
         excle=self.button(MASTER, 60, 355,self.AREA,PhotoLib.get(27),
         size=28,style=NORMAL_BUTTON)
 
-        master.clicked.connect(lambda:[
-        self.SUBJECT.show(),
-        self.RECORD.hide(),
-        self.PROFESSOR.hide(),
-        self.TIME_TABLE.hide(),
-        self.SETTING.hide(),
-        self.GUID.hide(),
-        self.USER.hide()])
+        master.clicked.connect(lambda:self.frame_manager(MASTER))
 
     def time_table(self,master):
         MASTER=self.TIME_TABLE
@@ -159,14 +158,7 @@ class Button:
         excle=self.button(MASTER, 160, 610,self.AREA,PhotoLib.get(27),
         size=28,style=NORMAL_BUTTON)
 
-        master.clicked.connect(lambda:[
-        self.TIME_TABLE.show(),
-        self.RECORD.hide(),
-        self.PROFESSOR.hide(),
-        self.USER.hide(),
-        self.SETTING.hide(),
-        self.GUID.hide(),
-        self.SUBJECT.hide()])
+        master.clicked.connect(lambda:self.frame_manager(MASTER))
 
     def user(self,master):
 
@@ -183,35 +175,52 @@ class Button:
         size=20,style=NORMAL_BUTTON+'''QPushButton{ background-color:#191D20;}''')
         self.show_hide_password(show_hide_pass)
 
-        generate_password=self.button(MASTER, 1054, 421,self.AREA,PhotoLib.get(33),
-        size=22,style=NORMAL_BUTTON+'''QPushButton{ background-color:#191D20;}''')
-
-
-        master.clicked.connect(lambda:[
-        self.USER.show(),
-        self.RECORD.hide(),
-        self.PROFESSOR.hide(),
-        self.TIME_TABLE.hide(),
-        self.SETTING.hide(),
-        self.GUID.hide(),
-        self.SUBJECT.hide()])
+        master.clicked.connect(lambda:self.frame_manager(MASTER))
 
     def setting(self,master):
-        master.clicked.connect(lambda:[
-        self.SETTING.show(),
-        self.RECORD.hide(),
-        self.PROFESSOR.hide(),
-        self.TIME_TABLE.hide(),
-        self.USER.hide(),
-        self.GUID.hide(),
-        self.SUBJECT.hide()])
+
+        MASTER=self.SETTING
+
+        CHILD=self.MENU_BAR
+
+        master.clicked.connect(lambda:self.frame_manager(MASTER))
+
+        CHILD.show()
+
+        MENU_BAR_BUTTON=NORMAL_BUTTON+'QPushButton{border-radius:20px;}'
+
+
+        general=self.button(CHILD,50,100,0,PhotoLib.get(13),
+        size=18,style=MENU_BAR_BUTTON,text='  General')
+        general.setFixedSize(150,43)
+        general.setGraphicsEffect(shadow(70))
+
+
+        security=self.button(CHILD,50,173,0,PhotoLib.get(35),
+        size=20,style=MENU_BAR_BUTTON,text='  Security')
+        security.setFixedSize(150,43)
+        security.setGraphicsEffect(shadow(70))
+
+        shorcut=self.button(CHILD,50,243,0,PhotoLib.get(37),
+        size=20,style=MENU_BAR_BUTTON,text='  Shortcuts')
+        shorcut.setFixedSize(150,43)
+        shorcut.setGraphicsEffect(shadow(70))
+
+        account=self.button(CHILD,53,313,0,PhotoLib.get(12),
+        size=20,style=MENU_BAR_BUTTON,text='  Manage Account')
+        account.setFixedSize(158,43)
+        account.setGraphicsEffect(shadow(70))
+
+        self.collect(general_btw=general)
+        self.collect(security_btw=security)
 
     def guid(self,master):
-        master.clicked.connect(lambda:[
-        self.GUID.show(),
-        self.RECORD.hide(),
-        self.PROFESSOR.hide(),
-        self.TIME_TABLE.hide(),
-        self.SETTING.hide(),
-        self.USER.hide(),
-        self.SUBJECT.hide()])
+        
+        MASTER=self.GUID
+
+        master.clicked.connect(lambda:self.frame_manager(MASTER))
+
+    def collect(self,**kwarg):
+
+        for key,value in kwarg.items():
+            self.Widget[key]=value

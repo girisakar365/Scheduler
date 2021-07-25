@@ -15,10 +15,16 @@ def side_bar(master):
 def frame(master):
 	_frame=QFrame(master)
 	_frame.setGeometry(QRect(67, 0, 1451, 1521))
-	_frame.mousePressEvent = lambda x : _frame.setFocus()
+	_frame.mousePressEvent = lambda event : _frame.setFocus()
 	# _frame.setStyleSheet('background-color: #ffffff')
 	
 	return _frame
+
+def shadow(radius:int):
+	shadow = QGraphicsDropShadowEffect()
+	shadow.setColor(Qt.black)
+	shadow.setBlurRadius(radius)
+	return shadow
 
 def font(typ):
 
@@ -31,9 +37,10 @@ def font(typ):
 	'msg':['Segoe UI Light',10],
 	'button':['Segoe UI Light',5],
 	'huge':['Segoe UI Semibold',30],
-	'login_entry':['Segoe UI Light',12],
-	'login_title':['Segoe Print',20],
-	'login_subtitle':['Segoe Print',12]
+	'entry':['Segoe UI Light',12],
+	'fancy_title':['Segoe Print',20],
+	'fancy_huge':['Segoe Print',30],
+	'fancy_subtitle':['Segoe Print',12]
 
 			}
 
@@ -42,7 +49,7 @@ def font(typ):
 
 	return font
 
-def line(master,x,y,height,widht,typ='h'):
+def line(master,x,y,widht,height,typ='h'):
 	_line = QFrame(master)
 	#ORENTATION:
 	if typ=='h':
@@ -51,7 +58,7 @@ def line(master,x,y,height,widht,typ='h'):
 	elif typ=='v':
 		_line.setFrameShape(QFrame.VLine)
 
-	_line.setGeometry(QRect(x,y,height,widht))
+	_line.setGeometry(QRect(x,y,widht,height))
 		
 	_line.setFrameShadow(QFrame.Sunken)
 
