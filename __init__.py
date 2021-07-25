@@ -44,6 +44,7 @@ class FrontEnd(QMainWindow):
         MENU_BAR.setFixedSize(280,370)
         MENU_BAR.setGraphicsEffect(shadow(100))
         MENU_BAR.move(2,215)
+        SETTING.hide()
         
         GUID=frame(WINDOW)
         GUID.hide()
