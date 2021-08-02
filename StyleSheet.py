@@ -1,13 +1,17 @@
 #COLOR: 
-D_BACKGROUND='#1F2428'
-D_LABLE='#FFFFFF'
+D_BACKGROUND='#1f2428'
+D_LABLE='#ffffff'
+
+WIDGET='''QWidget{
+		color:#ffffff;
+		background-color:#1F2428;}'''
 
 LABLE="color: #ffffff"
 
 MSG="color: #ffffff; background-color:#471117; border-radius: 10px;"
 
 NORMAL_BUTTON='''QPushButton{
-		border-radius:17px;
+		border-radius:19px;
 		}
 		QPushButton:hover{
 		background-color:#6A737D;
@@ -73,18 +77,22 @@ TABLE='''QHeaderView::section{
 		color:#292728;
 		}'''
 
-SPINBOX='''QSpinBox{
+SPINBOX='''
+QSpinBox{
 		border-radius:7px;
 		border:1px solid;
 		border-color:#6A737D;
 		selection-background-color:#6A737D;
 		}
-		QSpinBox::up-button{
+
+QSpinBox::up-button{
 		color:#FFFFFF}
-		QSpinBox::down-button{
+
+QSpinBox::down-button{
 		color:#FFFFFF
 		}
-		QSpinBox::hover
+
+QSpinBox::hover
 		{
 		border-color:#ffffff;
 		}'''
@@ -94,15 +102,32 @@ background-color:#191D20;
 border-radius:15px;
 '''
 
-LOGIN_ENTRY='''QLineEdit {
-		    border: 1px solid;
-		    border-radius: 5px;
-			background-color:#24292E;
-		    border-color:#080808;
-			selection-background-color:#6A737D;
-		    color:white;
+LOGIN_ENTRY='''
+QLineEdit {
+		border: 1px solid;
+		border-radius: 5px;
+		background-color:#24292E;
+		border-color:#080808;
+		selection-background-color:#6A737D;
+		color:white;
 		}
-		
-		QLineEdit:hover{
-		    border-color:#73AAFA;
+
+QLineEdit:hover{
+		border-color:#73AAFA;
 		}'''
+
+SCROLL_BAR='''QScrollBar{
+    background: #e1e1e1;
+	height: 10px;
+}
+
+QScrollBar::handle:vertical {
+    background: #999999;
+	border-radius: 4px;
+	height:5px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: #686868;
+}
+'''

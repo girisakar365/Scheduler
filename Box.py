@@ -6,35 +6,33 @@ class Box:
     def __init__(self,*arg):
         self.WINDOW,self.SIDEBAR,self.TIME_TABLE,self.PROFESSOR,self.SUBJECT,self.RECORD,self.USER,self.SETTING,self.GUID,self.MENU_BAR = arg
 
-        self.Widget={}
+        self.Widget = {}
         
-        self.Api={}
-
         self.professor()
         self.subject()
         self.time_table()
         self.user()
 
     def spinbox(self,master,x,y,width,height):
-        spinbox=QSpinBox(master)
+        spinbox = QSpinBox(master)
         spinbox.setStyleSheet(SPINBOX)
         spinbox.setGeometry(QRect(x,y,width,height))
         return spinbox
 
-    def entry(self,master,x,y,height,width,style=ENTRY):
-        entry=QLineEdit(master)
+    def entry(self,master,x,y,height,width,style = ENTRY):
+        entry = QLineEdit(master)
         entry.setStyleSheet(style)
         entry.setGeometry(QRect(x,y,height,width))
         return entry
 
     def completer(self,qline,clist:list):
-        completer=QCompleter(clist)
+        completer = QCompleter(clist)
         completer.popup().setStyleSheet(COMPLETER)
         qline.setCompleter(completer)
         return completer
     
-    def combo_box(self,master,x,y,width,height,combolist:list=[]):
-        combo_box=QComboBox(master)
+    def combo_box(self,master,x,y,width,height,combolist:list = []):
+        combo_box = QComboBox(master)
         combo_box.setStyleSheet(COMBO_BOX)
         combo_box.setGeometry(QRect(x,y,width,height))
 
@@ -45,50 +43,50 @@ class Box:
         return combo_box
 
     def professor(self):
-        MASTER=self.PROFESSOR
+        MASTER = self.PROFESSOR
         
-        E_WIDTH,E_HEIGHT=80,21
+        E_WIDTH,E_HEIGHT = 80,21
 
-        CB_WIDTH,CB_HEIGHT=50,21
+        CB_WIDTH,CB_HEIGHT = 50,21
 
-        name=self.entry(MASTER, 80, 125, E_WIDTH, E_HEIGHT)
+        name = self.entry(MASTER, 80, 125, E_WIDTH, E_HEIGHT)
         name.setPlaceholderText('First Name')
         
-        surname=self.entry(MASTER, 175, 125, E_WIDTH, E_HEIGHT)
+        surname = self.entry(MASTER, 175, 125, E_WIDTH, E_HEIGHT)
         surname.setPlaceholderText('Last Name')
 
-        email=self.entry(MASTER, 80, 165, E_WIDTH+96, E_HEIGHT)
+        email = self.entry(MASTER, 80, 165, E_WIDTH+96, E_HEIGHT)
         
-        subject=self.entry(MASTER,80, 205, E_WIDTH+96, E_HEIGHT)
+        subject = self.entry(MASTER,80, 205, E_WIDTH+96, E_HEIGHT)
 
-        classes=self.combo_box(MASTER,80, 245,CB_WIDTH,CB_HEIGHT,[11,12,'both'])
+        classes = self.combo_box(MASTER,80, 245,CB_WIDTH,CB_HEIGHT,[11,12,'both'])
 
     def subject(self):
-        MASTER=self.SUBJECT
+        MASTER = self.SUBJECT
 
-        E_WIDTH,E_HEIGHT=80,21
+        E_WIDTH,E_HEIGHT = 80,21
 
-        CB_WIDTH,CB_HEIGHT=50,21
+        CB_WIDTH,CB_HEIGHT = 50,21
 
-        subject=self.entry(MASTER, 80, 125, E_WIDTH+76, E_HEIGHT)
+        subject = self.entry(MASTER, 80, 125, E_WIDTH+76, E_HEIGHT)
 
-        faculty_list=['Science','Management','Law']
+        faculty_list = ['Science','Management','Law']
         faculty = self.combo_box(MASTER,80, 165,CB_WIDTH+20,CB_HEIGHT,faculty_list)
 
         class_ = self.combo_box(MASTER,80, 205,CB_WIDTH,CB_HEIGHT,[11,12,'both'])
 
     def time_table(self):
 
-        SB_WIDTH,SB_HEIGHT=50,21
+        MASTER = self.TIME_TABLE
 
-        MASTER=self.TIME_TABLE
+        SB_WIDTH,SB_HEIGHT = 50,21
 
-        CB_WIDTH,CB_HEIGHT=50,21
+        CB_WIDTH,CB_HEIGHT = 50,21
 
 
         class_ = self.combo_box(MASTER,150, 125,CB_WIDTH,CB_HEIGHT,[11,12])
         
-        faculty_list=['Science','Management','Law']
+        faculty_list = ['Science','Management','Law']
         faculty = self.combo_box(MASTER,150, 165,CB_WIDTH+20,CB_HEIGHT,faculty_list)
         
         shift = self.combo_box(MASTER,150, 205,CB_WIDTH+20,CB_HEIGHT,['Morning','Day'])
@@ -108,31 +106,28 @@ class Box:
     def user(self):
         MASTER = self.USER
         
-        E_WIDTH,E_HEIGHT=190,30
+        E_WIDTH,E_HEIGHT = 190,30
 
-        name=self.entry(MASTER,810, 301, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
+        name = self.entry(MASTER,810, 301, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
         name.setFont(font('entry'))
         name.setPlaceholderText('User Name')
         
-        email=self.entry(MASTER,810, 361, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
+        email = self.entry(MASTER,810, 361, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
         email.setFont(font('entry'))
         email.setPlaceholderText('Example@gmail.com')
         
-        password=self.entry(MASTER,810, 421, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
+        password = self.entry(MASTER,810, 421, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
         password.setFont(font('entry'))
         password.setPlaceholderText('Password')
         password.setEchoMode(QLineEdit.Password)
 
-        college=self.entry(MASTER,810, 481, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
+        college = self.entry(MASTER,810, 481, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
         college.setFont(font('entry'))
         college.setPlaceholderText('Name of College')
+
+        self.collect(user_password_entry = password)
 
     def collect(self,**kwarg):
         
         for key,value in kwarg.items():
-            self.Widget[key].append(value)
-
-    def send(self,widget:dict):
-
-        for key,value in widget.items():
-            self.Api[key]=value
+            self.Widget[key] = value

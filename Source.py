@@ -16,9 +16,19 @@ def frame(master):
 	_frame=QFrame(master)
 	_frame.setGeometry(QRect(67, 0, 1451, 1521))
 	_frame.mousePressEvent = lambda event : _frame.setFocus()
-	# _frame.setStyleSheet('background-color: #ffffff')
 	
 	return _frame
+
+def scroll_bar(master,x,y,width,height):
+
+	from StyleSheet import SCROLL_BAR
+
+	_scroll_bar=QScrollBar(master)
+	_scroll_bar.setGeometry(x,y,width,height)
+
+	_scroll_bar.setStyleSheet(SCROLL_BAR)
+
+	return _scroll_bar
 
 def shadow(radius:int):
 	shadow = QGraphicsDropShadowEffect()
@@ -49,16 +59,19 @@ def font(typ):
 
 	return font
 
-def line(master,x,y,widht,height,typ='h'):
+def line(master,x,y,typ='h',length=1300):
 	_line = QFrame(master)
 	#ORENTATION:
 	if typ=='h':
 		_line.setFrameShape(QFrame.HLine)
+		_line.setFixedSize(length,1)
 
 	elif typ=='v':
 		_line.setFrameShape(QFrame.VLine)
+		_line.setFixedSize(1,length)
 
-	_line.setGeometry(QRect(x,y,widht,height))
+	_line.move(x,y)
+	_line.setStyleSheet('border: 1px solid #6A737D;')
 		
 	_line.setFrameShadow(QFrame.Sunken)
 

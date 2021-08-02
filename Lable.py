@@ -47,7 +47,7 @@ class Label:
 
         info_table=self.lable(MASTER,300,70,'Record of Professors','title')
 
-        line(MASTER,270,0,10,1000,'v')
+        line(MASTER,270,0,'v')
 
         empty=self.lable(MASTER,501,301,'No Records Saved Yet!','huge')
         empty.setStyleSheet('color:#6A737D')
@@ -64,7 +64,7 @@ class Label:
         
         classes=self.lable(MASTER,10, 240, 'Classes')
 
-        line(MASTER,0,330,270,5)
+        line(MASTER,0,330,length=270)
 
         tool=self.lable(MASTER,10, 350, 'Tools','subtitle')
 
@@ -78,7 +78,7 @@ class Label:
         empty=self.lable(MASTER,501,301,'No Records Saved Yet!','huge')
         empty.setStyleSheet('color:#6A737D')
 
-        line(MASTER,270,0,10,1000,'v')
+        line(MASTER,270,0,'v')
 
         form=self.lable(MASTER,10, 70, 'Subject From','subtitle')
         
@@ -88,7 +88,7 @@ class Label:
         
         class_=self.lable(MASTER,10, 200, 'Class')
 
-        line(MASTER,0,280,270,5)
+        line(MASTER,0,280,length=270)
 
         tool=self.lable(MASTER,10, 310, 'Tools','subtitle')
 
@@ -96,7 +96,7 @@ class Label:
     def time_table(self):
         MASTER=self.TIME_TABLE
 
-        line(MASTER,270,0,10,1000,'v')
+        line(MASTER,270,0,'v')
 
         title=self.lable(MASTER,10, 10, 'Time Table','title')
 
@@ -117,7 +117,7 @@ class Label:
 
         manage_subject=self.lable(MASTER,10, 280, 'Manage Subject')
 
-        line(MASTER,0,320,270,5)
+        line(MASTER,0,320,length=270)
 
         period_info=self.lable(MASTER,10, 350, 'Period Form','subtitle')
         
@@ -127,7 +127,7 @@ class Label:
 
         time_per_period=self.lable(MASTER,10, 470, 'Time Per Period')
 
-        line(MASTER,0,550,270,5)
+        line(MASTER,0,550,length=270)
 
         option=self.lable(MASTER,10, 570, 'Tools','subtitle')
 
@@ -142,26 +142,26 @@ class Label:
         title.setFixedSize(300,50)
         title.setFont(font_)
 
-        dummy_logo=self.lable(MASTER,50, 130,text='')
-        dummy_logo.setPixmap( image(PhotoLib.get(28),'') )
-        dummy_logo.setFixedSize(512,512)
-       
-        login_frame=self.frame(MASTER,480,480)
-        login_frame.move(670,160)
+        logo=self.lable(MASTER,50, 130,text='')
+        logo.setPixmap( image(PhotoLib.get(28),'') )
+        logo.setFixedSize(512,512)
 
-        sub_title=self.lable(login_frame,170,50,'SIGN UP','fancy_title')
+        CHILD=self.frame(MASTER,480,480)
+        CHILD.move(670,160)
+
+        sub_title=self.lable(CHILD,170,50,'SIGN UP','fancy_title')
         sub_title.setStyleSheet('color:#7CCAFB')
 
-        name=self.lable(login_frame,25, 140, 'User Name:','fancy_subtitle')
+        name=self.lable(CHILD,25, 140, 'User Name:','fancy_subtitle')
         name.setStyleSheet('color:#73AAFA')
 
-        email=self.lable(login_frame,25, 200, 'Email:','fancy_subtitle')
+        email=self.lable(CHILD,25, 200, 'Email:','fancy_subtitle')
         email.setStyleSheet('color:#79C0FB')
 
-        password=self.lable(login_frame,25, 260, 'Password:','fancy_subtitle')
+        password=self.lable(CHILD,25, 260, 'Password:','fancy_subtitle')
         password.setStyleSheet('color:#74ADFA')
 
-        college=self.lable(login_frame,25, 320, 'College:','fancy_subtitle')
+        college=self.lable(CHILD,25, 320, 'College:','fancy_subtitle')
         college.setStyleSheet('color:#74ADFA')
 
     def setting(self):
@@ -173,11 +173,9 @@ class Label:
 
         menu_bar_title=self.lable(CHILD,90, 10, 'Menu','fancy_title')
 
-        empty=self.frame(MASTER,945,620)
-        empty.move(330,100)
-        self.lable(empty,340,260,'Choose An Option','fancy_huge','color:#6A737D')
+        self.lable(MASTER,620,360,'Choose An Option','fancy_huge','color:#6A737D')
 
-        def general_section():
+        def general():
             CHILD=self.frame(MASTER,945,620)
             CHILD.move(330,100)
             CHILD.hide()
@@ -192,7 +190,7 @@ class Label:
 
             self.collect(general_frame=CHILD)
         
-        def security_section():
+        def security():
             CHILD=self.frame(MASTER,955,620)
             CHILD.move(320,100)
             CHILD.hide()
@@ -207,7 +205,7 @@ class Label:
 
             re_enter_password=self.lable(CHILD,155, 390, 'Re-Enter New Password:','fancy_subtitle')
 
-            line(CHILD,656,-10, 1,1000,'v').setStyleSheet('border: 1px solid #6A737D;')
+            line(CHILD,656,-10,'v')
             
             status=self.lable(CHILD,755, 170, 'Status','fancy_title')
 
@@ -217,14 +215,27 @@ class Label:
 
             ask_password=self.lable(CHILD,675, 380, 'Ask Password:','fancy_subtitle')
             
-            answer_ss=self.lable(CHILD,855, 260, 'Unlocked','fancy_subtitle',
+            answer_ss = self.lable(CHILD,855, 260, 'Unlocked','fancy_subtitle',
             'color:#d13429')
 
             self.collect(security_frame=CHILD)
 
+        def shortcut():
+            CHILD=self.frame(MASTER,955,620)
+            CHILD.move(320,100)
+            CHILD.hide()
+
+            SUB_CHILD=frame(CHILD)
+            SUB_CHILD.setFixedSize(805,820)
+            SUB_CHILD.move(120,160)
+
+            title_=self.lable(CHILD,20, 10, 'Manage Keyboard Shortcuts','fancy_title')
+
+            self.collect(shortcut_frame=CHILD, shortcut_sub_frame=SUB_CHILD)
         
-        general_section()
-        security_section()
+        general()
+        security()
+        shortcut()
 
     def guid(self):
         MASTER=self.GUID
