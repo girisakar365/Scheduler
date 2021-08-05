@@ -16,12 +16,12 @@ class Label:
         self.setting()
         self.guid()
 
-    def lable(self,master,X,Y,text,font_type='normal',style=LABLE):
+    def lable(self,master,x,y,text,font_type='normal',style=LABLE):
         
         label=QLabel(text,master)
         label.setFont(font(font_type))
         label.setStyleSheet(style)
-        label.setGeometry(QRect(X,Y,0,0))
+        label.setGeometry(QRect(x,y,0,0))
         label.adjustSize()
         
         return label
@@ -232,10 +232,29 @@ class Label:
             title_=self.lable(CHILD,20, 10, 'Manage Keyboard Shortcuts','fancy_title')
 
             self.collect(shortcut_frame=CHILD, shortcut_sub_frame=SUB_CHILD)
-        
+
+        def manage_account():
+            CHILD=self.frame(MASTER,955,620)
+            CHILD.move(320,100)
+            CHILD.hide()
+            
+            title_=self.lable(CHILD,20, 10, 'Manage Account','fancy_title')
+
+            SUB_CHILD=frame(CHILD)
+            SUB_CHILD.setFixedSize(805,820)
+            SUB_CHILD.setStyleSheet('background-color: #ffffff')
+            SUB_CHILD.move(100,60)
+            SUB_CHILD.hide()
+
+            self.lable(CHILD,260,250,'No account signed in.','fancy_huge','color:#6A737D')
+
+
+            self.collect(manage_account_frame=CHILD, manage_account_sub_frame=SUB_CHILD)
+
         general()
         security()
         shortcut()
+        manage_account()
 
     def guid(self):
         MASTER=self.GUID

@@ -14,8 +14,6 @@ class FrontEnd(QMainWindow):
         scren_resoluction = app.desktop().screenGeometry()
         WIDTH, HEIGHT = scren_resoluction.width() - 10, scren_resoluction.height() - 35
         self.resize(WIDTH,HEIGHT)
-        self.setMinimumSize(WIDTH,HEIGHT)
-
         self.setStyleSheet(WIDGET)
 
         WINDOW = self
@@ -52,7 +50,7 @@ class FrontEnd(QMainWindow):
         self.button_manager = Button(*frames)
         self.box_manager = Box(*frames)
 
-        connect=Connect(self.lable_manager,self.button_manager,self.box_manager)
+        connect = Connect(self.lable_manager, self.button_manager, self.box_manager)
 
         WINDOW.show()
 

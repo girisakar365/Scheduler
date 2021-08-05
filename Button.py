@@ -215,23 +215,23 @@ class Button:
         shorcut.setFixedSize(150,43)
         shorcut.setGraphicsEffect(shadow(70))
 
-        account = self.button(CHILD,53,313,0,PhotoLib.get(12),
+        manage_account = self.button(CHILD,53,313,0,PhotoLib.get(12),
         size = 20,style = MENU_BAR_BUTTON,text = '  Manage Account')
-        account.setFixedSize(158,43)
-        account.setGraphicsEffect(shadow(70))
+        manage_account.setFixedSize(158,43)
+        manage_account.setGraphicsEffect(shadow(70))
 
-        back = self.button(CHILD, 235, 15, self.AREA+2, PhotoLib.get(42),
+        back = self.button(CHILD, 0, 10, self.AREA+2, PhotoLib.get(42),
         size = 16, style = MENU_BAR_BUTTON+'QPushButton{ border-radius: 19px}')
 
-        for i in [general,security,shorcut,account]:
+        for i in [general,security,shorcut,manage_account]:
             width  =  150
             height  =  43
-            if i is account:
+            if i is manage_account:
                 width  =  158
             button_animation(i,width,height)#only for elongated menu buttons
 
         self.collect(general_btw = general, security_btw = security, shortcut_btw = shorcut,
-        account_btw = account, back_btw = back)
+        manage_account_btw = manage_account, back_btw = back)
 
     def guid(self,master):
         
