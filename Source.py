@@ -19,16 +19,19 @@ def frame(master):
 	
 	return _frame
 
-def scroll_bar(master,x,y,width,height):
+def scroll_bar(master):
 
-	from StyleSheet import SCROLL_BAR
+	_scroll_bar = QScrollArea(master)
 
-	_scroll_bar = QScrollBar(master)
-	_scroll_bar.setGeometry(x,y,width,height)
+	CHILD = QFrame()
 
-	_scroll_bar.setStyleSheet(SCROLL_BAR)
+	_scroll_bar.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+	_scroll_bar.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+	_scroll_bar.setWidgetResizable(True)
 
-	return _scroll_bar
+	_scroll_bar.setWidget(CHILD)
+	
+	return CHILD, _scroll_bar
 
 def shadow(radius:int):
 	shadow  =  QGraphicsDropShadowEffect()

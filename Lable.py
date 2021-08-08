@@ -1,11 +1,11 @@
 from Source import * 
-from StyleSheet import LABLE, FRAME
+from StyleSheet import LABLE, FRAME, SCROLL_BAR
 
 class Label:
 
     def __init__(self,*arg):
         
-        self.WINDOW,self.SIDEBAR,self.TIME_TABLE,self.PROFESSOR,self.SUBJECT,self.RECORD,self.USER,self.SETTING,self.GUID,self.MENU_BAR = arg
+        self.WINDOW,self.SIDEBAR,self.TIME_TABLE,self.PROFESSOR,self.SUBJECT,self.RECORD,self.USER,self.SETTING,self.GUID = arg
         self.Widget={}
 
         self.record()
@@ -16,7 +16,7 @@ class Label:
         self.setting()
         self.guid()
 
-    def lable(self,master,x,y,text,font_type='normal',style=LABLE):
+    def lable(self, master, x:int = 0 , y:int = 0, text='text', font_type='normal', style=LABLE):
         
         label=QLabel(text,master)
         label.setFont(font(font_type))
@@ -26,23 +26,26 @@ class Label:
         
         return label
 
-    def frame(self,master,w:int,h:int):
-        _frame=frame(master)
+    def frame(self, master, w:int, h:int, style = FRAME):
+
+        _frame = frame(master)
         _frame.setFixedSize(w,h) 
-        _frame.setStyleSheet(FRAME)
+        _frame.setStyleSheet(style)
         _frame.setGraphicsEffect(shadow(65))
 
         return _frame
 
     def record(self):
+
         MASTER=self.RECORD
 
         title=self.lable(MASTER,10, 10, 'Records','title')
 
-        empty=self.lable(MASTER,401,301,'No Records Saved Yet!','huge')
+        empty=self.lable(MASTER, 401, 301, 'No Records Saved Yet!','huge')
         empty.setStyleSheet('color:#6A737D')
 
     def professor(self):
+
         MASTER=self.PROFESSOR
 
         info_table=self.lable(MASTER,300,70,'Record of Professors','title')
@@ -69,6 +72,7 @@ class Label:
         tool=self.lable(MASTER,10, 350, 'Tools','subtitle')
 
     def subject(self):
+
         MASTER=self.SUBJECT
 
         title=self.lable(MASTER,10, 3,'Subject','title')
@@ -94,6 +98,7 @@ class Label:
 
 
     def time_table(self):
+
         MASTER=self.TIME_TABLE
 
         line(MASTER,270,0,'v')
@@ -132,6 +137,7 @@ class Label:
         option=self.lable(MASTER,10, 570, 'Tools','subtitle')
 
     def user(self):
+
         MASTER=self.USER
         font_=font('fancy_subtitle')
         font_.setBold(True)
@@ -165,96 +171,77 @@ class Label:
         college.setStyleSheet('color:#74ADFA')
 
     def setting(self):
-        MASTER=self.SETTING
 
-        CHILD=self.MENU_BAR
+        MASTER = self.SETTING
 
-        title=self.lable(MASTER,10, 10, 'Settings','fancy_title')
+        CHILD, SCROLLAREA = scroll_bar(MASTER)
 
-        menu_bar_title=self.lable(CHILD,90, 10, 'Menu','fancy_title')
+        SCROLLAREA.move(260,65)
+        SCROLLAREA.setFixedSize(1020, 668)
+        bar = SCROLLAREA.verticalScrollBar()
+        bar.setStyleSheet(SCROLL_BAR)
 
-        self.lable(MASTER,620,360,'Choose An Option','fancy_huge','color:#6A737D')
+        layout = QVBoxLayout()
+        layout.setSpacing(500)
 
-        def general():
-            CHILD=self.frame(MASTER,945,620)
-            CHILD.move(330,100)
-            CHILD.hide()
+        line(MASTER,0,65)
 
-            title_=self.lable(CHILD,20, 10, 'General','fancy_title')
+        line(MASTER,260,65,'v')
 
-            ui_theme=self.lable(CHILD,400, 100, 'Ui Theme','fancy_title')
-
-            light_mode=self.lable(CHILD,196, 540, 'Light Mode','subtitle')
-            
-            dark_mode=self.lable(CHILD,676, 540, 'Dark Mode','subtitle')
-
-            self.collect(general_frame=CHILD)
+        general = self.lable(CHILD,400, 100, 'General','fancy_title')
         
-        def security():
-            CHILD=self.frame(MASTER,955,620)
-            CHILD.move(320,100)
-            CHILD.hide()
+        security = self.lable(CHILD,400, 100, 'Security','fancy_title')
 
-            title_=self.lable(CHILD,20, 10, 'Security','fancy_title')
+        shortcut = self.lable(CHILD,400, 100, 'Manage Keyboard Shorcuts','fancy_title')
+        
+        manage_account = self.lable(CHILD, 10, 900, 'Manage Account','fancy_title')
+        
+        space = self.lable(CHILD, 10, 900, ' ','fancy_title')
+        
 
-            lock_system=self.lable(CHILD,270, 100, 'Lock System','fancy_title')
+        for i in general, security, shortcut, manage_account, space :
+            layout.addWidget(i)
 
-            current_password=self.lable(CHILD,155, 230, 'Current Password:','fancy_subtitle')
+        CHILD.setLayout(layout)
 
-            new_password=self.lable(CHILD,155, 310, 'New Password:','fancy_subtitle')
+        self.collect(frame = CHILD, scroll_bar = bar)
 
-            re_enter_password=self.lable(CHILD,155, 390, 'Re-Enter New Password:','fancy_subtitle')
+        # def shortcut():
 
-            line(CHILD,656,-10,'v')
+        #     CHILD=self.frame(MASTER,955,620)
+        #     CHILD.move(320,100)
+        #     CHILD.hide()
+
+        #     SUB_CHILD=frame(CHILD)
+        #     SUB_CHILD.setFixedSize(805,820)
+        #     SUB_CHILD.move(120,160)
+
+        #     title_=self.lable(CHILD,20, 10, 'Manage Keyboard Shortcuts','fancy_title')
+
+        #     self.collect(shortcut_frame=CHILD, shortcut_sub_frame=SUB_CHILD)
+
+        # def manage_account():
+
+        #     CHILD=self.frame(MASTER,955,620)
+        #     CHILD.move(320,100)
+        #     CHILD.hide()
             
-            status=self.lable(CHILD,755, 170, 'Status','fancy_title')
+        #     title_=self.lable(CHILD,20, 10, 'Manage Account','fancy_title')
 
-            system_status=self.lable(CHILD,675, 260, 'System Status:','fancy_subtitle')
-            
-            encry_mthd=self.lable(CHILD,675, 320, 'Encryption Method:','fancy_subtitle')
+        #     SUB_CHILD=frame(CHILD)
+        #     SUB_CHILD.setFixedSize(805,820)
+        #     SUB_CHILD.setStyleSheet('background-color: #ffffff')
+        #     SUB_CHILD.move(100,60)
+        #     SUB_CHILD.hide()
 
-            ask_password=self.lable(CHILD,675, 380, 'Ask Password:','fancy_subtitle')
-            
-            answer_ss = self.lable(CHILD,855, 260, 'Unlocked','fancy_subtitle',
-            'color:#d13429')
-
-            self.collect(security_frame=CHILD)
-
-        def shortcut():
-            CHILD=self.frame(MASTER,955,620)
-            CHILD.move(320,100)
-            CHILD.hide()
-
-            SUB_CHILD=frame(CHILD)
-            SUB_CHILD.setFixedSize(805,820)
-            SUB_CHILD.move(120,160)
-
-            title_=self.lable(CHILD,20, 10, 'Manage Keyboard Shortcuts','fancy_title')
-
-            self.collect(shortcut_frame=CHILD, shortcut_sub_frame=SUB_CHILD)
-
-        def manage_account():
-            CHILD=self.frame(MASTER,955,620)
-            CHILD.move(320,100)
-            CHILD.hide()
-            
-            title_=self.lable(CHILD,20, 10, 'Manage Account','fancy_title')
-
-            SUB_CHILD=frame(CHILD)
-            SUB_CHILD.setFixedSize(805,820)
-            SUB_CHILD.setStyleSheet('background-color: #ffffff')
-            SUB_CHILD.move(100,60)
-            SUB_CHILD.hide()
-
-            self.lable(CHILD,260,250,'No account signed in.','fancy_huge','color:#6A737D')
+        #     self.lable(CHILD,260,250,'No account signed in.','fancy_huge','color:#6A737D')
 
 
-            self.collect(manage_account_frame=CHILD, manage_account_sub_frame=SUB_CHILD)
+        #     self.collect(manage_account_frame=CHILD, manage_account_sub_frame=SUB_CHILD)
 
-        general()
-        security()
-        shortcut()
-        manage_account()
+        # security()
+        # shortcut()
+        # manage_account()
 
     def guid(self):
         MASTER=self.GUID

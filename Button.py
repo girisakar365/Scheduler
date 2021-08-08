@@ -3,7 +3,7 @@ from StyleSheet import NORMAL_BUTTON
 
 class Button:
     def __init__(self,*arg):
-        self.WINDOW,self.SIDEBAR,self.TIME_TABLE,self.PROFESSOR,self.SUBJECT,self.RECORD,self.USER,self.SETTING,self.GUID,self.MENU_BAR  =  arg
+        self.WINDOW,self.SIDEBAR,self.TIME_TABLE,self.PROFESSOR,self.SUBJECT,self.RECORD,self.USER,self.SETTING,self.GUID  =  arg
 
         self.Widget = {}
         
@@ -186,11 +186,9 @@ class Button:
 
         MASTER = self.SETTING
 
-        CHILD = self.MENU_BAR
-
         master.clicked.connect(lambda:self.frame_manager(MASTER))
 
-        CHILD.show()
+        MASTER.show()
 
         MENU_BAR_BUTTON = NORMAL_BUTTON+'QPushButton{border-radius:20px;}'
 
@@ -198,30 +196,24 @@ class Button:
             button.enterEvent = lambda event : button.setFixedSize(w+4,h+2)
             button.leaveEvent = lambda event : button.setFixedSize(w,h)
 
+        search = self.button(MASTER, 1090, 18, self.AREA, PhotoLib.get(44),
+        size = 20, style = NORMAL_BUTTON)
 
-        general = self.button(CHILD,50,100,0,PhotoLib.get(13),
+        general = self.button(MASTER,35, 130, 0, PhotoLib.get(13),
         size = 18,style = MENU_BAR_BUTTON,text = '  General')
         general.setFixedSize(150,43)
-        general.setGraphicsEffect(shadow(70))
 
-
-        security = self.button(CHILD,50,173,0,PhotoLib.get(35),
+        security = self.button(MASTER, 35, 200, 0, PhotoLib.get(35),
         size = 20,style = MENU_BAR_BUTTON,text = '  Security')
         security.setFixedSize(150,43)
-        security.setGraphicsEffect(shadow(70))
 
-        shorcut = self.button(CHILD,50,243,0,PhotoLib.get(37),
+        shorcut = self.button(MASTER, 35, 270, 0, PhotoLib.get(37),
         size = 20,style = MENU_BAR_BUTTON,text = '  Shortcuts')
         shorcut.setFixedSize(150,43)
-        shorcut.setGraphicsEffect(shadow(70))
 
-        manage_account = self.button(CHILD,53,313,0,PhotoLib.get(12),
-        size = 20,style = MENU_BAR_BUTTON,text = '  Manage Account')
+        manage_account = self.button(MASTER, 38, 340, 0, PhotoLib.get(12),
+        size = 20, style = MENU_BAR_BUTTON, text = '  Manage Account')
         manage_account.setFixedSize(158,43)
-        manage_account.setGraphicsEffect(shadow(70))
-
-        back = self.button(CHILD, 0, 10, self.AREA+2, PhotoLib.get(42),
-        size = 16, style = MENU_BAR_BUTTON+'QPushButton{ border-radius: 19px}')
 
         for i in [general,security,shorcut,manage_account]:
             width  =  150
@@ -231,7 +223,7 @@ class Button:
             button_animation(i,width,height)#only for elongated menu buttons
 
         self.collect(general_btw = general, security_btw = security, shortcut_btw = shorcut,
-        manage_account_btw = manage_account, back_btw = back)
+        manage_account_btw = manage_account)
 
     def guid(self,master):
         
