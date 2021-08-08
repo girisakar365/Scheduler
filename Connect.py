@@ -27,7 +27,7 @@ class Connect:
         self.general()
         self.security()
         self.shortcut()
-        # self.manage_account()
+        self.manage_account()
 
     def control_bar(self, value:int): self.bar.setValue( value )   
 
@@ -155,51 +155,96 @@ class Connect:
             self.echo(button_,entry_)
         combo()
 
-        security_btw.clicked.connect(lambda: self.control_bar(532) )
+        security_btw.clicked.connect(lambda: self.control_bar(550) )
 
     def shortcut(self):
 
+        line(self.MASTER, 500, 1190, 'v', 370)
+
         def lable():
 
-            record = self.lable(self.MASTER, 0, 0, 'Record','fancy_subtitle')
-            professor = self.lable(self.MASTER, 0, 0, 'Professor','fancy_subtitle')
-            subject = self.lable(self.MASTER, 0, 0, 'Subject','fancy_subtitle')
-            time_table = self.lable(self.MASTER, 0, 0, 'Time Table','fancy_subtitle')
-            user = self.lable(self.MASTER, 0, 0, 'User','fancy_subtitle')
-            guid = self.lable(self.MASTER, 0, 0, 'Guid','fancy_subtitle')
-            manage_subject = self.lable(self.MASTER, 0, 0, 'Manage Subject','fancy_subtitle')
-            email = self.lable(self.MASTER, 0, 0, 'Emailing','fancy_subtitle')
+            record = self.lable(self.MASTER, 60, 1200, 'Record', 'fancy_subtitle')
+            professor = self.lable(self.MASTER, 60, 1280, 'Professor', 'fancy_subtitle')
+            subject = self.lable(self.MASTER, 60, 1360, 'Subject', 'fancy_subtitle')
+            time_table = self.lable(self.MASTER, 60, 1440, 'Time Table', 'fancy_subtitle')
+            user = self.lable(self.MASTER, 60, 1520, 'User', 'fancy_subtitle')
+            guid = self.lable(self.MASTER, 530, 1200, 'Guid', 'fancy_subtitle')
+            manage_subject = self.lable(self.MASTER, 530, 1280, 'Manage Subject', 'fancy_subtitle')
+            email = self.lable(self.MASTER, 530, 1360, 'Emailing', 'fancy_subtitle')
 
-            return record, professor, subject, time_table, user, guid, manage_subject, email
-
-        def entry():
+        def combo():
             
-            WIDTH,HEIGHT = 50,80
+            WIDTH, HEIGHT = 60, 25
 
-            record = self.entry(self.MASTER, 0, 0, WIDTH, HEIGHT)
-            professor = self.entry(self.MASTER, 0, 0, WIDTH, HEIGHT)
-            subject = self.entry(self.MASTER, 0, 0, WIDTH, HEIGHT)
-            time_table = self.entry(self.MASTER, 0, 0, WIDTH, HEIGHT)
-            user = self.entry(self.MASTER, 0, 0, WIDTH, HEIGHT)
-            guid = self.entry(self.MASTER, 0, 0, WIDTH, HEIGHT)
-            manage_subject = self.entry(self.MASTER, 0, 0, WIDTH, HEIGHT)
-            email = self.entry(self.MASTER, 0, 0, WIDTH, HEIGHT)
+            specific_key = ['Ctrl', 'Alt']
+            shift_key = ['None', 'Shift']
+            alpha = 'abcdefghijklmnopqrstuvwxyz'
+            num = '0123456789'
+            normal_key = [j for i in (alpha, num) for j in i]
 
-            for i in record, professor, subject, time_table, user, guid, manage_subject, email:
-                i.setFixedSize(220,26)
-                i.setFont(font('entry'))
+            record_specific_key = self.combo_box(self.MASTER, 200, 1200, WIDTH, HEIGHT, specific_key)
+            record_shift_key = self.combo_box(self.MASTER, 300, 1200, WIDTH, HEIGHT, shift_key)
+            record_normal_key = self.combo_box(self.MASTER, 400, 1200, WIDTH, HEIGHT, normal_key)
+            record_normal_key.setCurrentText('r')
 
-            return record, professor, subject, time_table, user, guid, manage_subject, email
+            professor_specific_key = self.combo_box(self.MASTER, 200, 1280, WIDTH, HEIGHT, specific_key)
+            professor_shift_key = self.combo_box(self.MASTER, 300, 1280, WIDTH, HEIGHT, shift_key)
+            professor_normal_key = self.combo_box(self.MASTER, 400, 1280, WIDTH, HEIGHT, normal_key)
+            professor_normal_key.setCurrentText('p')
+            
+            subject_specific_key = self.combo_box(self.MASTER, 200, 1360, WIDTH, HEIGHT, specific_key)
+            subject_shift_key = self.combo_box(self.MASTER, 300, 1360, WIDTH, HEIGHT, shift_key)
+            subject_normal_key = self.combo_box(self.MASTER, 400, 1360, WIDTH, HEIGHT, normal_key)
+            subject_normal_key.setCurrentText('s')
+
+            time_table_specific_key = self.combo_box(self.MASTER, 200, 1440, WIDTH, HEIGHT, specific_key)
+            time_table_shift_key = self.combo_box(self.MASTER, 300, 1440, WIDTH, HEIGHT, shift_key)
+            time_table_normal_key = self.combo_box(self.MASTER, 400, 1440, WIDTH, HEIGHT, normal_key)
+            time_table_normal_key.setCurrentText('t')
+            
+            user_specific_key = self.combo_box(self.MASTER, 200, 1520, WIDTH, HEIGHT, specific_key)
+            user_shift_key = self.combo_box(self.MASTER, 300, 1520, WIDTH, HEIGHT, shift_key)
+            user_normal_key = self.combo_box(self.MASTER, 400, 1520, WIDTH, HEIGHT, normal_key)
+            user_normal_key.setCurrentText('u')
+            
+            guid_specific_key = self.combo_box(self.MASTER, 690, 1200, WIDTH, HEIGHT, specific_key)
+            guid_shift_key = self.combo_box(self.MASTER, 790, 1200, WIDTH, HEIGHT, shift_key)
+            guid_normal_key = self.combo_box(self.MASTER, 890, 1200, WIDTH, HEIGHT, normal_key)
+            guid_normal_key.setCurrentText('g')
+
+            manage_specific_key = self.combo_box(self.MASTER, 690, 1280, WIDTH, HEIGHT, specific_key)
+            manage_shift_key = self.combo_box(self.MASTER, 790, 1280, WIDTH, HEIGHT, shift_key)
+            manage_normal_key = self.combo_box(self.MASTER, 890, 1280, WIDTH, HEIGHT, normal_key)
+            manage_normal_key.setCurrentText('m')
+
+            email_specific_key = self.combo_box(self.MASTER, 690, 1360, WIDTH, HEIGHT, specific_key)
+            email_shift_key = self.combo_box(self.MASTER, 790, 1360, WIDTH, HEIGHT, shift_key)
+            email_normal_key = self.combo_box(self.MASTER, 890, 1360, WIDTH, HEIGHT, normal_key)
+            email_normal_key.setCurrentText('e')
+
+        def button():
+            conform = self.button(self.MASTER,  690, 1440, 0, img = PhotoLib.get(41) ,font_type = 'fancy_subtitle',
+            size = 20, text = ' Save Changes', style = NORMAL_BUTTON)
+            conform.setFixedSize(160,43)
+            
+            conform.enterEvent = lambda event: conform.setFixedSize(164,45)
+            conform.leaveEvent = lambda event: conform.setFixedSize(160,43)
+
+            conform.setGraphicsEffect(shadow(40))
 
         lable()
+        combo()
+        button()
  
-
         shortcut_btw = self.button_widget['shortcut_btw']
+        shortcut_btw.clicked.connect( lambda: self.control_bar( 1100 ))
     
     def manage_account(self):
-        
-        MASTER = self.lable_widget['manage_account_frame']
 
-        self.Master = self.lable_widget['manage_account_sub_frame']
+        def lable():
+            self.lable(self.MASTER, 280, 1900, 'No account signed in.', 'fancy_huge', 'color:#6A737D')
 
         manage_account_btw = self.button_widget['manage_account_btw']
+        manage_account_btw.clicked.connect( lambda: self.control_bar( self.bar.maximum() ))
+
+        lable()

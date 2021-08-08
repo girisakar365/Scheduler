@@ -174,6 +174,8 @@ class Label:
 
         MASTER = self.SETTING
 
+        title=self.lable(MASTER,10, 10, 'Settings','fancy_title')
+
         CHILD, SCROLLAREA = scroll_bar(MASTER)
 
         SCROLLAREA.move(260,65)
@@ -206,20 +208,6 @@ class Label:
 
         self.collect(frame = CHILD, scroll_bar = bar)
 
-        # def shortcut():
-
-        #     CHILD=self.frame(MASTER,955,620)
-        #     CHILD.move(320,100)
-        #     CHILD.hide()
-
-        #     SUB_CHILD=frame(CHILD)
-        #     SUB_CHILD.setFixedSize(805,820)
-        #     SUB_CHILD.move(120,160)
-
-        #     title_=self.lable(CHILD,20, 10, 'Manage Keyboard Shortcuts','fancy_title')
-
-        #     self.collect(shortcut_frame=CHILD, shortcut_sub_frame=SUB_CHILD)
-
         # def manage_account():
 
         #     CHILD=self.frame(MASTER,955,620)
@@ -233,8 +221,6 @@ class Label:
         #     SUB_CHILD.setStyleSheet('background-color: #ffffff')
         #     SUB_CHILD.move(100,60)
         #     SUB_CHILD.hide()
-
-        #     self.lable(CHILD,260,250,'No account signed in.','fancy_huge','color:#6A737D')
 
 
         #     self.collect(manage_account_frame=CHILD, manage_account_sub_frame=SUB_CHILD)

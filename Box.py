@@ -32,7 +32,7 @@ class Box:
         qline.setCompleter(completer)
         return completer
     
-    def combo_box(self,master,x,y,width,height,combolist:list = []):
+    def combo_box(self,master, x, y, width, height, combolist:list = []):
         combo_box = QComboBox(master)
         combo_box.setStyleSheet(COMBO_BOX)
         combo_box.setGeometry(QRect(x,y,width,height))
