@@ -118,13 +118,12 @@ QLineEdit:hover{
 
 SCROLL_BAR='''QScrollBar{
     background: #e1e1e1;
-	height: 10px;
+	width: 8px;
 }
 
 QScrollBar::handle:vertical {
     background: #999999;
-	border-radius: 4px;
-	height:5px;
+	border-radius: 1px;
 }
 
 QScrollBar::handle:vertical:hover {

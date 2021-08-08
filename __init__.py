@@ -19,8 +19,6 @@ class FrontEnd(QMainWindow):
         WINDOW = self
 
         SIDE_BAR = side_bar(WINDOW)
-
-        RECORD=frame(WINDOW)
                 
         PROFESSOR=frame(WINDOW)
         PROFESSOR.hide()
@@ -35,17 +33,15 @@ class FrontEnd(QMainWindow):
         USER.hide()
         
         SETTING = frame(WINDOW)
-        MENU_BAR = frame(SETTING)
-        MENU_BAR.setStyleSheet(FRAME)
-        MENU_BAR.setFixedSize(280,370)
-        MENU_BAR.setGraphicsEffect(shadow(100))
-        MENU_BAR.move(2,215)
         SETTING.hide()
+
+        RECORD=frame(WINDOW)
+        RECORD.show()
         
         GUID = frame(WINDOW)
         GUID.hide()
         
-        frames = (WINDOW, SIDE_BAR, TIME_TABLE, PROFESSOR, SUBJECT, RECORD, USER, SETTING, GUID, MENU_BAR)
+        frames = (WINDOW, SIDE_BAR, TIME_TABLE, PROFESSOR, SUBJECT, RECORD, USER, SETTING, GUID)
         self.lable_manager = Label(*frames)
         self.button_manager = Button(*frames)
         self.box_manager = Box(*frames)

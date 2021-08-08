@@ -4,7 +4,7 @@ from StyleSheet import COMBO_BOX, ENTRY, COMPLETER, SPINBOX, LOGIN_ENTRY
 class Box:
 
     def __init__(self,*arg):
-        self.WINDOW,self.SIDEBAR,self.TIME_TABLE,self.PROFESSOR,self.SUBJECT,self.RECORD,self.USER,self.SETTING,self.GUID,self.MENU_BAR = arg
+        self.WINDOW,self.SIDEBAR,self.TIME_TABLE,self.PROFESSOR,self.SUBJECT,self.RECORD,self.USER,self.SETTING,self.GUID = arg
 
         self.Widget = {}
         
@@ -12,6 +12,7 @@ class Box:
         self.subject()
         self.time_table()
         self.user()
+        self.setting()
 
     def spinbox(self,master,x,y,width,height):
         spinbox = QSpinBox(master)
@@ -31,7 +32,7 @@ class Box:
         qline.setCompleter(completer)
         return completer
     
-    def combo_box(self,master,x,y,width,height,combolist:list = []):
+    def combo_box(self,master, x, y, width, height, combolist:list = []):
         combo_box = QComboBox(master)
         combo_box.setStyleSheet(COMBO_BOX)
         combo_box.setGeometry(QRect(x,y,width,height))
@@ -126,6 +127,16 @@ class Box:
         college.setPlaceholderText('Name of College')
 
         self.collect(user_password_entry = password)
+
+    def setting(self):
+        MASTER = self.SETTING
+        
+        E_WIDTH,E_HEIGHT = 810, 30
+
+        name = self.entry(MASTER, 268, 20, E_WIDTH, E_HEIGHT,LOGIN_ENTRY)
+        name.setFont(font('entry'))
+        name.setPlaceholderText('Search Setting')
+
 
     def collect(self,**kwarg):
         
