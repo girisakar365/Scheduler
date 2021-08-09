@@ -1,7 +1,10 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *  
 from PyQt5.QtGui import *
-from raw import *
+
+try: from .raw import *
+
+except Exception: from raw import *
 
 def side_bar(master):
 	_frame = QFrame(master)

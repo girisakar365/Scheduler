@@ -2,9 +2,15 @@
 NOTE Extraction of "FRAMES" is done from Lable.py so all the LABLE WIDGET HANDLED BY MASTERS in Lable.py must not be
 included here.
 '''
-from Source import *
-from StyleSheet import *
-from raw import PhotoLib
+try:
+    from .Source import *
+    from .StyleSheet import *
+    from .raw import PhotoLib
+
+except Exception:
+    from Source import *
+    from StyleSheet import *
+    from raw import PhotoLib
 
 class Connect:
 

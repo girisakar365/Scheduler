@@ -1,5 +1,10 @@
-from Source import * 
-from StyleSheet import COMBO_BOX, ENTRY, COMPLETER, SPINBOX, LOGIN_ENTRY
+try:
+    from .Source import * 
+    from .StyleSheet import COMBO_BOX, ENTRY, COMPLETER, SPINBOX, LOGIN_ENTRY
+
+except Exception:
+    from Source import * 
+    from StyleSheet import COMBO_BOX, ENTRY, COMPLETER, SPINBOX, LOGIN_ENTRY
 
 class Box:
 

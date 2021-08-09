@@ -1,5 +1,10 @@
-from Source import * 
-from StyleSheet import LABLE, FRAME, SCROLL_BAR
+try:
+    from .Source import * 
+    from .StyleSheet import LABLE, FRAME, SCROLL_BAR
+
+except Exception:
+    from Source import * 
+    from StyleSheet import LABLE, FRAME, SCROLL_BAR
 
 class Label:
 

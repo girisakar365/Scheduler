@@ -1,9 +1,19 @@
-from Source import * 
-from Lable import Label
-from Button import Button
-from Box import Box
-from StyleSheet import FRAME, WIDGET
-from Connect import Connect
+try:
+    from .Source import * 
+    from .Lable import Label
+    from .Button import Button
+    from .Box import Box
+    from .StyleSheet import WIDGET
+    from .Connect import Connect
+
+except Exception:
+    from Source import * 
+    from Lable import Label
+    from Button import Button
+    from Box import Box
+    from StyleSheet import WIDGET
+    from Connect import Connect
+
 
 class FrontEnd(QMainWindow):
 
@@ -50,8 +60,8 @@ class FrontEnd(QMainWindow):
 
         WINDOW.show()
 
-if __name__ == "__main__":
-    import sys
-    app = QApplication(sys.argv)
-    root=FrontEnd(app)
-    sys.exit(app.exec_())
+# if __name__ == "__main__":
+import sys
+app = QApplication(sys.argv)
+root=FrontEnd(app)
+sys.exit(app.exec_())
