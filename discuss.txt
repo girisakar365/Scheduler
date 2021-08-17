@@ -17,18 +17,19 @@ Steps for generating timetable:
 
 NOTE: dicts in step 3 and step 4 must have the same keys (easy to merger data)
 
-4. Retrive subject from data base and sort it to a dict_3 (having subject as keys and their sub units ad values)[done] 
+4. Retrive subject from data base and sort it to a dict_3 (having subject as keys and their sub units as values)[done] 
 
 5. Merge datas from step 3 and step 4:
 
-	a. choose subjects sequence wise
+	a. Number of teacher // total units --> [teacher // units]
+	
+	b. Total sections // a --> [sections // teacher]
 
-	b. choose teacher randomly
+	c. choose (a) teacher randomly
 
-	c. choose sections randomly
+	d. Choose (c) sections randomly. 
 
-	d. make a dict of these data 
-		FOR EXAMPLE: dict_4={'subject':[teacher,(sections...)]}
+	e. Store in a dict in format { 'units': [Teacher, (sections)]}
 
 6. Use these datas to put into the table:
 
