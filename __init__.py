@@ -429,14 +429,14 @@ class FrontEnd(QMainWindow):
 		self.tool.geometry(tr_table,350, 140, 670, 601)
 
 		#BACKEND-TT:
-		BE_TR=trframe(
-		tr_conform_btw,tr_dtable_btw,tr_pdf_btw,tr_search_btw,#BUTTONS#
-		entry=(tr_fname_entry,tr_sname_entry,tr_subject_entry,tr_email_entry),
-		combo=tr_iteach_combo,
-		table=tr_table,
-		tool=self.tool,frame=self.trframe,
-		search=tr_search_entry
-			)
+		# BE_TR=trframe(
+		# tr_conform_btw,tr_dtable_btw,tr_pdf_btw,tr_search_btw,#BUTTONS#
+		# entry=(tr_fname_entry,tr_sname_entry,tr_subject_entry,tr_email_entry),
+		# combo=tr_iteach_combo,
+		# table=tr_table,
+		# tool=self.tool,frame=self.trframe,
+		# search=tr_search_entry
+		# 	)
 
 	def subWindow(self):
 		win=MGSub()
