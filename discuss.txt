@@ -41,9 +41,8 @@ NOTE: dicts in step 3 and step 4 must have the same keys (easy to merger data)
 
 	d. use datas of step a, b, c and place them in right order. 
 
-
+7. check if coordinates repeated! 
+	a. Equation = [current_row_number + (days_per_week + 1) ]
 
 Handling Exceptions:
 	a. managing slices with any periods request by users:
-		 
-		 Sakar 
