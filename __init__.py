@@ -1,3 +1,4 @@
+import sys
 try:
     from .Source import * 
     from .Lable import Label
@@ -60,8 +61,6 @@ class FrontEnd(QMainWindow):
 
         WINDOW.show()
 
-# if __name__ == "__main__":
-import sys
 app = QApplication(sys.argv)
 root=FrontEnd(app)
 sys.exit(app.exec_())

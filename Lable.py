@@ -214,27 +214,6 @@ class Label:
 
         self.collect(frame = CHILD, scroll_bar = bar)
 
-        # def manage_account():
-
-        #     CHILD=self.frame(MASTER,955,620)
-        #     CHILD.move(320,100)
-        #     CHILD.hide()
-            
-        #     title_=self.lable(CHILD,20, 10, 'Manage Account','fancy_title')
-
-        #     SUB_CHILD=frame(CHILD)
-        #     SUB_CHILD.setFixedSize(805,820)
-        #     SUB_CHILD.setStyleSheet('background-color: #ffffff')
-        #     SUB_CHILD.move(100,60)
-        #     SUB_CHILD.hide()
-
-
-        #     self.collect(manage_account_frame=CHILD, manage_account_sub_frame=SUB_CHILD)
-
-        # security()
-        # shortcut()
-        # manage_account()
-
     def guid(self):
         MASTER=self.GUID
 
