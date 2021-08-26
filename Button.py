@@ -5,6 +5,8 @@ try:
 except Exception:
     from Source import * 
     from StyleSheet import NORMAL_BUTTON
+
+    
 class Button:
     def __init__(self,*arg):
         self.WINDOW,self.SIDEBAR,self.TIME_TABLE,self.PROFESSOR,self.SUBJECT,self.RECORD,self.USER,self.SETTING,self.GUID  =  arg

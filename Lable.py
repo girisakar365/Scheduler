@@ -6,6 +6,7 @@ except Exception:
     from Source import * 
     from StyleSheet import LABLE, FRAME, SCROLL_BAR
 
+
 class Label:
 
     def __init__(self,*arg):
