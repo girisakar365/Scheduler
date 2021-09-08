@@ -6,6 +6,10 @@ WIDGET='''QWidget{
 		color:#ffffff;
 		background-color:#1F2428;}'''
 
+DIALOG='''QDialog{
+		color:#ffffff;
+		background-color:#1F2428;}'''
+
 LABLE="color: #ffffff"
 
 MSG="color: #ffffff; background-color:#471117; border-radius: 10px;"
@@ -96,6 +100,27 @@ QSpinBox::hover
 		{
 		border-color:#ffffff;
 		}'''
+
+TIME_DIAL = '''
+QTimeEdit{
+		border-radius:7px;
+		border:1px solid;
+		border-color:#6A737D;
+		selection-background-color:#6A737D;
+		}
+
+QTimeEdit::up-button{
+		color:#FFFFFF}
+
+QTimeEdit::down-button{
+		color:#FFFFFF
+		}
+
+QTimeEdit::hover
+		{
+		border-color:#ffffff;
+		}
+'''
 
 FRAME='''
 background-color:#191D20;
