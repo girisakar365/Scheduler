@@ -1,21 +1,24 @@
 try:
-    from .Source import * 
-    from .StyleSheet import NORMAL_BUTTON
+    from .Source import *
+    from .Photo_Lib import * 
 
 except Exception:
     from Source import * 
-    from StyleSheet import NORMAL_BUTTON
-
+    from Photo_Lib import *
     
 class Button:
     def __init__(self,*arg):
-        self.WINDOW,self.SIDEBAR,self.TIME_TABLE,self.PROFESSOR,self.SUBJECT,self.RECORD,self.USER,self.SETTING,self.GUID  =  arg
 
         self.Widget = {}
         
         self.AREA = 36
+        
+        if len(arg) > 1:
+            self.WINDOW,self.SIDEBAR,self.TIME_TABLE,self.PROFESSOR,self.SUBJECT,self.RECORD,self.USER,self.SETTING,self.GUID  =  arg
+            self.side_bar()
 
-        self.side_bar()
+        else:
+            self.MASTER =  arg
 
     def button(self,master,x,y,area,img = None,style = None,size = 32,
     font_type = 'normal',text = ''):
@@ -23,7 +26,7 @@ class Button:
         button = QPushButton(text,master)
         
         try:
-            button.setIcon(image( img ))
+            button.setIcon(img)
             button.setIconSize(QSize(size,size))
             button.pressed.connect(
                 lambda:button.setIconSize(QSize(size-3,size-3))
@@ -44,12 +47,30 @@ class Button:
 
         return button
 
+    def radio_button(self,master,text,x,y):
+        radio = QRadioButton(text,master)
+        radio.setStyleSheet('font-size:12px; color: white;')
+        radio.setCursor(QCursor(Qt.PointingHandCursor))
+        radio.adjustSize()
+        radio.move(x,y)
+
+        return radio
+
+    def check_button(self,master,text,x,y):
+        check = QCheckBox(text,master)
+        check.setStyleSheet('font-size:12px; color: white;')
+        check.setCursor(QCursor(Qt.PointingHandCursor))
+        check.move(x,y)
+        check.adjustSize()
+        
+        return check
+
     def show_hide_password(self,button):
         button.pressed.connect(
-            lambda:[button.setIcon(image( PhotoLib.get(32) )),button.setIconSize(QSize(18,18))]
+            lambda:[button.setIcon(EYE_OPENED),button.setIconSize(QSize(18,18))]
             )
         button.released.connect(
-            lambda:[button.setIcon(image( PhotoLib.get(31) )),button.setIconSize(QSize(20,20))]
+            lambda:[button.setIcon( EYE_CLOSED ),button.setIconSize(QSize(20,20))]
             )
     
     def frame_manager(self,Frame):
@@ -71,43 +92,43 @@ class Button:
 
         SIDEBAR_BUTTON = NORMAL_BUTTON + 'QPushButton{background-color: #24292E;}'
 
-        record = self.button(self.SIDEBAR,14, 30, self.AREA,PhotoLib.get(10),
+        record = self.button(self.SIDEBAR,14, 30, self.AREA, RECORD,
         size = 24,style = SIDEBAR_BUTTON
         )
         record.setToolTip('Record')
         self.record(record)
 
-        professor = self.button(self.SIDEBAR,14, 90, self.AREA,PhotoLib.get(8),
+        professor = self.button(self.SIDEBAR,14, 90, self.AREA, PROFESSOR,
         size = 24,style = SIDEBAR_BUTTON
         )
         professor.setToolTip('Professor')
         self.professor(professor)
 
-        subject = self.button(self.SIDEBAR,14, 150, self.AREA,PhotoLib.get(9),
+        subject = self.button(self.SIDEBAR,14, 150, self.AREA, SUBJECT,
         size = 24,style = SIDEBAR_BUTTON
         )
         subject.setToolTip('Subjects')
         self.subject(subject)
         
-        time_table = self.button(self.SIDEBAR,14, 210, self.AREA,PhotoLib.get(7),
+        time_table = self.button(self.SIDEBAR,14, 210, self.AREA, TIME_TABLE,
         size = 24,style = SIDEBAR_BUTTON
         )
         time_table.setToolTip('Time Table')
         self.time_table(time_table)
 
-        user = self.button(self.SIDEBAR,14, 585, self.AREA,PhotoLib.get(12),
+        user = self.button(self.SIDEBAR,14, 585, self.AREA, USER_L, # changable
         size = 28,style = SIDEBAR_BUTTON
         )
         user.setToolTip('User')
         self.user(user)
         
-        setting = self.button(self.SIDEBAR,14, 645, self.AREA,PhotoLib.get(13),
+        setting = self.button(self.SIDEBAR,14, 645, self.AREA, GEAR_L, # changable
         size = 28,style = SIDEBAR_BUTTON
         )
         setting.setToolTip('Setting')
         self.setting(setting)
 
-        guid = self.button(self.SIDEBAR,14, 695, self.AREA,PhotoLib.get(15),
+        guid = self.button(self.SIDEBAR,14, 695, self.AREA, WHAT_L, # changable
         size = 28,style = SIDEBAR_BUTTON
         )
         guid.setToolTip('Guid')
@@ -121,13 +142,13 @@ class Button:
 
         MASTER = self.PROFESSOR
 
-        insert = self.button(MASTER,220,275,self.AREA,PhotoLib.get(25),
+        insert = self.button(MASTER,220,275,self.AREA, NEXT_L, # changable
         size = 28,style = NORMAL_BUTTON)
 
-        pdf = self.button(MASTER,10, 388,self.AREA,PhotoLib.get(4),
+        pdf = self.button(MASTER,10, 388,self.AREA, PDF,
         size = 28,style = NORMAL_BUTTON)
 
-        excle = self.button(MASTER, 60, 388,self.AREA,PhotoLib.get(27),
+        excle = self.button(MASTER, 60, 388,self.AREA, XLSX,
         size = 28,style = NORMAL_BUTTON)
 
         master.clicked.connect(lambda:self.frame_manager(MASTER))
@@ -136,35 +157,42 @@ class Button:
 
         MASTER = self.SUBJECT
 
-        insert = self.button(MASTER,220,235,self.AREA,PhotoLib.get(25),
+        insert = self.button(MASTER,220,255,self.AREA, NEXT_L, # changable
         size = 28,style = NORMAL_BUTTON)
 
-        pdf = self.button(MASTER, 10, 355,self.AREA,PhotoLib.get(4),
+        slot = self.button(MASTER, 80, 159, self.AREA, PEN_L,
+        size = 20, style = NORMAL_BUTTON)
+
+        self.collect(slot = slot)
+
+        pdf = self.button(MASTER, 10, 355,self.AREA, PDF,
         size = 28,style = NORMAL_BUTTON)
         
-        excle = self.button(MASTER, 60, 355,self.AREA,PhotoLib.get(27),
+        excle = self.button(MASTER, 60, 355,self.AREA, XLSX,
         size = 28,style = NORMAL_BUTTON)
 
         master.clicked.connect(lambda:self.frame_manager(MASTER))
 
     def time_table(self,master):
         MASTER = self.TIME_TABLE
-        manage_subject = self.button(MASTER,150, 275,self.AREA,PhotoLib.get(2),
+        manage_subject = self.button(MASTER,150, 275,self.AREA, PEN_L,# changable
         size = 23,style = NORMAL_BUTTON)
+        
+        self.collect(manage = manage_subject)
 
-        conform = self.button(MASTER,220, 510,self.AREA+2,PhotoLib.get(6),
+        conform = self.button(MASTER,220, 510,self.AREA+2, GENERATE_L, # changable
         size = 28,style = NORMAL_BUTTON)
         
-        save = self.button(MASTER,10, 610,self.AREA,PhotoLib.get(18),
+        save = self.button(MASTER,10, 610,self.AREA, MARK_L, # changable
         size = 20,style = NORMAL_BUTTON)
 
-        email = self.button(MASTER,60, 610,self.AREA,PhotoLib.get(3),
+        email = self.button(MASTER,60, 610,self.AREA, MAIL,
         size = 28,style = NORMAL_BUTTON)
 
-        pdf = self.button(MASTER, 110, 610,self.AREA,PhotoLib.get(4),
+        pdf = self.button(MASTER, 110, 610,self.AREA, PDF,
         size = 28,style = NORMAL_BUTTON)
         
-        excle = self.button(MASTER, 160, 610,self.AREA,PhotoLib.get(27),
+        excle = self.button(MASTER, 160, 610,self.AREA, XLSX,
         size = 28,style = NORMAL_BUTTON)
 
         master.clicked.connect(lambda:self.frame_manager(MASTER))
@@ -172,15 +200,15 @@ class Button:
     def user(self,master):
 
         MASTER = self.USER
-        sign_up = self.button(MASTER, 1088, 581,self.AREA+5,PhotoLib.get(29),
+        sign_up = self.button(MASTER, 1088, 581,self.AREA+5, LOGIN,
         size = 32,style = NORMAL_BUTTON+'''QPushButton{ border-radius: 20px;
         background-color:#191D20;}''')
 
-        current_user = self.button(MASTER, 1230, 10,self.AREA+12,PhotoLib.get(30),
+        current_user = self.button(MASTER, 1230, 10,self.AREA+12, ACCOUNT, 
         size = 46,style = NORMAL_BUTTON+'''QPushButton{ border-radius: 23px; 
         background-color:#191D20;}''')
 
-        show_hide_pass  =  self.button(MASTER, 1014, 421,self.AREA,PhotoLib.get(31),
+        show_hide_pass  =  self.button(MASTER, 1014, 421,self.AREA, EYE_CLOSED,
         size  =  20,style  =  NORMAL_BUTTON+'''QPushButton{ background-color:#191D20;}''')
         self.show_hide_password(show_hide_pass)
 
@@ -202,22 +230,22 @@ class Button:
             button.enterEvent = lambda event : button.setFixedSize(w+4,h+2)
             button.leaveEvent = lambda event : button.setFixedSize(w,h)
 
-        search = self.button(MASTER, 1090, 18, self.AREA, PhotoLib.get(44),
+        search = self.button(MASTER, 1090, 18, self.AREA, SCOPE_L, # changable
         size = 20, style = NORMAL_BUTTON)
 
-        general = self.button(MASTER,35, 130, 0, PhotoLib.get(13),
+        general = self.button(MASTER,35, 130, 0, GEAR_L, # changable
         size = 18,style = MENU_BAR_BUTTON,text = '  General')
         general.setFixedSize(150,43)
 
-        security = self.button(MASTER, 35, 200, 0, PhotoLib.get(35),
+        security = self.button(MASTER, 35, 200, 0, SECURE_L, # changable
         size = 20,style = MENU_BAR_BUTTON,text = '  Security')
         security.setFixedSize(150,43)
 
-        shorcut = self.button(MASTER, 35, 270, 0, PhotoLib.get(37),
+        shorcut = self.button(MASTER, 35, 270, 0, KEYBOARD_L, # changable
         size = 20,style = MENU_BAR_BUTTON,text = '  Shortcuts')
         shorcut.setFixedSize(150,43)
 
-        manage_account = self.button(MASTER, 38, 340, 0, PhotoLib.get(12),
+        manage_account = self.button(MASTER, 38, 340, 0, USER_L, # changable
         size = 20, style = MENU_BAR_BUTTON, text = '  Manage Account')
         manage_account.setFixedSize(158,43)
 

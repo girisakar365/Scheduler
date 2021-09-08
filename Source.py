@@ -2,9 +2,13 @@ from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *  
 from PyQt5.QtGui import *
 
-try: from .raw import *
+try: 
+	from .raw import *
+	from .StyleSheet import *
 
-except Exception: from raw import *
+except Exception: 
+	from raw import *
+	from StyleSheet import *
 
 def side_bar(master):
 	_frame = QFrame(master)
@@ -90,5 +94,5 @@ def image(img,val = 'ico'):
 	icon = QIcon()
 	icon.addPixmap(pixmap)
 	
-	if val == 'ico':return icon
-	else:return pixmap
+	if val == 'ico': return icon
+	else: return pixmap
