@@ -2,6 +2,9 @@
 NOTE Extraction of "FRAMES" is done from Lable.py so all the LABLE WIDGET HANDLED BY MASTERS in Lable.py must not be
 included here.
 '''
+from Photo_Lib import EYE_CLOSED, KEY, TICK_L, UI_D, UI_L
+
+
 try:
     from .Source import *
     from .StyleSheet import *
@@ -53,7 +56,7 @@ class Connect:
         style = NORMAL_BUTTON + 'QPushButton{ border:3px solid white; }'
 
         light_mode_btw = self.button(self.MASTER,10,50,0,
-        img = PhotoLib.get(38), style = NORMAL_BUTTON,size = 256
+        img = UI_L, style = NORMAL_BUTTON,size = 256
         )
         light_mode_btw.setFixedSize(356,356)
         light_mode_btw.move(65,90)
@@ -66,7 +69,7 @@ class Connect:
         light_mode_lable = self.lable(self.MASTER, 200, 460, 'Light Mode','fancy_subtitle')
 
 
-        dark_mode_btw = self.button(self.MASTER,10,50,0,img = PhotoLib.get(39), style = style, size = 256)
+        dark_mode_btw = self.button(self.MASTER,10,50,0,img = UI_D, style = style, size = 256)
         dark_mode_btw.setFixedSize(356,356)
         dark_mode_btw.move(525,90)
         dark_mode_btw.clicked.connect(lambda:[ 
@@ -131,18 +134,18 @@ class Connect:
 
         def button():
 
-            current_password = self.button(self.MASTER, 285, 675, AREA, PhotoLib.get(31),
+            current_password = self.button(self.MASTER, 285, 675, AREA, EYE_CLOSED,
             size = 20,style = NORMAL_BUTTON)
             self.Button.show_hide_password(current_password)
 
-            new_password = self.button(self.MASTER, 285, 760, AREA, PhotoLib.get(31),
+            new_password = self.button(self.MASTER, 285, 760, AREA, EYE_CLOSED,
             size = 20,style = NORMAL_BUTTON)
             self.Button.show_hide_password(new_password)
 
-            password_generator = self.button(self.MASTER, 325, 760, AREA, PhotoLib.get(33),
+            password_generator = self.button(self.MASTER, 325, 760, AREA, KEY,
             size = 20,style = NORMAL_BUTTON)
             
-            re_enter_password = self.button(self.MASTER, 285, 840, AREA, PhotoLib.get(31),
+            re_enter_password = self.button(self.MASTER, 285, 840, AREA, EYE_CLOSED,
             size = 20,style = NORMAL_BUTTON)
             self.Button.show_hide_password(re_enter_password)
 
@@ -230,7 +233,7 @@ class Connect:
             email_normal_key.setCurrentText('e')
 
         def button():
-            conform = self.button(self.MASTER,  690, 1440, 0, img = PhotoLib.get(41) ,font_type = 'fancy_subtitle',
+            conform = self.button(self.MASTER,  690, 1440, 0, img = TICK_L ,font_type = 'fancy_subtitle',
             size = 20, text = ' Save Changes', style = NORMAL_BUTTON)
             conform.setFixedSize(160,43)
             
