@@ -2,6 +2,11 @@
 D_BACKGROUND='#1f2428'
 D_LABLE='#ffffff'
 
+SIDEBAR='''QFrame{
+		background-color: #24292E; 
+		border-radius: 15px
+		}'''
+
 WIDGET='''QWidget{
 		color:#ffffff;
 		background-color:#1F2428;}'''

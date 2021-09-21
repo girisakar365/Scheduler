@@ -29,8 +29,6 @@ class FrontEnd(QMainWindow):
 
         WINDOW = self
 
-        SIDE_BAR = side_bar(WINDOW)
-
         PROFESSOR = frame(WINDOW)
         PROFESSOR.hide()
 
@@ -51,6 +49,8 @@ class FrontEnd(QMainWindow):
 
         GUID = frame(WINDOW)
         GUID.hide()
+
+        SIDE_BAR = side_bar(WINDOW)
 
         frames = (
             WINDOW,

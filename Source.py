@@ -10,20 +10,28 @@ except Exception:
 	from raw import *
 	from StyleSheet import *
 
+def shadow(radius:int):
+	shadow  =  QGraphicsDropShadowEffect()
+	shadow.setColor(Qt.black)
+	shadow.setBlurRadius(radius)
+	return shadow
+
 def side_bar(master):
 	_frame = QFrame(master)
-	_frame.setGeometry(QRect(0, 0, 65, 1245))
-	_frame.setStyleSheet('''QFrame{
-		background-color: #24292E;
-		}''')
+	_frame.setGeometry(QRect(2, 1, 65, 1245))
+	_frame.setStyleSheet(SIDEBAR)
+	_frame.setGraphicsEffect(shadow(165))
 	
 	return _frame
 
 def frame(master):
 	_frame = QFrame(master)
-	_frame.setGeometry(QRect(67, 0, 1451, 1521))
+	_frame.setGeometry(QRect(97, 0, 1451, 1521))
 	_frame.mousePressEvent = lambda event : _frame.setFocus()
-	
+	_frame.setStyleSheet('''QFrame{ 
+		border-radius: 15px
+		}''')
+
 	return _frame
 
 def scroll_bar(master):
@@ -40,11 +48,6 @@ def scroll_bar(master):
 	
 	return CHILD, _scroll_bar
 
-def shadow(radius:int):
-	shadow  =  QGraphicsDropShadowEffect()
-	shadow.setColor(Qt.black)
-	shadow.setBlurRadius(radius)
-	return shadow
 
 def font(typ):
 
