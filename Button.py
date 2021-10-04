@@ -14,11 +14,22 @@ class Button:
         self.AREA = 36
         
         if len(arg) > 1:
-            self.WINDOW,self.SIDEBAR,self.TIME_TABLE,self.PROFESSOR,self.SUBJECT,self.RECORD,self.USER,self.SETTING,self.GUID  =  arg
+            (self.WINDOW,
+            self.SIDEBAR,
+            self.TIME_TABLE,
+            self.PROFESSOR,
+            self.SUBJECT,
+            self.RECORD,
+            self.USER,
+            self.SETTING,
+            self.GUID,
+             self.SETTING_CHILD,
+             self.BAR
+             )  =  arg
             self.side_bar()
 
         else:
-            self.MASTER =  arg
+            CHILD =  arg
 
     def button(self,master,x,y,area,img = None,style = None,size = 32,
     font_type = 'normal',text = ''):
@@ -64,6 +75,8 @@ class Button:
         check.adjustSize()
         
         return check
+
+    def control_bar(self, value:int): self.BAR.setValue( value )
 
     def show_hide_password(self,button):
         button.pressed.connect(
@@ -204,7 +217,7 @@ class Button:
         size = 32,style = NORMAL_BUTTON+'''QPushButton{ border-radius: 20px;
         background-color:#191D20;}''')
 
-        current_user = self.button(MASTER, 1230, 10,self.AREA+12, ACCOUNT, 
+        current_user = self.button(MASTER, 1200, 10,self.AREA+12, ACCOUNT, 
         size = 46,style = NORMAL_BUTTON+'''QPushButton{ border-radius: 23px; 
         background-color:#191D20;}''')
 
@@ -212,13 +225,14 @@ class Button:
         size  =  20,style  =  NORMAL_BUTTON+'''QPushButton{ background-color:#191D20;}''')
         self.show_hide_password(show_hide_pass)
 
-        self.collect(user_password_btw = show_hide_pass)
+        self.collect(up = show_hide_pass)
 
         master.clicked.connect(lambda: self.frame_manager(MASTER))
 
     def setting(self,master):
 
         MASTER = self.SETTING
+        CHILD = self.SETTING_CHILD
 
         master.clicked.connect(lambda:self.frame_manager(MASTER))
 
@@ -241,23 +255,93 @@ class Button:
         size = 20,style = MENU_BAR_BUTTON,text = '  Security')
         security.setFixedSize(150,43)
 
-        shorcut = self.button(MASTER, 35, 270, 0, KEYBOARD_L, # changable
+        shortcut = self.button(MASTER, 35, 270, 0, KEYBOARD_L, # changable
         size = 20,style = MENU_BAR_BUTTON,text = '  Shortcuts')
-        shorcut.setFixedSize(150,43)
+        shortcut.setFixedSize(150,43)
 
         manage_account = self.button(MASTER, 38, 340, 0, USER_L, # changable
         size = 20, style = MENU_BAR_BUTTON, text = '  Manage Account')
         manage_account.setFixedSize(158,43)
 
-        for i in [general,security,shorcut,manage_account]:
+        for i in [general,security,shortcut,manage_account]:
             width  =  150
             height  =  43
             if i is manage_account:
                 width  =  158
             button_animation(i,width,height)#only for elongated menu buttons
 
-        self.collect(general_btw = general, security_btw = security, shortcut_btw = shorcut,
-        manage_account_btw = manage_account)
+        def general_():
+
+            style = NORMAL_BUTTON + 'QPushButton{ border:3px solid white; }'
+
+            light_mode_btw = self.button(CHILD,10,50,0,
+            img = UI_L, style = NORMAL_BUTTON,size = 256
+            )
+            light_mode_btw.setFixedSize(356,356)
+            light_mode_btw.move(65,90)
+            light_mode_btw.clicked.connect(lambda:[ 
+                light_mode_btw.setStyleSheet(style),dark_mode_btw.setStyleSheet(NORMAL_BUTTON) ])
+            
+            light_mode_btw.enterEvent = lambda event: light_mode_btw.setFixedSize(360,360)
+            light_mode_btw.leaveEvent = lambda event: light_mode_btw.setFixedSize(356,356)
+
+            dark_mode_btw = self.button(CHILD,10,50,0,img = UI_D, style = style, size = 256)
+            dark_mode_btw.setFixedSize(356,356)
+            dark_mode_btw.move(525,90)
+            dark_mode_btw.clicked.connect(lambda:[ 
+                dark_mode_btw.setStyleSheet(style),light_mode_btw.setStyleSheet(NORMAL_BUTTON) ])
+            
+            dark_mode_btw.enterEvent = lambda event: dark_mode_btw.setFixedSize(354,354)
+            dark_mode_btw.leaveEvent = lambda event: dark_mode_btw.setFixedSize(356,356)
+
+        def security_():
+            current_password = self.button(CHILD, 285, 675, self.AREA, EYE_CLOSED,
+            size = 20,style = NORMAL_BUTTON)
+            self.show_hide_password(current_password)
+
+            new_password = self.button(CHILD, 285, 760, self.AREA, EYE_CLOSED,
+            size = 20,style = NORMAL_BUTTON)
+            self.show_hide_password(new_password)
+
+            password_generator = self.button(CHILD, 325, 760, self.AREA, KEY,
+            size = 20,style = NORMAL_BUTTON)
+            
+            re_enter_password = self.button(CHILD, 285, 840, self.AREA, EYE_CLOSED,
+            size = 20,style = NORMAL_BUTTON)
+            self.show_hide_password(re_enter_password)
+
+            conform = self.button(CHILD,  80, 920, 0, img = TICK_L ,font_type = 'fancy_subtitle',
+            size = 20, text = ' conform', style = NORMAL_BUTTON)
+            conform.setFixedSize(160,43)
+            
+            conform.enterEvent = lambda event: conform.setFixedSize(164,45)
+            conform.leaveEvent = lambda event: conform.setFixedSize(160,43)
+
+            conform.setGraphicsEffect(shadow(40))
+
+            self.collect(
+                cp = current_password, np = new_password, rep = re_enter_password
+            )
+
+        def shortcut_():
+            conform = self.button(CHILD,  690, 1440, 0, img = TICK_L ,font_type = 'fancy_subtitle',
+            size = 20, text = ' Save Changes', style = NORMAL_BUTTON)
+            conform.setFixedSize(160,43)
+            
+            conform.enterEvent = lambda event: conform.setFixedSize(164,45)
+            conform.leaveEvent = lambda event: conform.setFixedSize(160,43)
+
+            conform.setGraphicsEffect(shadow(40))
+
+        general_()
+        security_()
+        shortcut_()
+
+        general.clicked.connect( lambda: self.control_bar(0) )
+        security.clicked.connect(lambda: self.control_bar(550) )
+        shortcut.clicked.connect(lambda: self.control_bar( 1100 ))
+        manage_account.clicked.connect(lambda: self.control_bar( self.BAR.maximum()))
+
 
     def guid(self,master):
         
@@ -265,7 +349,7 @@ class Button:
 
         master.clicked.connect(lambda:self.frame_manager(MASTER))
 
-    def collect(self,**kwarg):
+    def collect(self, *arg, **kwarg):
 
         for key,value in kwarg.items():
             self.Widget[key] = value

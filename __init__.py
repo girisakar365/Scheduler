@@ -5,7 +5,6 @@ try:
     from .Lable import Label
     from .Button import Button
     from .Box import Box
-    from .Setting import Connect
     from .Dialog import (Manage, Slot)
 
 except Exception:
@@ -13,7 +12,6 @@ except Exception:
     from Lable import Label
     from Button import Button
     from Box import Box
-    from Setting import Connect
     from Dialog import (Manage, Slot)
 
 
@@ -27,33 +25,36 @@ class FrontEnd(QMainWindow):
         self.resize(WIDTH, HEIGHT)
         self.setStyleSheet(WIDGET)
 
-        WINDOW = self
-
-        PROFESSOR = frame(WINDOW)
+        PROFESSOR = frame(self)
         PROFESSOR.hide()
 
-        SUBJECT = frame(WINDOW)
+        SUBJECT = frame(self)
         SUBJECT.hide()
 
-        TIME_TABLE = frame(WINDOW)
+        TIME_TABLE = frame(self)
         TIME_TABLE.hide()
 
-        USER = frame(WINDOW)
+        USER = frame(self)
         USER.hide()
 
-        SETTING = frame(WINDOW)
+        SETTING = frame(self)
+        SETTING_CHILD, SCROLLAREA = scroll_bar(SETTING)
+        SCROLLAREA.move(260, 65)
+        SCROLLAREA.setFixedSize(1000, 768)
+        bar = SCROLLAREA.verticalScrollBar()
+        bar.setStyleSheet(SCROLL_BAR)
         SETTING.hide()
 
-        RECORD = frame(WINDOW)
+        RECORD = frame(self)
         RECORD.show()
 
-        GUID = frame(WINDOW)
+        GUID = frame(self)
         GUID.hide()
 
-        SIDE_BAR = side_bar(WINDOW)
+        SIDE_BAR = side_bar(self)
 
         frames = (
-            WINDOW,
+            self,
             SIDE_BAR,
             TIME_TABLE,
             PROFESSOR,
@@ -62,6 +63,8 @@ class FrontEnd(QMainWindow):
             USER,
             SETTING,
             GUID,
+            SETTING_CHILD,
+            bar
         )
         self.lable_manager = Label(*frames)
         self.button_manager = Button(*frames)
@@ -72,10 +75,9 @@ class FrontEnd(QMainWindow):
         self.Slot = Slot()
 
         self.sub_windows()
+        self.merge_widget()
 
-        connect = Connect(self.lable_manager, self.button_manager, self.box_manager)
-
-        WINDOW.show()
+        self.show()
 
     
     def sub_windows(self):
@@ -103,6 +105,25 @@ class FrontEnd(QMainWindow):
 
         self.button_manager.Widget['manage'].clicked.connect(self.Manage.run)
         self.button_manager.Widget['slot'].clicked.connect(self.Slot.run)
+
+    def merge_widget(self): 
+
+        def echo(button,entry):
+            button.pressed.connect(
+                lambda:[entry.setEchoMode(QLineEdit.Normal)]
+                )
+            button.released.connect(
+                lambda:[entry.setEchoMode(QLineEdit.Password)]
+                )
+            
+        btw = [self.button_manager.Widget['cp'], self.button_manager.Widget['np'], self.button_manager.Widget['rep'],
+        self.button_manager.Widget['up']]
+        box = [self.box_manager.Widget['cp'], self.box_manager.Widget['np'], self.box_manager.Widget['rep'],
+        self.box_manager.Widget['up']]
+
+        for button, entry in zip(btw,box):
+            echo(button,entry)
+
 
 app = QApplication(sys.argv)
 root = FrontEnd(app)

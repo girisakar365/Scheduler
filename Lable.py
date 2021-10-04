@@ -19,6 +19,8 @@ class Label:
             self.USER,
             self.SETTING,
             self.GUID,
+            self.SETTING_CHILD,
+            self.BAR
         ) = arg
         self.Widget = {}
 
@@ -196,15 +198,9 @@ class Label:
     def setting(self):
 
         MASTER = self.SETTING
+        CHILD = self.SETTING_CHILD
 
         title = self.lable(MASTER, 10, 10, "Settings", "fancy_title")
-
-        CHILD, SCROLLAREA = scroll_bar(MASTER)
-
-        SCROLLAREA.move(260, 65)
-        SCROLLAREA.setFixedSize(1020, 768)
-        bar = SCROLLAREA.verticalScrollBar()
-        bar.setStyleSheet(SCROLL_BAR)
 
         layout = QVBoxLayout()
         layout.setSpacing(500)
@@ -230,7 +226,43 @@ class Label:
 
         CHILD.setLayout(layout)
 
-        self.collect(frame=CHILD, scroll_bar=bar)
+        def general_():
+            light_mode_lable = self.lable(CHILD, 200, 460, 'Light Mode','fancy_subtitle')
+
+            dark_mode_lable = self.lable(CHILD, 660, 460, 'Dark Mode','fancy_subtitle')
+
+        def security_():
+            line(CHILD, 480, 620, 'v', 350)
+
+            system_status=self.lable(CHILD, 605, 680, 'System Status:', 'fancy_subtitle')
+            
+            encry_mthd=self.lable(CHILD, 605, 760, 'Encryption Method:', 'fancy_subtitle')
+            
+            ask_password=self.lable(CHILD, 605, 840, 'Ask Password:', 'fancy_subtitle')
+
+            answer_ss = self.lable(CHILD, 785, 685, 'Unlocked', 'fancy_subtitle',
+            'color:#d13429')
+        
+        def shortcut_():
+            line(CHILD, 500, 1190, 'v', 370)
+
+            record = self.lable(CHILD, 60, 1200, 'Record', 'fancy_subtitle')
+            professor = self.lable(CHILD, 60, 1280, 'Professor', 'fancy_subtitle')
+            subject = self.lable(CHILD, 60, 1360, 'Subject', 'fancy_subtitle')
+            time_table = self.lable(CHILD, 60, 1440, 'Time Table', 'fancy_subtitle')
+            user = self.lable(CHILD, 60, 1520, 'User', 'fancy_subtitle')
+            guid = self.lable(CHILD, 530, 1200, 'Guid', 'fancy_subtitle')
+            manage_subject = self.lable(CHILD, 530, 1280, 'Manage Subject', 'fancy_subtitle')
+            email = self.lable(CHILD, 530, 1360, 'Emailing', 'fancy_subtitle')
+
+        def manage_account_():
+            self.lable(CHILD, 280, 1900, 'No account signed in.', 'fancy_huge', 'color:#6A737D')
+
+        general_()
+        security_()
+        shortcut_()
+        manage_account_()
+
 
     def guid(self):
         MASTER = self.GUID
