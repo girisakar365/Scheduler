@@ -1,7 +1,12 @@
 from random import *
-from database import *
-from Coordinates import Coordinates
 
+try:
+    from database import *
+    from Coordinates import Coordinates
+
+except ModuleNotFoundError:  
+    from .database import *
+    from .Coordinates import Coordinates
 
 class Allocate(Coordinates):
     def __init__(

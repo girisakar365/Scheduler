@@ -1,7 +1,13 @@
 from random import *
-from Allocation import Allocate
-from database import *
 
+try:
+    from Allocation import Allocate
+    from database import *
+
+except Exception:
+    from .Allocation import Allocate
+    from .database import *
+    
 # NOTE: Algorithum does not hold validation for less than five classes.
 
 class Generator(Allocate):

@@ -1,6 +1,5 @@
 from sqlite3 import *
 
-
 class DB:
     conn = connect("3ZH9iusR.db")
     cur = conn.cursor()
