@@ -1,10 +1,10 @@
 try:
-    from .Source import *
-    from .Photo_Lib import (SCOPE_L, TICK_L)
+    from .src import *
+    from .Photo_Lib import ico
 
 except Exception:
-    from Source import *
-    from Photo_Lib import (SCOPE_L, TICK_L)
+    from src import *
+    from Photo_Lib import ico
 
 
 class Manage(QDialog):
@@ -17,14 +17,40 @@ class Manage(QDialog):
         
         self.setMaximumSize(QSize(323,510))
 
-        self.setStyleSheet(DIALOG)
+        self.setStyleSheet(Style('DIALOG'))
         
         self.mousePressEvent = lambda event : self.setFocus()
 
         self.Widget = {}
+        self.Ui = {'lable':[],
+        'entry':[],
+        'check-button':[],
+        'button':[],
+        'radio-button':[],
+        }
+
+    def ui_theme(self):
+        self.setStyleSheet(Style('DIALOG'))
+
+        for lable in self.Ui['lable']:
+            lable.setStyleSheet(Style('LABLE'))
+
+        for entry in self.Ui['entry']:
+            entry.setStyleSheet(Style('ENTRY'))
+
+        for button in self.Ui['button']:
+            button.setStyleSheet(Style('NBUTTON'))
+        
+        for radio_button in self.Ui['radio-button']:
+            radio_button.setStyleSheet(Style('RBUTTON'))
+
+        for check_button in self.Ui['check-button']:
+            check_button.setStyleSheet(Style('RBUTTON'))
+
+        self.Ui['button'][0].setIcon(ico('TICK'))
 
     def lable(self):
-        lable = self.Widget['lable']
+        lable:QLabel = self.Widget['lable']
 
         title = lable(self, 8, 15, 'Manage Section', 'title')
         
@@ -36,9 +62,12 @@ class Manage(QDialog):
 
         brk = lable(self, 10, 430, 'Breaks', 'normal')
 
+        for i in [title, opt_sub_i, opt_sub_ii, lab, brk]:
+            self.Ui['lable'].append(i)
+
     def box(self):
-        entry = self.Widget['entry']
-        check_button = self.Widget['check_button']
+        entry:QLineEdit = self.Widget['entry']
+        check_button:QCheckBox = self.Widget['check_button']
 
         maths = check_button(self, 'Basic Mathematics:', 10, 110)
         social = check_button(self, 'Social:', 10, 140)
@@ -66,7 +95,7 @@ class Manage(QDialog):
         for i in [maths_, social_, computer_, biology_, business_std_, hotel_mgt_]:
             i.setPlaceholderText('Seciton')
             i.setEnabled(False)
-            i.setStyleSheet(ENTRY + 'QLineEdit{ background-color: #1F2428}')
+            i.setStyleSheet(Style('ENTRY') + 'QLineEdit{ background-color: #1F2428}')
 
         maths.stateChanged.connect(lambda: self.on_off(maths, maths_))
         social.stateChanged.connect(lambda: self.on_off(social, social_))
@@ -74,6 +103,12 @@ class Manage(QDialog):
         biology.stateChanged.connect(lambda: self.on_off(biology, biology_))
         business_std.stateChanged.connect(lambda: self.on_off(business_std, business_std_))
         hotel_mgt.stateChanged.connect(lambda: self.on_off(hotel_mgt, hotel_mgt_))
+
+        for i in [lab_mgt, maths, social, computer, biology, business_std, hotel_mgt]:
+            self.Ui['check-button'].append(i)
+
+        for i in [maths_, social_, computer_, biology_, business_std_, hotel_mgt_]:
+            self.Ui['entry'].append(i)
 
     def button(self):
         button = self.Widget['button']
@@ -83,7 +118,12 @@ class Manage(QDialog):
         
         split_time = radio_button(self, 'Split according to optional subjects', 10, 480)
 
-        conform = button(self, 280, 468, 36, img = TICK_L, style = NORMAL_BUTTON, size = 20)
+        conform = button(self, 280, 468, 36, img = ico('TICK'), size = 20)
+
+        for i in [same_time, split_time]:
+            self.Ui['radio-button'].append(i)
+
+        self.Ui['button'].append(conform)
 
     def on_off(self,master,child,):
 
@@ -113,11 +153,21 @@ class Slot(QDialog):
         
         self.setMaximumSize(QSize(409,510))
 
-        self.setStyleSheet(DIALOG)
+        self.setStyleSheet(Style('DIALOG'))
 
         self.Widget = {}
+        self.Ui = {'lable':[],
+        'entry':[],
+        'button':[]}
 
         self.mousePressEvent = lambda event : self.setFocus()
+
+    def ui_theme(self):
+        self.setStyleSheet(Style('DIALOG'))
+        self.Ui['entry'][0].setStyleSheet(Style('LENTRY'))
+        self.Ui['lable'][0].setStyleSheet(Style('LABLE'))
+        self.Ui['button'][0].setStyleSheet(Style('NBUTTON'))
+        self.Ui['button'][0].setIcon(ico('SCOPE'))
 
     def lable(self):
 
@@ -128,17 +178,21 @@ class Slot(QDialog):
         empty = lable(self, 8, 230, "No Subject Searched!", "huge")
         empty.setStyleSheet("color:#6A737D")
 
+        self.Ui['lable'].append(title)
+
     def box(self):
         entry = self.Widget['entry']
 
-        search = entry(self, 8, 85, 180, 30, LOGIN_ENTRY)
+        search = entry(self, 8, 85, 180, 30, Style('LENTRY'))
         search.setFont(font("entry"))
         search.setPlaceholderText('Search Subject')
+        self.Ui['entry'].append(search)
 
     def button(self):
         button = self.Widget['button']
 
-        search = button(self, 198, 83, 36, img = SCOPE_L, style = NORMAL_BUTTON, size = 18)
+        search = button(self, 198, 83, 36, img = ico('SCOPE'), style = Style('NBUTTON'), size = 18)
+        self.Ui['button'].append(search)
 
     def collect(self, **kwarg):
         for key, value in kwarg.items():

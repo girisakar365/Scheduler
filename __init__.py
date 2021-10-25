@@ -1,14 +1,12 @@
-import sys
-
 try:
-    from .Source import *
+    from .src import *
     from .Lable import Label
     from .Button import Button
     from .Box import Box
     from .Dialog import (Manage, Slot)
 
 except Exception:
-    from Source import *
+    from src import *
     from Lable import Label
     from Button import Button
     from Box import Box
@@ -23,7 +21,7 @@ class FrontEnd(QMainWindow):
         scren_resoluction = app.desktop().screenGeometry()
         WIDTH, HEIGHT = scren_resoluction.width() - 10, scren_resoluction.height() - 35
         self.resize(WIDTH, HEIGHT)
-        self.setStyleSheet(WIDGET)
+        self.setStyleSheet(Style('WIDGET'))
 
         PROFESSOR = frame(self)
         PROFESSOR.hide()
@@ -76,9 +74,6 @@ class FrontEnd(QMainWindow):
 
         self.sub_windows()
         self.merge_widget()
-
-        self.show()
-
     
     def sub_windows(self):
         self.Manage.collect(
@@ -98,10 +93,12 @@ class FrontEnd(QMainWindow):
         self.Manage.lable()
         self.Manage.box()
         self.Manage.button()
+        self.Manage.ui_theme()
 
         self.Slot.lable()
         self.Slot.box()
         self.Slot.button()
+        self.Slot.ui_theme()
 
         self.button_manager.Widget['manage'].clicked.connect(self.Manage.run)
         self.button_manager.Widget['slot'].clicked.connect(self.Slot.run)
@@ -125,6 +122,9 @@ class FrontEnd(QMainWindow):
             echo(button,entry)
 
 
-app = QApplication(sys.argv)
-root = FrontEnd(app)
-sys.exit(app.exec_())
+def run():
+    import sys
+    app = QApplication(sys.argv)
+    root = FrontEnd(app)
+    root.show()
+    sys.exit(app.exec_())

@@ -1,9 +1,9 @@
 try:
-    from .Source import *
+    from .src import *
     from .Photo_Lib import SCHOLAR
 
 except Exception:
-    from Source import *
+    from src import *
     from Photo_Lib import SCHOLAR
     
 class Label:
@@ -23,6 +23,7 @@ class Label:
             self.BAR
         ) = arg
         self.Widget = {}
+        self.Ui={'frame':[]}
 
         self.record()
         self.professor()
@@ -33,24 +34,17 @@ class Label:
         self.guid()
 
     def lable(
-        self,
-        master,
-        x: int = 0,
-        y: int = 0,
-        text="text",
-        font_type="normal",
-        style=LABLE, 
-        ):
+        self,master,x: int = 0,y: int = 0,text="text",font_type="normal",style=None ):
 
         label = QLabel(text, master)
         label.setFont(font(font_type))
-        label.setStyleSheet(style)
+        if style != None: label.setStyleSheet(style)
         label.setGeometry(QRect(x, y, 0, 0))
         label.adjustSize()
 
         return label
 
-    def frame(self, master, w: int, h: int, style=FRAME):
+    def frame(self, master, w: int, h: int, style=Style('LFRAME')):
 
         _frame = frame(master)
         _frame.setFixedSize(w, h)
@@ -58,6 +52,9 @@ class Label:
         _frame.setGraphicsEffect(shadow(65))
 
         return _frame
+    
+    def ui_theme(self):
+        self.Ui['frame'][0].setStyleSheet(Style('LFRAME'))
 
     def record(self):
 
@@ -194,6 +191,8 @@ class Label:
 
         college = self.lable(CHILD, 25, 320, "College:", "fancy_subtitle")
         college.setStyleSheet("color:#74ADFA")
+        
+        self.Ui['frame'].append(CHILD)
 
     def setting(self):
 
@@ -237,11 +236,12 @@ class Label:
             system_status=self.lable(CHILD, 605, 680, 'System Status:', 'fancy_subtitle')
             
             encry_mthd=self.lable(CHILD, 605, 760, 'Encryption Method:', 'fancy_subtitle')
-            
-            ask_password=self.lable(CHILD, 605, 840, 'Ask Password:', 'fancy_subtitle')
 
-            answer_ss = self.lable(CHILD, 785, 685, 'Unlocked', 'fancy_subtitle',
-            'color:#d13429')
+            rm_password = self.lable(CHILD, 605, 840, 'Unlock system:', 'fancy_subtitle')
+            
+            answer_ss = self.lable(CHILD, 785, 685, 'None', 'fancy_subtitle')
+            
+            self.Widget['un/locked'] = answer_ss
         
         def shortcut_():
             line(CHILD, 500, 1190, 'v', 370)
