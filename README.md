@@ -12,4 +12,4 @@ The <b> init.py </b> initilazies the whole program. So after cloning the branch 
 ### Framework installation:
   pip install PyQt5
   
-  Further Information: [Documentation](https://pypi.org/project/PyQt5/)
+  Further Information: [Documentation](https://www.riverbankcomputing.com/static/Docs/PyQt5/)
