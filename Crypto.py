@@ -1,5 +1,11 @@
 from random import *
 
+try:
+    from database import Password
+
+except ImportError:
+    from .database import Password
+
 UNIQUE_CHAR = "!@#$%&*^-_=+/.><~ "
 NORMAL_CHAR = "abcdefghijklmnopqrstuvwxyz"
 CAPITAL_CHAR = NORMAL_CHAR.upper()
@@ -9,24 +15,43 @@ NUMBER = "0123456789"
 def randomPassword():
     all = UNIQUE_CHAR + CAPITAL_CHAR + NORMAL_CHAR + NUMBER
 
-    length = randint(8, 20)
+    length = randint(10, 12)
 
     return "".join(sample(all, length))
 
 
 class Cryptography:
-    def __init__(self):
+    def __init__(self, password, process:str):
 
         self.All =[UNIQUE_CHAR, CAPITAL_CHAR, NORMAL_CHAR, NUMBER]
 
         self.mainValue = [iter_str for iter_list in self.All for iter_str in iter_list]
-        self.mainKey = self.generate_key()
+        
+        if len(Password.fetch('00100100')) == 80:
+            self.mainKey = Password.fetch('00100100')
+        
+        else: self.mainKey = self.generate_key()
+
+        self.result = None
+
+        if process == 'enc': 
+            Password.insert('10100101',self.encrypt(password))
+        
+        elif process == 'dec':
+            if password == self.decrypt(Password.fetch('10100101'), password):
+                self.result = True
+            else: self.result =  False
 
     def generate_key(self):
         lst = [iter_str for iter_list in self.All for iter_str in iter_list]
         lst[lst.index(' ')] = '|'
         shuffle(lst)
         return ''.join(lst)
+
+    def specific_key(self):
+        self.mainKey = self.generate_key()
+        Password.insert('00100100', self.mainKey)
+        return self.mainKey
 
     def salt(self, lenght: int):
 
@@ -67,7 +92,7 @@ class Cryptography:
 
             count += 1
             
-            if count == 6: # skip 5 extra bit, decrypt the acutal letter, repate
+            if count == 6: # skip 5 extra bit, decrypt the acutal letter, repeat
                 password += value[i]
                 count = 0
 
