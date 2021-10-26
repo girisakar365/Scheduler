@@ -1,7 +1,7 @@
 # MSchool Sample
 
-This branch specifically contains the sample form of the application. 
-Here some of the ideas were test to make sure wheather these ideas might run or not.
+This branch contains the sample form of the application. 
+Here some of the ideas were tested to make sure wheather these ideas might run or not.
 
 
 ## File Usage: 
