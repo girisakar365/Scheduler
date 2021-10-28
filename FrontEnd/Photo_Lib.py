@@ -18,12 +18,14 @@ RECORD = image( PhotoLib.get(10) )
 XLSX = image( PhotoLib.get(27) )
 LOGIN = image( PhotoLib.get(29) )
 ACCOUNT = image( PhotoLib.get(30) )
-SCHOLAR = PhotoLib.get(28) # PIXMAP
+SCHOLAR = image(PhotoLib.get(28), 'pixmap')
 EYE_CLOSED = image( PhotoLib.get(31) )
 EYE_OPENED = image( PhotoLib.get(32) )
 KEY = image( PhotoLib.get(33) )
 UI_L = image( PhotoLib.get(38) )
 UI_D = image( PhotoLib.get(39) )
+RESET = image(PhotoLib.get(47))
+ENTER = image(PhotoLib.get(49))
 
 __ = {'SCOPE':{
     0: image( PhotoLib.get(5) ),
@@ -72,9 +74,16 @@ __ = {'SCOPE':{
 'BACK':{
     0:image( PhotoLib.get(42) ),
     1:image( PhotoLib.get(43) )
+},
+'LOGO':{
+    0: image(PhotoLib.get(0), 'pixmap'),
+    1: image(PhotoLib.get(48), 'pixmap')
+},
+'LOGIN_BG':{
+    0: image(PhotoLib.get(51), 'pixmap'),
+    1: image(PhotoLib.get(50), 'pixmap')
 }
 }
-
 
 def ico(NAME):
     return __[NAME][Cache.fetch('switch','ui')]

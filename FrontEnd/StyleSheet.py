@@ -1,32 +1,6 @@
 try: from .raw import Cache
 except Exception: from raw import Cache
 
-#COLOR:
-entry_border = '#6A737D'
-bg = ''
-color = ''
-sidebar_bg = ''
-hlg = ''
-login_bg = ''
-blue_shade = ''
-
-if Cache.fetch('switch','ui') == 0: #light
-	bg = '#ffffff'
-	color = '#1f2428'
-	sidebar_bg = '#F6F8FA'
-	hlg = '#ededed'
-	login_bg = '#F6F8FA'
-	blue_shade = '#00579A'
-
-else: #dark
-	bg = '#1f2428'
-	color = '#ffffff'
-	sidebar_bg = '#24292E'
-	hlg = '#6A737D'
-	login_bg = '#191D20'
-	blue_shade = '#73AAFA'
-
-
 _ = {
 'WIDGET':{0:
 '''QWidget{
@@ -309,14 +283,31 @@ QTimeEdit::hover
 		{
 		border-color:#ffffff;
 		}
-'''}
+'''},
 }
 
 def Style(WIDGET):
 	return _[WIDGET][Cache.fetch('switch','ui')]
 
-MSG="color: #ffffff; background-color:#471117; border-radius: 10px;"
+MSG_W = 'QFrame{ background-color: #410910; color:#ffffff}'
 
+MSG_S = 'QFrame{ background-color: #49ab81; color:#ffffff}'
+
+MSG_S_BTW ='''QPushButton{
+background-color:#49ab81;
+border-radius: 2px;
+}
+QPushButton:hover{
+background-color:#52bf90;
+}'''
+
+MSG_W_BTW ='''QPushButton{
+background-color: #410910;
+border-radius: 2px;
+}
+QPushButton:hover{
+background-color:#a00000;
+}'''
 
 COMPLETER='''background-color:#292728;
 		color:#ffffff;

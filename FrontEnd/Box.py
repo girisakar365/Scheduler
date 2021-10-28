@@ -18,7 +18,8 @@ class Box:
             self.SETTING,
             self.GUID,
             self.SETTING_CHILD,
-            self.BAR
+            self.BAR,
+            self.LOCK
         ) = arg
 
         self.Widget = {}
@@ -30,6 +31,7 @@ class Box:
         self.time_table()
         self.user()
         self.setting()
+        self.lock()
 
     def spinbox(self, master, x, y, width, height):
         spinbox = QSpinBox(master)
@@ -43,10 +45,10 @@ class Box:
         time_dial.setGeometry(QRect(x, y, width, height))
         return time_dial
 
-    def entry(self, master, x, y, height, width, style=Style('ENTRY')):
+    def entry(self, master, x, y, width, height, style=Style('ENTRY')):
         entry = QLineEdit(master)
         entry.setStyleSheet(style)
-        entry.setGeometry(QRect(x, y, height, width))
+        entry.setGeometry(QRect(x, y, width, height))
         return entry
 
     def completer(self, qline, clist: list):
@@ -95,8 +97,10 @@ class Box:
         surname.setPlaceholderText("Last Name")
 
         email = self.entry(MASTER, 80, 165, E_WIDTH + 96, E_HEIGHT)
+        email.setPlaceholderText('example@gmail.com')
 
         subject = self.entry(MASTER, 80, 205, E_WIDTH + 96, E_HEIGHT)
+        subject.setPlaceholderText('Subject taughted')
 
         classes = self.combo_box(MASTER, 80, 245, CB_WIDTH, CB_HEIGHT, [11, 12, "both"])
 
@@ -108,11 +112,10 @@ class Box:
 
         E_WIDTH, E_HEIGHT = 80, 21
 
-        SB_WIDTH, SB_HEIGHT = 50, 21
-
         CB_WIDTH, CB_HEIGHT = 50, 21
 
         subject = self.entry(MASTER, 80, 125, E_WIDTH + 76, E_HEIGHT)
+        subject.setPlaceholderText('Name of subject')
 
         faculty_list = ["Science", "Management", "Law"]
         faculty = self.combo_box(
@@ -210,21 +213,24 @@ class Box:
             current_password.setFont(font('entry'))
             current_password.setEchoMode(QLineEdit.Password)
 
+            self.Widget['current-password'] = current_password
+
             new_password = self.entry(CHILD, 80, 760, E_WIDTH, E_HEIGHT, Style('LENTRY'))
             new_password.setPlaceholderText('New Password')
             new_password.setFont(font('entry'))
             new_password.setEchoMode(QLineEdit.Password)
+            self.Widget['new-password'] = new_password
 
             re_enter_password = self.entry(CHILD, 80, 840, E_WIDTH, E_HEIGHT, Style('LENTRY'))
             re_enter_password.setPlaceholderText('Re-Enter New Password')
             re_enter_password.setFont(font('entry'))
             re_enter_password.setEchoMode(QLineEdit.Password)
 
+            self.Widget['security-entries'] = [current_password, new_password, re_enter_password]
+
             list_encry_mtdh = ['Normal', 'Strong']
             encry_mtdh = self.combo_box(CHILD, 785, 765, 90, 25, list_encry_mtdh)
-            
-            list_ask_password = ['At starting only', 'Major security area', 'Every step']
-            ask_password = self.combo_box(CHILD, 785, 840, 120, 25, list_ask_password)
+            self.Ui['combo'].append(encry_mtdh)
 
             self.collect(
                 cp = current_password, np = new_password, rep = re_enter_password
@@ -281,9 +287,35 @@ class Box:
             email_shift_key = self.combo_box(CHILD, 790, 1360, WIDTH, HEIGHT, shift_key)
             email_normal_key = self.combo_box(CHILD, 890, 1360, WIDTH, HEIGHT, normal_key)
             email_normal_key.setCurrentText('e')
+
+            for  i in [record_normal_key,record_shift_key,record_specific_key,
+            professor_normal_key,professor_shift_key,professor_specific_key,
+            subject_normal_key,subject_specific_key,subject_shift_key,
+            time_table_normal_key,time_table_shift_key,time_table_specific_key,
+            user_specific_key,user_shift_key,user_normal_key,
+            guid_normal_key,guid_shift_key,guid_specific_key,
+            email_normal_key,email_shift_key,email_specific_key]:
+                self.Ui['combo'].append(i)
     
         security_()
         shortcut_()
+
+    def lock(self):
+        MASTER = self.LOCK
+
+        user_name = self.entry(MASTER, 543, 370, 250, 30, Style('LENTRY'))
+        user_name.setFont(font("entry"))
+        user_name.setPlaceholderText('User Name')
+        
+        password = self.entry(MASTER, 543, 420, 250, 30, Style('LENTRY'))
+        password.setFont(font("entry"))
+        password.setPlaceholderText('Password')
+        password.setEchoMode(QLineEdit.Password)
+        self.Widget['lp'] = password
+
+        self.Ui['lentry'].extend([user_name, password])
+
+        self.Widget['lock-password'] = password
 
     def collect(self, **kwarg):
 

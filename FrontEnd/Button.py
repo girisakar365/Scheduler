@@ -41,15 +41,15 @@ class Button:
             self.GUID,
             self.SETTING_CHILD,
             self.BAR,
-            self.lable_theme,
-            self.box_theme,
-            self.manage_sub_theme,
-            self.slot_theme,
+            self.LOCK
              )  =  arg
             self.side_bar()
+            self.lock()
 
         else:
             CHILD =  arg
+
+        self.Widget['ui-theme'] = self.ui_theme
 
     def button(self,master,x,y,area,img = None,style = None,size = 32,
     font_type = 'normal',text = ''):
@@ -121,20 +121,8 @@ class Button:
 
             else : Frames[i].hide()
     
-    def ui_theme(self, data, *args:QPushButton):
+    def ui_theme(self):
         
-        dark,ligth = args
-
-        Cache.switch('ui',data)
-        
-        if Cache.fetch('switch','ui') == 0: 
-            dark.setStyleSheet(Style('NBUTTON'))
-            ligth.setStyleSheet(Style('NBUTTON') + "QPushButton{ border:3px solid #1f2428;}")
-
-        else: 
-            dark.setStyleSheet(Style('NBUTTON') + "QPushButton{ border:3px solid #ffffff;}")
-            ligth.setStyleSheet(Style('NBUTTON'))
-
         self.WINDOW.setStyleSheet(Style('WIDGET'))
         self.SIDEBAR.setStyleSheet(Style('SIDEBAR'))
 
@@ -146,16 +134,12 @@ class Button:
 
         for l_btw in self.Ui['l-button']:
             l_btw.setStyleSheet(Style('LBUTTON'))
-        
-        self.lable_theme()
-        self.box_theme()
-        self.manage_sub_theme()
-        self.slot_theme()
 
         #ico-changes:
-        for i in ['SCOPE', 'USER', 'GEAR', 'WHAT', 'PEN', 'MARK', 'GENERATOR', 'NEXT', 'SECURE', 'KEYBOARD', 'TICK', 'BACK']:
-            for j in self.Ui[i.lower()]:
-                j.setIcon(ico(i))
+        for i in ['scope', 'user', 'gear', 'what', 'pen', 'mark', 'generator', 'next',
+         'secure', 'keyboard', 'tick', 'back']:
+            for j in self.Ui[i]:
+                j.setIcon(ico(i.upper()))
 
     def side_bar(self):
 
@@ -359,10 +343,6 @@ class Button:
             )
             light_mode_btw.setFixedSize(356,356)
             light_mode_btw.move(65,90)
-            light_mode_btw.clicked.connect(
-                lambda:[light_mode_btw.setStyleSheet(style),
-                dark_mode_btw.setStyleSheet(Style('NBUTTON'))]
-                )
             
             light_mode_btw.enterEvent = lambda event: light_mode_btw.setFixedSize(360,360)
             light_mode_btw.leaveEvent = lambda event: light_mode_btw.setFixedSize(356,356)
@@ -370,21 +350,12 @@ class Button:
             dark_mode_btw = self.button(CHILD,10,50,0,img = UI_D, size = 256,style=Style('NBUTTON'))
             dark_mode_btw.setFixedSize(356,356)
             dark_mode_btw.move(525,90)
+
+            self.Widget['dark-mode-btw'] = dark_mode_btw
+            self.Widget['light-mode-btw'] = light_mode_btw
             
             dark_mode_btw.enterEvent = lambda event: dark_mode_btw.setFixedSize(354,354)
             dark_mode_btw.leaveEvent = lambda event: dark_mode_btw.setFixedSize(356,356)
-            
-            light_mode_btw.clicked.connect(lambda: self.ui_theme(0, dark_mode_btw, light_mode_btw))
-            dark_mode_btw.clicked.connect(lambda: self.ui_theme(1, dark_mode_btw, light_mode_btw))
-
-            if Cache.fetch('switch','ui') == 0:
-                style =Style('NBUTTON')  + 'QPushButton{ border:3px solid #1f2428; }'
-                light_mode_btw.setStyleSheet(style)
-                dark_mode_btw.setStyleSheet(Style('NBUTTON'))
-            else:
-                style =Style('NBUTTON')  + 'QPushButton{ border:3px solid white; }'
-                dark_mode_btw.setStyleSheet(style)
-                light_mode_btw.setStyleSheet(Style('NBUTTON'))                
 
         def security_():
             current_password = self.button(CHILD, 285, 675, self.AREA, EYE_CLOSED,
@@ -397,6 +368,7 @@ class Button:
 
             password_generator = self.button(CHILD, 325, 760, self.AREA, KEY,
             size = 20,style =Style('NBUTTON') )
+            self.Widget['password-generator'] = password_generator
             
             re_enter_password = self.button(CHILD, 285, 840, self.AREA, EYE_CLOSED,
             size = 20,style =Style('NBUTTON') )
@@ -406,17 +378,22 @@ class Button:
             size = 20, text = ' conform', style =Style('NBUTTON') )
             conform.setFixedSize(160,43)
             self.Ui['tick'].append(conform)
+            self.Widget['save-password'] = conform
             
             conform.enterEvent = lambda event: conform.setFixedSize(164,45)
             conform.leaveEvent = lambda event: conform.setFixedSize(160,43)
 
             conform.setGraphicsEffect(shadow(40))
 
+            reset_password = self.button(CHILD, 785, 840, self.AREA, RESET, # changable
+            size = 28,style = Style('NBUTTON'))
+            self.Widget['reset-password'] = reset_password
+
             self.collect(
                 cp = current_password, np = new_password, rep = re_enter_password
             )
             for i in [current_password,new_password,password_generator,re_enter_password
-            ,conform]:
+            ,conform, reset_password]:
                 self.Ui['button'].append(i)
 
         def shortcut_():
@@ -450,6 +427,28 @@ class Button:
         MASTER = self.GUID
 
         master.clicked.connect(lambda:self.frame_manager(MASTER))
+
+    def lock(self):
+        MASTER = self.LOCK
+      
+        log_in = self.button(MASTER, 543, 470, 0, ENTER,
+        size = 20, style = Style('LBUTTON'), text = ' Log in')
+        log_in.setFixedSize(250, 40)
+
+        log_in.enterEvent = lambda event: log_in.setFixedSize(247,39)
+        log_in.leaveEvent = lambda event: log_in.setFixedSize(250,40)
+
+        log_in.setGraphicsEffect(shadow(40))
+
+        eye  =  self.button(MASTER, 794, 419, self.AREA, EYE_CLOSED,
+        size  =  20,style = Style('LBUTTON'))
+        self.show_hide_password(eye)
+        
+        self.Widget['lb'] = eye
+
+        self.Ui['l-button'].extend([log_in, eye])
+
+        self.Widget['log-in'] = log_in
 
     def collect(self,key = '', **kwarg):
         
