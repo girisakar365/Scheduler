@@ -6,7 +6,7 @@ class PhotoLib:
 	cur=conn.cursor()
 
 	def insert(img,oid=None,cmd='ins'):
-		with open(f'Image/{img}.png','rb') as pic:
+		with open(f'FrontEnd/Image/{img}.png','rb') as pic:
 			if cmd=='ins':
 				PhotoLib.cur.execute("INSERT INTO plib(img) VALUES (?)",[Binary(pic.read())])
 				PhotoLib.conn.commit()
