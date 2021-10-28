@@ -1,10 +1,10 @@
 try:
     from .src import *
-    from .Photo_Lib import SCHOLAR
+    from .Photo_Lib import SCHOLAR, ico
 
 except Exception:
     from src import *
-    from Photo_Lib import SCHOLAR
+    from Photo_Lib import SCHOLAR, ico
     
 class Label:
     def __init__(self, *arg):
@@ -20,7 +20,8 @@ class Label:
             self.SETTING,
             self.GUID,
             self.SETTING_CHILD,
-            self.BAR
+            self.BAR,
+            self.LOCK
         ) = arg
         self.Widget = {}
         self.Ui={'frame':[]}
@@ -32,6 +33,7 @@ class Label:
         self.user()
         self.setting()
         self.guid()
+        self.lock()
 
     def lable(
         self,master,x: int = 0,y: int = 0,text="text",font_type="normal",style=None ):
@@ -54,7 +56,11 @@ class Label:
         return _frame
     
     def ui_theme(self):
-        self.Ui['frame'][0].setStyleSheet(Style('LFRAME'))
+        for i in self.Ui['frame']:
+            i.setStyleSheet(Style('LFRAME'))
+
+        self.Ui['lock-bg'].setPixmap(ico('LOGIN_BG'))
+        self.Ui['lock-logo'].setPixmap(ico('LOGO'))
 
     def record(self):
 
@@ -171,7 +177,7 @@ class Label:
         title.setFont(font_)
 
         logo = self.lable(MASTER, 50, 130, text="")
-        logo.setPixmap( image(SCHOLAR, 'pixmap') )
+        logo.setPixmap( SCHOLAR )
         logo.setFixedSize(512, 512)
 
         CHILD = self.frame(MASTER, 480, 480)
@@ -268,6 +274,26 @@ class Label:
         MASTER = self.GUID
 
         title = self.lable(MASTER, 10, 10, "Guid", "title")
+
+    def lock(self):
+        MASTER = self.LOCK
+
+        bg = QLabel(self.LOCK)
+        bg.setFixedSize(1900,900)
+        bg.setScaledContents(True)        
+        bg.setPixmap(ico('LOGIN_BG'))
+        
+        CHILD = self.frame(MASTER, 400, 500)
+        CHILD.move(473, 130)
+        CHILD.setFixedHeight(512)
+
+        logo = self.lable(CHILD, 100, 80, text="")
+        logo.setPixmap( ico('LOGO') )
+        logo.setFixedSize(198, 90)
+
+        self.Ui['frame'].append(CHILD)
+        self.Ui['lock-bg'] = bg
+        self.Ui['lock-logo'] = logo
 
     def collect(self, **kwarg):
 

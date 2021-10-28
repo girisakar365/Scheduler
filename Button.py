@@ -41,8 +41,10 @@ class Button:
             self.GUID,
             self.SETTING_CHILD,
             self.BAR,
+            self.LOCK
              )  =  arg
             self.side_bar()
+            self.lock()
 
         else:
             CHILD =  arg
@@ -425,6 +427,28 @@ class Button:
         MASTER = self.GUID
 
         master.clicked.connect(lambda:self.frame_manager(MASTER))
+
+    def lock(self):
+        MASTER = self.LOCK
+      
+        log_in = self.button(MASTER, 543, 470, 0, ENTER,
+        size = 20, style = Style('LBUTTON'), text = ' Log in')
+        log_in.setFixedSize(250, 40)
+
+        log_in.enterEvent = lambda event: log_in.setFixedSize(247,39)
+        log_in.leaveEvent = lambda event: log_in.setFixedSize(250,40)
+
+        log_in.setGraphicsEffect(shadow(40))
+
+        eye  =  self.button(MASTER, 794, 419, self.AREA, EYE_CLOSED,
+        size  =  20,style = Style('LBUTTON'))
+        self.show_hide_password(eye)
+        
+        self.Widget['lb'] = eye
+
+        self.Ui['l-button'].extend([log_in, eye])
+
+        self.Widget['log-in'] = log_in
 
     def collect(self,key = '', **kwarg):
         
