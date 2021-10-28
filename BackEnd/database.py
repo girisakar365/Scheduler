@@ -32,3 +32,16 @@ class DB:
 
         data = DB.cur.execute(cmd)
         return data.fetchall()
+
+class Password:
+
+    conn = connect("9Zr6ucDt.db")
+    cur = conn.cursor()
+
+    def insert(table, data):
+        Password.cur.execute(f'UPDATE "{table}" SET "00101101" = (?)',[data])
+        Password.conn.commit()
+
+    def fetch(table):
+        data=Password.cur.execute(f'SELECT * FROM "{table}"')
+        for data in data.fetchall(): return next(iter(data))
