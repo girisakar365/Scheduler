@@ -1,32 +1,6 @@
 try: from .raw import Cache
 except Exception: from raw import Cache
 
-#COLOR:
-entry_border = '#6A737D'
-bg = ''
-color = ''
-sidebar_bg = ''
-hlg = ''
-login_bg = ''
-blue_shade = ''
-
-if Cache.fetch('switch','ui') == 0: #light
-	bg = '#ffffff'
-	color = '#1f2428'
-	sidebar_bg = '#F6F8FA'
-	hlg = '#ededed'
-	login_bg = '#F6F8FA'
-	blue_shade = '#00579A'
-
-else: #dark
-	bg = '#1f2428'
-	color = '#ffffff'
-	sidebar_bg = '#24292E'
-	hlg = '#6A737D'
-	login_bg = '#191D20'
-	blue_shade = '#73AAFA'
-
-
 _ = {
 'WIDGET':{0:
 '''QWidget{
