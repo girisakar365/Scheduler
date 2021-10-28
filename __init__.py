@@ -12,7 +12,6 @@ except Exception:
     from Box import Box
     from Dialog import (Manage, Slot)
 
-
 class FrontEnd(QMainWindow):
     def __init__(self, app):
 
@@ -28,7 +27,7 @@ class FrontEnd(QMainWindow):
 
         SUBJECT = frame(self)
         SUBJECT.hide()
-
+        
         TIME_TABLE = frame(self)
         TIME_TABLE.hide()
 
@@ -43,13 +42,17 @@ class FrontEnd(QMainWindow):
         bar.setStyleSheet(SCROLL_BAR)
         SETTING.hide()
 
-        RECORD = frame(self)
-        RECORD.show()
-
         GUID = frame(self)
         GUID.hide()
 
+        RECORD = frame(self)
+        RECORD.show()
+
         SIDE_BAR = side_bar(self)
+
+        LOCK = frame(self)
+        LOCK.move(0,0)
+        LOCK.hide()
 
         frames = (
             self,
@@ -62,7 +65,8 @@ class FrontEnd(QMainWindow):
             SETTING,
             GUID,
             SETTING_CHILD,
-            bar
+            bar,
+            LOCK
         )
         self.lable_manager = Label(*frames)
         self.button_manager = Button(*frames)
@@ -103,7 +107,7 @@ class FrontEnd(QMainWindow):
         self.button_manager.Widget['manage'].clicked.connect(self.Manage.run)
         self.button_manager.Widget['slot'].clicked.connect(self.Slot.run)
 
-    def merge_widget(self): 
+    def merge_widget(self):
 
         def echo(button,entry):
             button.pressed.connect(
@@ -114,17 +118,15 @@ class FrontEnd(QMainWindow):
                 )
             
         btw = [self.button_manager.Widget['cp'], self.button_manager.Widget['np'], self.button_manager.Widget['rep'],
-        self.button_manager.Widget['up']]
+        self.button_manager.Widget['up'], self.button_manager.Widget['lb']]
         box = [self.box_manager.Widget['cp'], self.box_manager.Widget['np'], self.box_manager.Widget['rep'],
-        self.box_manager.Widget['up']]
+        self.box_manager.Widget['up'], self.box_manager.Widget['lp']]
 
         for button, entry in zip(btw,box):
             echo(button,entry)
 
-
-def run():
-    import sys
-    app = QApplication(sys.argv)
-    root = FrontEnd(app)
-    root.show()
-    sys.exit(app.exec_())
+# import sys
+# app = QApplication(sys.argv)
+# root = FrontEnd(app)
+# root.show()
+# sys.exit(app.exec_())
