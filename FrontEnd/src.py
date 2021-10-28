@@ -63,8 +63,8 @@ def font(typ):
 	'entry':['Segoe UI Light',12],
 	'fancy_title':['Segoe Print',20],
 	'fancy_huge':['Segoe Print',30],
-	'fancy_subtitle':['Segoe Print',12]
-
+	'fancy_subtitle':['Segoe Print',12],
+	'message':['Courier New',12],
 			}
 
 	font.setFamily(switch_dict[typ][0])
@@ -90,6 +90,7 @@ def line(master,x,y,typ = 'h',length = 1300):
 
 	return _line
 
+
 def image(img,val = 'ico'):
 	pixmap = QPixmap()
 	pixmap.loadFromData(img)
@@ -99,3 +100,44 @@ def image(img,val = 'ico'):
 	
 	if val == 'ico': return icon
 	else: return pixmap
+
+def message(master, msg:str, type:str):
+	_frame = QFrame(master)
+	_frame.resize(350, 80)
+
+	_frame.setGraphicsEffect(shadow(200))
+
+	close = QPushButton(_frame)
+	close.setIcon(image( PhotoLib.get(46) ))
+	
+	close.pressed.connect(
+	lambda:close.setIconSize(QSize(12,12))
+	)
+	close.released.connect(
+	lambda:close.setIconSize(QSize(13,13)))
+
+	if type.upper() == 'W': 
+		_frame.setStyleSheet(MSG_W)
+		close.setStyleSheet(MSG_W_BTW)
+	elif type.upper() == 'S': 
+		_frame.setStyleSheet(MSG_S)
+		close.setStyleSheet(MSG_S_BTW)
+	
+	close.setIconSize(QSize(16,16))
+	close.move(320,4)
+	close.clicked.connect(_frame.hide)
+
+	lable = QLabel(msg, _frame)
+	lable.setFont(font('message'))
+	lable.move(8,20)
+	lable.resize(300, 20 + len(msg))
+	lable.setWordWrap(True)
+
+	time = QTimer(_frame)
+	time.timeout.connect(_frame.hide)
+	time.start(10000)
+
+	_frame.move(900,650)
+	_frame.show()
+
+	return _frame
