@@ -4,7 +4,7 @@ from FrontEnd.src import *
 class Function:
     def __init__(self,*args):
         
-        self.Lable, self.Button, self.Box = args
+        self.Lable, self.Button, self.Box, self.Manage, self.Slot = args
 
         #Secutiry-section: Un/Locked switch: __init__
         if type(Password.fetch('10100101')) == str:
@@ -109,6 +109,8 @@ class Function:
         self.Lable.ui_theme()
         self.Button.ui_theme()
         self.Box.ui_theme()
+        self.Slot.ui_theme()
+        self.Manage.ui_theme()
 
     def generate_password(self):     
         new_password:QLineEdit = self.Box.Widget['new-password']
