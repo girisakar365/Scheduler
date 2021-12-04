@@ -1,5 +1,5 @@
-![logo_dark](https://raw.githubusercontent.com/girisakar365/Scheduler/main/FrontEnd/Image/logo_l.png#gh-dark-mode-only) <br>
-![logo_dark](https://raw.githubusercontent.com/girisakar365/Scheduler/main/FrontEnd/Image/logo.png#gh-light-mode-only) <br>
+<p align = 'center'>![logo_dark](https://raw.githubusercontent.com/girisakar365/Scheduler/main/FrontEnd/Image/logo_l.png#gh-dark-mode-only) <br>
+![logo_dark](https://raw.githubusercontent.com/girisakar365/Scheduler/main/FrontEnd/Image/logo.png#gh-light-mode-only) <br></p>
 A School Routine Managing software!<br><br>
 
 ### File Management
