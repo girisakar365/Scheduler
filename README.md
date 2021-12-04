@@ -40,7 +40,7 @@ Following are the main folder and files with their descriptions:
 |S.N | Files (.py) | Discription | 
 |----| ---- | ----------- |
 |1.|[`Function`](https://github.com/girisakar365/Scheduler/blob/main/Function.py)|Connects frontend with backend.|
-|2.|[`main`](https://github.com/girisakar365/Scheduler/blob/main/main.py)|Integrates the entire code base.|
+|2.|[`main`](https://github.com/girisakar365/Scheduler/blob/main/main.py)|Integrates the entier code base.|
 
 <br><br>
 ### How are classes tranfered from one file to another ?
