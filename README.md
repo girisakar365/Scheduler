@@ -1,4 +1,5 @@
-# SCHEDULER <br>
+![logo_dark](FrontEnd/Images/logo_l.png#gh-dark-mode-only) <br>
+![logo_dark](FrontEnd/Images/logo.png#gh-light-mode-only) <br>
 A School Routine Managing software!<br><br>
 
 ### File Management
