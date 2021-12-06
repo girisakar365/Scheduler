@@ -81,4 +81,4 @@ __Video Tutorial__: [Link](https://www.youtube.com/watch?v=7YS6YDQKFh0)
 
 ## Resource (Raw data)
 
-Csv File: [File](https://raw.githubusercontent.com/girisakar365/Scheduler/sample/data.csv)
+Csv File: [File](https://raw.githubusercontent.com/girisakar365/Scheduler/Xlsx/test.csv)
