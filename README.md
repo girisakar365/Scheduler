@@ -15,56 +15,56 @@ Here I have provided a format of list of professors and their divison catagories
 
 |S.N|First|Surname|ID/Short Name|Subject|Email|class|
 |---|---|---|---|---|---|---|
-|1.|Prakash|Begum|PB|Maths|Prakashbegum@gmail.com|11|
-|2.|Sheila|Ghimire|SG|Nepali|Sheilaghimire@gmail.com|12|
-|3.|Jonathan|Ghimire|JG|Chemistry|Jonathanghimire@gmail.com|both|
-|4.|Bikalpa|Begum|BB|English|Bikalpabegum@gmail.com|both|
-|5.|Bardan|Niraula|BN|Biology|Bardanniraula@gmail.com|both|
-|6.|Sanshkar|Poudle|SP|Maths|Sanshkarpoudle@gmail.com|11|
-|7.|Swostik|Ghimire|SIG|Maths|Swostikghimire@gmail.com|12|
-|8.|Ann|Blackmore|AB|Computer|Annblackmore@gmail.com|12|
-|9.|Ram|Arayal|RA|Physics|Ramarayal@gmail.com|both|
-|10.|Eilen|Cheung|EC|Chemistry|Eilencheung@gmail.com|both|
-|11.|Ashutosh|Arayal|AA|Computer|Ashutosharayal@gmail.com|both|
-|12.|Hari|Arayal|HA|Biology|Hariarayal@gmail.com|12|
-|13.|Hari|Kharel|HK|Nepali|Harikharel@gmail.com|12|
-|14.|Bhola|Arayal|BA|Physics|Bholaarayal@gmail.com|both|
-|15.|Devendra|Galwali|DG|Physics|Devendragalwali@gmail.com|12|
-|16.|Uttam Raj|Panthi|UP|Biology|Uttamrajpanthi@gmail.com|both|
-|17.|Sheila|Arayal|SA|Physics|Sheilaarayal@gmail.com|11|
-|18.|Ashutosh|Arayal|ALA|Biology|Ashutosharayal@gmail.com|both|
-|19.|Samip|Ghimire|SIG|Nepali|Samipghimire@gmail.com|12|
-|20.|Dev|Galwali|DVG|Physics|Devgalwali@gmail.com|12|
-|21.|Ram|Kharel|RK|English|Ramkharel@gmail.com|11|
-|22.|Sanshkar|Poudle|SHP|Computer|Sanshkarpoudle@gmail.com|12|
-|23.|Bikalpa|Niraula|BAN|Computer|Bikalpaniraula@gmail.com|12|
-|24.|Uttam Raj|Cheung|UC|Chemistry|Uttamrajcheung@gmail.com|both|
-|25.|Dash|Anderson|DA|Biology|Dashanderson@gmail.com|both|
-|26.|Dash|Nepal|DN|Chemistry|Dashnepal@gmail.com|both|
-|27.|Jane|Timalsina|JT|Physics|Janetimalsina@gmail.com|11|
-|28.|Jill|Brown|JB|Physics|Jillbrown@gmail.com|11|
-|29.|Shyam|Kadel|SK|Maths|Shyamkadel@gmail.com|12|
-|30.|David|Arayal|DIA|Maths|Davidarayal@gmail.com|11|
-|31.|Dev|Begum|DB|Physics|Devbegum@gmail.com|both|
-|32.|Bhola|Pudasini|BP|Nepali|Bholapudasini@gmail.com|12|
-|33.|Darwin|Acharya|DHA|Biology|Darwinacharya@gmail.com|12|
-|34.|Swostik|Brown|SB|English|Swostikbrown@gmail.com|both|
-|35.|Prakash|Maharjan|PM|Chemistry|Prakashmaharjan@gmail.com|both|
-|36.|Bardan|Barrow|BNB|Nepali|Bardanbarrow@gmail.com|11|
-|37.|Darwin|Ghimire|DIG|Chemistry|Darwinghimire@gmail.com|12|
-|38.|Jill|Blackmore|JMB|English|Jillblackmore@gmail.com|12|
-|39.|Swostik|Galwali|SOG|Computer|Swostikgalwali@gmail.com|12|
-|40.|Ram|Arayal|RYA|Maths|Ramarayal@gmail.com|12|
-|41.|Samip|Cheung|SC|English|Samipcheung@gmail.com|11|
-|42.|Prakash|Baker|PAB|Physics|Prakashbaker@gmail.com|11|
-|43.|Shyam|Begum|SAB|English|Shyambegum@gmail.com|both|
-|44.|Prakash|Galwali|PG|Physics|Prakashgalwali@gmail.com|12|
-|45.|Darwin|Nepal|DAN|Chemistry|Darwinnepal@gmail.com|both|
-|46.|Shyam|Carroll|SOC|Chemistry|Shyamcarroll@gmail.com|12|
-|47.|Devendra|Timalsina|DT|Chemistry|Devendratimalsina@gmail.com|both|
-|48.|Uttam Raj|Brown|UB|Nepali|Uttamrajbrown@gmail.com|both|
-|49.|Hari|Shrestha|HS|Biology|Harishrestha@gmail.com|both|
-|50.|Rajesh|Nepal|RN|English|Rajeshnepal@gmail.com|12|<br>
+|1|Bikalpa|Chapman|BC|Physics|Bikalpachapman@gmail.com|11|
+|2|David|Austin|DA|Nepali|Davidaustin@gmail.com|12|
+|3|Bhola|Barma|BB|Physics|Bholabarma@gmail.com|11|
+|4|Devendra|Barlett|DB|Physics|Devendrabarlett@gmail.com|11|
+|5|Ram|Poudle|RP|English|Rampoudle@gmail.com|11|
+|6|Sheila|Begum|SB|Biology|Sheilabegum@gmail.com|11|
+|7|Pratik|Acharya|PA|Nepali|Pratikacharya@gmail.com|11|
+|8|Shyam|Carroll|SC|Maths|Shyamcarroll@gmail.com|12|
+|9|Darwin|Blackmore|DWB|Nepali|Darwinblackmore@gmail.com|12|
+|10|Bhola|Ghimire|BG|Chemistry|Bholaghimire@gmail.com|12|
+|11|Lexie|Pudasini|LP|Chemistry|Lexiepudasini@gmail.com|12|
+|12|Ann|Shrestha|AS|Biology|Annshrestha@gmail.com|12|
+|13|Bhola|Arayal|BA|Biology|Bholaarayal@gmail.com|11|
+|14|Jonathan|Blackmore|JB|English|Jonathanblackmore@gmail.com|both|
+|15|Sheila|Maharjan|SM|Physics|Sheilamaharjan@gmail.com|both|
+|16|David|Boughton|DAB|English|Davidboughton@gmail.com|11|
+|17|Devendra|Sharma|DS|Computer|Devendrasharma@gmail.com|11|
+|18|David|Tiwari|DT|Chemistry|Davidtiwari@gmail.com|12|
+|19|Prakash|Nepal|PN|Biology|Prakashnepal@gmail.com|12|
+|20|Rajesh|Burrell|RB|Biology|Rajeshburrell@gmail.com|11|
+|21|Uttam Raj|Pudasini|UP|English|Uttam rajpudasini@gmail.com|12|
+|22|Jane|Arayal|JA|Computer|Janearayal@gmail.com|both|
+|23|Abiyan|Baker|AB|Biology|Abiyanbaker@gmail.com|12|
+|24|Eilen|Ghimire|EG|English|Eilenghimire@gmail.com|12|
+|25|Rikesh|Anderson|RA|Nepali|Rikeshanderson@gmail.com|both|
+|26|Samip|Kadel|SK|Biology|Samipkadel@gmail.com|11|
+|27|Darwin|Niraula|DN|English|Darwinniraula@gmail.com|12|
+|28|Varun|Austin|VA|English|Varunaustin@gmail.com|12|
+|29|Pratik|Tiwari|PT|Biology|Pratiktiwari@gmail.com|12|
+|30|Ram|Begum|RAB|Nepali|Rambegum@gmail.com|11|
+|31|Darwin|Baker|DRB|Nepali|Darwinbaker@gmail.com|both|
+|32|Eilen|Bhusal|EB|Maths|Eilenbhusal@gmail.com|11|
+|33|Abiyan|Boughton|ABB|Computer|Abiyanboughton@gmail.com|12|
+|34|David|Brown|DNB|Chemistry|Davidbrown@gmail.com|12|
+|35|Leslie|Boughton|LB|Physics|Leslieboughton@gmail.com|11|
+|36|Hari|Panthi|HP|Maths|Haripanthi@gmail.com|11|
+|37|Ram|Barrow|RMB|Computer|Rambarrow@gmail.com|12|
+|38|Ankit|Barrow|ATB|Computer|Ankitbarrow@gmail.com|12|
+|39|Rikesh|Sharma|RS|English|Rikeshsharma@gmail.com|both|
+|40|Jane|Kadel|JK|Biology|Janekadel@gmail.com|both|
+|41|Nagendra|Austin|NA|Maths|Nagendraaustin@gmail.com|both|
+|42|Dev|Nepal|DPN|Physics|Devnepal@gmail.com|12|
+|43|Dev|Pudasini|DP|Computer|Devpudasini@gmail.com|12|
+|44|Jonathan|Brown|JRB|Computer|Jonathanbrown@gmail.com|11|
+|45|Ankit|Pudasini|AP|Nepali|Ankitpudasini@gmail.com|both|
+|46|Jane|Burrell|JLB|Maths|Janeburrell@gmail.com|12|
+|47|Dev|Begum|DGB|Physics|Devbegum@gmail.com|11|
+|48|Jonathan|Sharma|JS|Biology|Jonathansharma@gmail.com|11|
+|49|Samip|Giri|SG|Nepali|Samipgiri@gmail.com|12|
+|50|Samip|Acharya|SA|Physics|Samipacharya@gmail.com|12|<br>
 
 We are to put these data into the excell sheet in the same format.
 
