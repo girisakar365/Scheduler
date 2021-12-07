@@ -53,7 +53,7 @@ class Box:
 
     def completer(self, qline, clist: list):
         completer = QCompleter(clist)
-        completer.popup().setStyleSheet(COMPLETER)
+        # completer.popup().setStyleSheet(COMPLETER)
         qline.setCompleter(completer)
         return completer
 

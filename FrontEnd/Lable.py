@@ -75,7 +75,7 @@ class Label:
 
         MASTER = self.PROFESSOR
 
-        info_table = self.lable(MASTER, 300, 70, "Record of Professors", "title")
+        info_table = self.lable(MASTER, 300, 30, "Record of Professors", "title")
 
         line(MASTER, 270, 0, "v")
 
