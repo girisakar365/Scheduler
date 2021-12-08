@@ -2,18 +2,30 @@ try : from src import *
 
 except Exception: from .src import *
 
-class Table:
+class Table(QTableWidget):
 
     def __init__(self, master, x:int, y:int, width:int, height:int):
-        self.Table = self.table(master, x, y, width, height)
+        super().__init__(master)
+        self.setStyleSheet(Style('TABLE'))
+        self.move(x, y)
+        self.resize(width, height)
+        self.hide()
+        
+    def table(self): return self
 
-    def table(self, master, x, y, width, height):
-        _table = QTableWidget(master)
-        _table.setStyleSheet(TABLE)
-        _table.move(x, y)
-        _table.resize(width, height)
-        _table.hide()
+    def set_header(self, header: list):
+        for i in range( len(header) ):
+            self.setHorizontalHeaderItem(i, QTableWidgetItem(header[i]))
+            
 
-        return _table
+    def load_data(self, data: list): 
+        self.setRowCount(len(data))
 
-    def row_and_cols(self):pass
+        row = col = 0
+        for i in data:
+            for j in i:
+                self.setItem(row, col, QTableWidgetItem(j))
+                col += 1
+                
+            col = 0
+            row += 1

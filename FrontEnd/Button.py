@@ -212,6 +212,8 @@ class Button:
 
         for i in [insert,pdf,excle]:
             self.Ui['button'].append(i)
+        
+        self.collect(professor_insert = insert)
 
         master.clicked.connect(lambda:self.frame_manager(MASTER))
     

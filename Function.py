@@ -1,9 +1,34 @@
 from BackEnd import *
 from FrontEnd.src import *
 
+# table theme problem left to be solved!
+
 class Function:
     def __init__(self,*args):
-        
+        Professor(*args)
+        Setting(*args)
+
+class Professor():
+
+    def __init__(self,*args): 
+        self.Lable, self.Button, self.Box, self.Manage, self.Slot = args
+        self.table()
+
+    def table(self):
+        from FrontEnd.Table import Table
+
+        professor = Table(self.Button.PROFESSOR, 300, 100, 800, 630)
+        professor.setColumnCount(6)
+        col = ['Name', 'Surname', 'ID', 'Subject', 'Email', 'Classes']
+        professor.setColumnWidth(4, 250)
+        professor.set_header(col)
+
+        professor.load_data(DB.fetch()) # default value point to professor table so no parameters needed!
+
+        self.Button.Widget['professor_insert'].clicked.connect(professor.show)
+
+class Setting():
+    def __init__(self,*args): 
         self.Lable, self.Button, self.Box, self.Manage, self.Slot = args
 
         #Secutiry-section: Un/Locked switch: __init__
@@ -49,8 +74,7 @@ class Function:
                     message(self.Button.LOCK, 'Incorrect Password!','w')
                         
         self.Button.Widget['log-in'].clicked.connect(lambda: 
-        check(
-            self.Box.Widget['lock-password'].text()))
+        check(self.Box.Widget['lock-password'].text()))
 
     def validity(self,data:list):
         for i in data:

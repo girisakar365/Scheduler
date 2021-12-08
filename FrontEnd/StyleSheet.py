@@ -283,8 +283,63 @@ QTimeEdit::hover
 		{
 		border-color:#ffffff;
 		}
-'''},
+'''
+},
+'TABLE':{
+	0:'''
+		QHeaderView::section{
+		background-color: #ffffff;
+		border-radius:25px;
+		width:25;    
+		color:#1F2428;
+		}
+		
+		QTableView::item{
+		color:#1F2428;
+		selection-background-color:#1F2428;
+		selection-color:#ffffff;
+		}
+		
+		QTableView::item:hover{
+		background-color:#1F2428;
+		color:#ffffff;
+		border-radius:14px;
+		}
+		
+		QHeaderView::section:hover{
+		background-color:#1F2428;
+		border-radius:11px;
+		color:#ffffff;
+		}''',
+
+	1:'''
+		QHeaderView::section{
+		background-color: #1F2428;
+		border-radius:25px;
+		width:25;    
+		color:silver;
+		}
+		
+		QTableView::item{
+		color:silver;
+		selection-background-color:silver;
+		selection-color:#1F2428;
+		}
+		
+		QTableView::item:hover{
+		background-color:silver;
+		color:#1F2428;
+		border-radius:14px;
+		}
+		
+		QHeaderView::section:hover{
+		background-color: silver;
+		border-radius:11px;
+		color:#1F2428;
+		}'''
+	}
 }
+
 
 def Style(WIDGET):
 	return _[WIDGET][Cache.fetch('switch','ui')]
@@ -308,37 +363,6 @@ border-radius: 2px;
 QPushButton:hover{
 background-color:#a00000;
 }'''
-
-COMPLETER='''background-color:#292728;
-		color:#ffffff;
-		selection-background-color:#474747;
-		selection-color:#EFEFF0;
-		'''
-
-TABLE='''QHeaderView::section{
-		    background-color: #292728;
-		border-radius:25px;
-		width:25;    
-		color:silver;
-		}
-		
-		QTableView::item{
-		color:silver;
-		selection-background-color:silver;
-		selection-color:#292728;
-		}
-		
-		QTableView::item:hover{
-		background-color:silver;
-		color:#292728;
-		border-radius:14px;
-		}
-		
-		QHeaderView::section:hover{
-		background-color: silver;
-		border-radius:11px;
-		color:#292728;
-		}'''
 
 SCROLL_BAR='''QScrollBar{
     background: #e1e1e1;
