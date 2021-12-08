@@ -20,7 +20,8 @@ class Table(QTableWidget):
 
     def load_data(self, data: list): 
         self.setRowCount(len(data))
-
+        data.reverse()
+        
         row = col = 0
         for i in data:
             for j in i:

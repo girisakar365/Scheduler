@@ -1,10 +1,12 @@
 try:
     from .src import *
     from .Photo_Lib import SCHOLAR, ico
+    from .Table import Table
 
 except Exception:
     from src import *
     from Photo_Lib import SCHOLAR, ico
+    from Table import Table
     
 class Label:
     def __init__(self, *arg):
@@ -61,6 +63,7 @@ class Label:
 
         self.Ui['lock-bg'].setPixmap(ico('LOGIN_BG'))
         self.Ui['lock-logo'].setPixmap(ico('LOGO'))
+        self.Ui['professor'].setStyleSheet(Style('TABLE'))
 
     def record(self):
 
@@ -94,9 +97,13 @@ class Label:
 
         classes = self.lable(MASTER, 10, 240, "Classes")
 
+        table = Table(self.PROFESSOR, 300, 130, 800, 590)
+
         line(MASTER, 0, 330, length=270)
 
         tool = self.lable(MASTER, 10, 350, "Tools", "subtitle")
+
+        self.Widget['professor'] = self.Ui['professor'] = table
 
     def subject(self):
 

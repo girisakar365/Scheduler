@@ -296,20 +296,20 @@ QTimeEdit::hover
 		
 		QTableView::item{
 		color:#1F2428;
-		selection-background-color:#1F2428;
-		selection-color:#ffffff;
+		selection-background-color:#EDEDED;
+		selection-color:#000000;
 		}
 		
 		QTableView::item:hover{
-		background-color:#1F2428;
-		color:#ffffff;
+		background-color:#EDEDED;
+		color:#000000;
 		border-radius:14px;
 		}
 		
 		QHeaderView::section:hover{
-		background-color:#1F2428;
+		background-color:#EDEDED;
 		border-radius:11px;
-		color:#ffffff;
+		color:#000000;
 		}''',
 
 	1:'''

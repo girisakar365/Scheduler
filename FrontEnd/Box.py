@@ -104,7 +104,11 @@ class Box:
 
         classes = self.combo_box(MASTER, 80, 245, CB_WIDTH, CB_HEIGHT, [11, 12, "both"])
 
-        for i in [name, surname, email, subject, classes]:
+        search = self.entry(MASTER, 300, 80, 800, 30, Style('LENTRY'))
+        search.setFont(font("entry"))
+        search.setPlaceholderText("Search")
+
+        for i in [name, surname, email, subject, classes, search]:
             self.Ui['entry'].append(i)
 
     def subject(self):

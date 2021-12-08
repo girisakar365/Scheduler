@@ -17,7 +17,7 @@ class Professor():
     def table(self):
         from FrontEnd.Table import Table
 
-        professor = Table(self.Button.PROFESSOR, 300, 100, 800, 630)
+        professor:QTableWidget = self.Lable.Widget['professor']
         professor.setColumnCount(6)
         col = ['Name', 'Surname', 'ID', 'Subject', 'Email', 'Classes']
         professor.setColumnWidth(4, 250)
