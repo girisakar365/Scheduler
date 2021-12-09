@@ -1,8 +1,6 @@
 from BackEnd import *
 from FrontEnd.src import *
 
-# table theme problem left to be solved!
-
 class Function:
     def __init__(self,*args):
         Professor(*args)
@@ -15,8 +13,6 @@ class Professor():
         self.table()
 
     def table(self):
-        from FrontEnd.Table import Table
-
         professor:QTableWidget = self.Lable.Widget['professor']
         professor.setColumnCount(6)
         col = ['Name', 'Surname', 'ID', 'Subject', 'Email', 'Classes']
@@ -25,7 +21,29 @@ class Professor():
 
         professor.load_data(DB.fetch()) # default value point to professor table so no parameters needed!
 
-        self.Button.Widget['professor_insert'].clicked.connect(professor.show)
+        self.Button.Widget['professor_insert'].clicked.connect(
+            lambda: [professor.show(), self.Box.Widget['professor_search'].show(),
+            self.Button.Widget['professor_search'].show()]
+        )
+
+        self.query(self.Box.Widget['professor_search'], self.Button.Widget['professor_search'], 
+        professor)
+
+    def query(self,bar: QLineEdit, btw: QPushButton, table):
+        
+        def data():
+            if bar.text() == 'all' or bar.text() == 'all'.capitalize():
+                table.load_data(DB.fetch())
+            
+            else:
+                quiry = f'''name = '{bar.text()}' OR sname = '{bar.text()}' OR id = '{bar.text()}'
+            OR subject = '{bar.text()}' OR email = '{bar.text()}' 
+            OR class = '{bar.text()}' '''
+
+                table.load_data(DB.fetch(typ = 'filter', col = bar.text()))
+
+        btw.clicked.connect(data)
+
 
 class Setting():
     def __init__(self,*args): 

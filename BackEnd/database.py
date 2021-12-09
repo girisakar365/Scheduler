@@ -29,6 +29,11 @@ class DB:
             cmd = f"SELECT {col} FROM {table}"  # fetch specific col
         elif typ == "quiere":  # fetch comparing data's
             cmd = f"SELECT {col} FROM {table} WHERE {arg[0]}"
+        elif typ == 'filter':
+            cmd = f'''SELECT * FROM {table} 
+            WHERE fname = '{col}' OR sname = '{col}' OR id = '{col}' OR subject = '{col}' OR 
+            email = '{col}' OR class = '{col}'
+            '''
 
         data = DB.cur.execute(cmd)
         return data.fetchall()

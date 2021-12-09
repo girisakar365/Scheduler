@@ -210,10 +210,16 @@ class Button:
         excle = self.button(MASTER, 60, 388,self.AREA, XLSX,
         size = 28,style =Style('NBUTTON') )
 
-        for i in [insert,pdf,excle]:
+        search = self.button(MASTER, 1070, 76, self.AREA, ico('SCOPE'),
+        size = 20, style =Style('NBUTTON') )
+        self.Ui['scope'].append(search)
+        search.hide()
+
+        for i in [insert,pdf,excle,search]:
             self.Ui['button'].append(i)
         
         self.collect(professor_insert = insert)
+        self.Widget['professor_search'] = search
 
         master.clicked.connect(lambda:self.frame_manager(MASTER))
     

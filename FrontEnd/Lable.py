@@ -98,6 +98,8 @@ class Label:
         classes = self.lable(MASTER, 10, 240, "Classes")
 
         table = Table(self.PROFESSOR, 300, 130, 800, 590)
+        scroll = table.verticalScrollBar()
+        scroll.setStyleSheet(SCROLL_BAR)
 
         line(MASTER, 0, 330, length=270)
 
