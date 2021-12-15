@@ -22,7 +22,7 @@ class Box:
             self.LOCK
         ) = arg
 
-        self.Widget = {}
+        self.Widget = {'professor_entry': []}
         self.Ui={'entry':[], 'combo':[], 'lentry':[], 'spin-box':[],
         'time-dial':[]}
 
@@ -107,12 +107,16 @@ class Box:
         search = self.entry(MASTER, 300, 80, 766, 30, Style('LENTRY'))
         search.setFont(font("entry"))
         search.setPlaceholderText("Search")
-        search.hide()
         self.Widget['professor_search'] = search
 
         for i in [name, surname, email, subject, classes]:
             self.Ui['entry'].append(i)
         self.Ui['lentry'].append(search)
+
+        for _ in [name, surname, email, subject]:
+            self.Widget['professor_entry'].append(_)
+        
+        self.Widget['professor_classes'] = classes
 
     def subject(self):
         MASTER = self.SUBJECT

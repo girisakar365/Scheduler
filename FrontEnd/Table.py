@@ -9,8 +9,7 @@ class Table(QTableWidget):
         self.setStyleSheet(Style('TABLE'))
         self.move(x, y)
         self.resize(width, height)
-        self.hide()
-        
+                
     def table(self): return self
 
     def set_header(self, header: list):

@@ -11,6 +11,9 @@ class Professor():
     def __init__(self,*args): 
         self.Lable, self.Button, self.Box, self.Manage, self.Slot = args
         self.table()
+        self.insert_data()
+
+        self.error_style = 'QLineEdit{ border-color: #a50f29}'
 
     def table(self):
         professor:QTableWidget = self.Lable.Widget['professor']
@@ -21,13 +24,61 @@ class Professor():
 
         professor.load_data(DB.fetch()) # default value point to professor table so no parameters needed!
 
-        self.Button.Widget['professor_insert'].clicked.connect(
-            lambda: [professor.show(), self.Box.Widget['professor_search'].show(),
-            self.Button.Widget['professor_search'].show()]
-        )
+        # self.Button.Widget['professor_insert'].clicked.connect()
 
         self.query(self.Box.Widget['professor_search'], self.Button.Widget['professor_search'], 
         professor)
+
+    def validity(self,data:list):
+        error_msg_dsplyd = 0
+        for i in data: data[data.index(i)].setStyleSheet( Style('ENTRY') )
+        for i in data:
+            if i.text() == '':
+                data[data.index(i)].setStyleSheet(
+                    Style('ENTRY') + self.error_style
+                )
+                error_msg_dsplyd += 1
+        if error_msg_dsplyd >= 1: 
+            message(self.Lable.PROFESSOR, 'Empty input feild(s)!','w')
+        
+        elif str(data[2].text()).find('@gmail.com') == -1:
+            data[2].setStyleSheet(Style('ENTRY') + self.error_style)
+            message(self.Lable.PROFESSOR, 'Enter a vaild email!','w')
+            return False
+        
+        if error_msg_dsplyd >= 1: return False
+
+        else: return True
+
+        
+    def id(self, short_name: str, count: int = 0):
+
+        lst = [j for i in DB.fetch(typ='specific', col='id') for j in i]
+
+        if short_name in lst:
+            count += 1
+            short_name = short_name[0:2] + f'{count}'
+            return self.id(short_name, count)
+        
+        else: return short_name
+
+    def insert_data(self):
+        
+        def data():
+            dt = []
+            lst = [i for i in self.Box.Widget['professor_entry']]
+            if self.validity(lst):
+                
+                dt.append(str(lst[0].text()).capitalize())
+                dt.append(str(lst[1].text()).capitalize()) 
+                dt.append(self.id(f'{lst[0].text()[0]}{lst[1].text()[0]}'))
+                dt.append(lst[3].text())
+                dt.append(lst[2].text())
+                dt.append(self.Box.Widget['professor_classes'].currentText())
+                DB.insert(dt)
+                self.table()
+
+        self.Button.Widget['professor_insert'].clicked.connect(data)
 
     def query(self,bar: QLineEdit, btw: QPushButton, table):
         

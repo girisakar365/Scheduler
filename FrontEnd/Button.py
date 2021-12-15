@@ -213,7 +213,6 @@ class Button:
         search = self.button(MASTER, 1070, 76, self.AREA, ico('SCOPE'),
         size = 20, style =Style('NBUTTON') )
         self.Ui['scope'].append(search)
-        search.hide()
 
         for i in [insert,pdf,excle,search]:
             self.Ui['button'].append(i)
