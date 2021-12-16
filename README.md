@@ -23,6 +23,7 @@ Following are the main folder and files with their descriptions:
 |7.|[`raw`](https://github.com/girisakar365/Scheduler/blob/main/FrontEnd/raw.py)|FrontEnd database|
 |8.|[`src`](https://github.com/girisakar365/Scheduler/blob/main/FrontEnd/src.py)|Holds the main framework and common functions|
 |9.|[`StyleSheet`](https://github.com/girisakar365/Scheduler/blob/main/FrontEnd/StyleSheet.py)|Contains all the style classes|
+|10.|[`Table`](https://github.com/girisakar365/Scheduler/blob/main/FrontEnd/Table.py)|Table Wiget Manager|
 
 <br><b>BackEnd</b>
 
