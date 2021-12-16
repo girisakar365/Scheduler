@@ -15,7 +15,13 @@ class Table(QTableWidget):
     def set_header(self, header: list):
         for i in range( len(header) ):
             self.setHorizontalHeaderItem(i, QTableWidgetItem(header[i]))
-            
+    
+    def col(self):
+        try:
+            return f'{self.item(self.currentRow(), 2).text()}'
+
+        except AttributeError:
+            return False
 
     def load_data(self, data: list): 
         self.setRowCount(len(data))

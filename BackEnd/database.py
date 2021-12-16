@@ -34,8 +34,13 @@ class DB:
             WHERE fname = '{col}' OR sname = '{col}' OR id = '{col}' OR subject = '{col}' OR 
             email = '{col}' OR class = '{col}'
             '''
+        elif typ == 'delete':
+            cmd = f'''DELETE FROM {table} WHERE fname = '{col}' OR sname = '{col}' OR id = '{col}' OR subject = '{col}' OR 
+            email = '{col}' OR class = '{col}'
+            '''
 
         data = DB.cur.execute(cmd)
+        DB.conn.commit()
         return data.fetchall()
 
 class Password:

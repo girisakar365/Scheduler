@@ -10,10 +10,10 @@ class Professor():
 
     def __init__(self,*args): 
         self.Lable, self.Button, self.Box, self.Manage, self.Slot = args
-        self.table()
-        self.insert_data()
-
         self.error_style = 'QLineEdit{ border-color: #a50f29}'
+        self.edit_check_point = 0
+        self.id_check_point = None
+        self.table()
 
     def table(self):
         professor:QTableWidget = self.Lable.Widget['professor']
@@ -24,10 +24,13 @@ class Professor():
 
         professor.load_data(DB.fetch()) # default value point to professor table so no parameters needed!
 
-        # self.Button.Widget['professor_insert'].clicked.connect()
-
-        self.query(self.Box.Widget['professor_search'], self.Button.Widget['professor_search'], 
-        professor)
+        self.query(self.Box.Widget['professor_search'], self.Button.Widget['professor_search'],professor)
+        self.Button.Widget['professor_delete'].clicked.connect(
+            lambda: [self.delete(professor.col()), professor.load_data(DB.fetch())]
+        )
+        self.Button.Widget['professor_edit'].clicked.connect(lambda: self.edit(professor.col()))
+        self.Button.Widget['professor_insert'].clicked.connect(
+            lambda: [self.insert_data(), professor.load_data(DB.fetch())])
 
     def validity(self,data:list):
         error_msg_dsplyd = 0
@@ -50,9 +53,7 @@ class Professor():
 
         else: return True
 
-        
     def id(self, short_name: str, count: int = 0):
-
         lst = [j for i in DB.fetch(typ='specific', col='id') for j in i]
 
         if short_name in lst:
@@ -62,26 +63,22 @@ class Professor():
         
         else: return short_name
 
-    def insert_data(self):
-        
-        def data():
-            dt = []
-            lst = [i for i in self.Box.Widget['professor_entry']]
-            if self.validity(lst):
-                
-                dt.append(str(lst[0].text()).capitalize())
-                dt.append(str(lst[1].text()).capitalize()) 
-                dt.append(self.id(f'{lst[0].text()[0]}{lst[1].text()[0]}'))
-                dt.append(lst[3].text())
-                dt.append(lst[2].text())
-                dt.append(self.Box.Widget['professor_classes'].currentText())
-                DB.insert(dt)
-                self.table()
+    def insert_data(self):        
+        dt = []
+        lst = [i for i in self.Box.Widget['professor_entry']]
+        if self.validity(lst):
+            if self.edit_check_point:
+                self.delete(self.id_check_point)
+                self.edit_check_point = 0
+            dt.append(str(lst[0].text()).capitalize())
+            dt.append(str(lst[1].text()).capitalize()) 
+            dt.append(self.id(f'{lst[0].text()[0]}{lst[1].text()[0]}'))
+            dt.append(lst[3].text())
+            dt.append(lst[2].text())
+            dt.append(self.Box.Widget['professor_classes'].currentText())
+            DB.insert(dt)
 
-        self.Button.Widget['professor_insert'].clicked.connect(data)
-
-    def query(self,bar: QLineEdit, btw: QPushButton, table):
-        
+    def query(self,bar: QLineEdit, btw: QPushButton, table): 
         def data():
             if bar.text() == 'all' or bar.text() == 'all'.capitalize():
                 table.load_data(DB.fetch())
@@ -94,7 +91,25 @@ class Professor():
                 table.load_data(DB.fetch(typ = 'filter', col = bar.text()))
 
         btw.clicked.connect(data)
+    
+    def edit(self,data):
+        if data:
+            lst = [i for i in self.Box.Widget['professor_entry']]
+            for i in lst: lst[lst.index(i)].setStyleSheet( Style('ENTRY') )
+            for i in lst: i.clear()
+            dt = DB.fetch(typ='filter',col=data)[0]
+            lst[0].insert(dt[0])#fname
+            lst[1].insert(dt[1])#sname
+            lst[2].insert(dt[4])#email
+            lst[3].insert(dt[3])#subject
+            self.Box.Widget['professor_classes'].setCurrentText(dt[5])#classes
+            self.edit_check_point = 1
+            self.id_check_point = dt[2]
+        
+        else: message(self.Lable.PROFESSOR, 'Select data first!','w')
 
+    def delete(self,data:str):
+        DB.fetch(typ='delete',col=data)
 
 class Setting():
     def __init__(self,*args): 

@@ -9,7 +9,6 @@ except Exception:
 
 class Button:
     def __init__(self,*arg):
-
         self.Widget = {}
         self.Ui = {"button":[],
         'l-button':[],
@@ -107,7 +106,6 @@ class Button:
             )
     
     def frame_manager(self,Frame):
-
         Frames  =  {'record':self.RECORD,
         'professor':self.PROFESSOR,
         'subject':self.SUBJECT,
@@ -122,7 +120,6 @@ class Button:
             else : Frames[i].hide()
     
     def ui_theme(self):
-        
         self.WINDOW.setStyleSheet(Style('WIDGET'))
         self.SIDEBAR.setStyleSheet(Style('SIDEBAR'))
 
@@ -142,7 +139,6 @@ class Button:
                 j.setIcon(ico(i.upper()))
 
     def side_bar(self):
-
         record = self.button(self.SIDEBAR,14, 30, self.AREA, RECORD,
         size = 24,style = Style('SBUTTON')
         )
@@ -197,33 +193,37 @@ class Button:
         master.clicked.connect(lambda:self.frame_manager(MASTER))
 
     def professor(self,master):
-
         MASTER = self.PROFESSOR
 
         insert = self.button(MASTER,220,275,self.AREA, ico('NEXT'),
         size = 28,style =Style('NBUTTON') )
         self.Ui['next'].append(insert)
 
-        pdf = self.button(MASTER,10, 388,self.AREA, PDF,
+        edit = self.button(MASTER,10, 388,self.AREA, ico('PEN'),
+        size = 25,style =Style('NBUTTON') )
+        self.Ui['pen'].append(edit)
+        
+        delete = self.button(MASTER,60, 388,self.AREA, DELETE,
         size = 28,style =Style('NBUTTON') )
 
-        excle = self.button(MASTER, 60, 388,self.AREA, XLSX,
+        excle = self.button(MASTER,110, 388,self.AREA, XLSX,
         size = 28,style =Style('NBUTTON') )
 
         search = self.button(MASTER, 1070, 76, self.AREA, ico('SCOPE'),
         size = 20, style =Style('NBUTTON') )
         self.Ui['scope'].append(search)
 
-        for i in [insert,pdf,excle,search]:
+        for i in [insert,excle,search,delete,edit]:
             self.Ui['button'].append(i)
         
         self.collect(professor_insert = insert)
         self.Widget['professor_search'] = search
+        self.Widget['professor_delete'] = delete
+        self.Widget['professor_edit'] = edit
 
         master.clicked.connect(lambda:self.frame_manager(MASTER))
     
     def subject(self,master):
-
         MASTER = self.SUBJECT
 
         insert = self.button(MASTER,220,255,self.AREA, ico('NEXT'),
@@ -278,7 +278,6 @@ class Button:
         master.clicked.connect(lambda:self.frame_manager(MASTER))
 
     def user(self,master):
-
         MASTER = self.USER
         sign_up = self.button(MASTER, 1088, 581,self.AREA+5, LOGIN,
         size = 32,style =Style('LBUTTON') +'''QPushButton{ border-radius: 20px; }''')
@@ -298,7 +297,6 @@ class Button:
         master.clicked.connect(lambda: self.frame_manager(MASTER))
 
     def setting(self,master):
-
         MASTER = self.SETTING
         CHILD = self.SETTING_CHILD
 
